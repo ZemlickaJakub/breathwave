@@ -138,12 +138,16 @@ struct MeditationTimerView: View {
     private func completeSession() {
         guard !hasRecorded else { return }
         hasRecorded = true
+        // Bailing out early is a cancel: cut the audio, skip the closing gong.
+        guard engine.elapsed >= Self.minimumRecordedDuration else {
+            audio.deactivate()
+            return
+        }
         if settings.soundEnabled {
             audio.finishSession()
         } else {
             audio.deactivate()
         }
-        guard engine.elapsed >= Self.minimumRecordedDuration else { return }
         let session = Session(completedAt: .now, duration: engine.elapsed, kind: .meditation)
         sessionStore.add(session)
         if settings.healthSyncEnabled {

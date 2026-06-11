@@ -145,13 +145,17 @@ struct BreathingSessionView: View {
     private func completeSession() {
         guard !hasRecorded else { return }
         hasRecorded = true
+        haptics.stop()
+        // Bailing out early is a cancel: cut the audio, skip the closing gong.
+        guard engine.elapsed >= Self.minimumRecordedDuration else {
+            audio.deactivate()
+            return
+        }
         if settings.soundEnabled {
             audio.finishSession()
         } else {
             audio.deactivate()
         }
-        haptics.stop()
-        guard engine.elapsed >= Self.minimumRecordedDuration else { return }
         let session = Session(
             completedAt: .now,
             duration: engine.elapsed,
