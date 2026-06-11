@@ -81,17 +81,10 @@ private struct ProtocolRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(breathingProtocol.localizedName)
-            Text(rhythmDescription)
+            Text(breathingProtocol.rhythmSummary)
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
-    }
-
-    /// Phase durations as e.g. "4 · 7 · 8" — language-neutral, no localization needed.
-    private var rhythmDescription: String {
-        breathingProtocol.phases
-            .map { $0.duration.formatted(.number.precision(.fractionLength(0...1))) }
-            .joined(separator: " · ")
     }
 }
 

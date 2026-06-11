@@ -68,13 +68,29 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gong na začátku, gong na konci a mezi tím ticho — nebo oceán. Prostě seď a pozoruj. O zbytek se postará časovač. Volitelné intervalové gongy ti jemně připomenou, kolik času uběhlo."
+            "value" : "Gong na začátku, gong na konci a mezi tím ticho — nebo oceán. Prostě seď a pozoruj; o zbytek se postará časovač. Volitelné intervalové gongy ti jemně připomenou, kolik času uběhlo."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "A gong to begin, a gong to end, and silence — or the ocean — in between. Just sit and observe; the timer takes care of the rest. Optional interval bells gently mark the passing time."
+          }
+        }
+      }
+    },
+    "meditation.when" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kdykoli si chceš sednout beze slov a bez vedení — od pěti minut po hodinu."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Whenever you want to sit without words or guidance — from five minutes to an hour."
           }
         }
       }
@@ -114,13 +130,29 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Čtyři stejné fáze: nádech, zádrž, výdech, zádrž. Rytmus pro soustředění a klidnou hlavu — hodí se před prezentací, těžkým rozhovorem nebo startem. Oblíbený u sportovců a potápěčů."
+            "value" : "Čtyři stejné fáze: nádech, zádrž, výdech, zádrž. Rytmus pro soustředění a klidnou hlavu. Oblíbený u sportovců a potápěčů."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Four equal parts: breathe in, hold, breathe out, hold. A steadying rhythm for focus and a clear head — useful before a presentation, a hard conversation or a start line. A favorite of athletes and divers."
+            "value" : "Four equal parts: breathe in, hold, breathe out, hold. A steadying rhythm for focus and a clear head. A favorite of athletes and divers."
+          }
+        }
+      }
+    },
+    "protocol.box.when" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Před prezentací, těžkým rozhovorem nebo startem."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Before a presentation, a hard conversation or a start line."
           }
         }
       }
@@ -130,13 +162,29 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pomalý, vyrovnaný rytmus — zhruba pět a půl sekundy nádech, pět a půl výdech. Tělo se při něm přirozeně usadí do klidu. Skvělý základ na každý den."
+            "value" : "Pomalý, vyrovnaný rytmus — zhruba pět a půl sekundy nádech, pět a půl výdech. Tělo se při něm přirozeně usadí do klidu."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A slow, even rhythm — about five and a half seconds in, five and a half out. Breathing this way lets the body settle into its natural calm. A great everyday default."
+            "value" : "A slow, even rhythm — about five and a half seconds in, five and a half out. Breathing this way lets the body settle into its natural calm."
+          }
+        }
+      }
+    },
+    "protocol.coherent.when" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skvělý základ na každý den — ráno, o pauze i večer."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A great everyday default — mornings, breaks and evenings."
           }
         }
       }
@@ -146,13 +194,29 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Když je výdech delší než nádech, tělo to čte jako signál, že se může uvolnit. Rychlý reset ve stresových chvílích — kdekoli, kdykoli."
+            "value" : "Když je výdech delší než nádech, tělo to čte jako signál, že se může uvolnit."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "When the exhale is longer than the inhale, the body reads it as a signal that it is safe to relax. A quick reset for stressful moments — anywhere, anytime."
+            "value" : "When the exhale is longer than the inhale, the body reads it as a signal that it is safe to relax."
+          }
+        }
+      }
+    },
+    "protocol.extended-exhale.when" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rychlý reset ve stresových chvílích — kdekoli, kdykoli."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A quick reset for stressful moments — anywhere, anytime."
           }
         }
       }
@@ -162,13 +226,29 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nádech na čtyři, zádrž na sedm, výdech na osm. Dlouhá zádrž a ještě delší výdech všechno zpomalí — nejlepší večer nebo v posteli, když se hlava nechce zastavit."
+            "value" : "Nádech na čtyři, zádrž na sedm, výdech na osm. Dlouhá zádrž a ještě delší výdech všechno zpomalí."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Breathe in for four, hold for seven, let go for eight. The long hold and even longer exhale slow everything down — best in the evening or in bed when thoughts won't stop."
+            "value" : "Breathe in for four, hold for seven, let go for eight. The long hold and even longer exhale slow everything down."
+          }
+        }
+      }
+    },
+    "protocol.four-seven-eight.when" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nejlepší večer nebo v posteli, když se hlava nechce zastavit."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Best in the evening or in bed when thoughts won't stop."
           }
         }
       }
@@ -185,6 +265,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Breathe in deeply, then let a long voiced “om” carry the whole exhale. The gentle vibration of your own voice and the extended exhale support natural calm — often associated with the vagus nerve. Tune your hum to the tone that plays during the exhale."
+          }
+        }
+      }
+    },
+    "protocol.om.when" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kdykoli chceš hluboké uvolnění — a nevadí ti, že jsi u toho slyšet."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Whenever you want deep release — and don't mind being heard."
           }
         }
       }
@@ -558,6 +654,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Statistiky"
+          }
+        }
+      }
+    },
+    "What it does" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "K čemu slouží"
+          }
+        }
+      }
+    },
+    "When to use it" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kdy se hodí"
           }
         }
       }

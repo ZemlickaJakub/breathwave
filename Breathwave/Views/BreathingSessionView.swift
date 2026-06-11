@@ -71,7 +71,9 @@ struct BreathingSessionView: View {
         .sheet(isPresented: $showsInfo) {
             ExerciseInfoSheet(
                 title: breathingProtocol.localizedName,
-                descriptionKey: breathingProtocol.descriptionKey
+                descriptionKey: breathingProtocol.descriptionKey,
+                whenKey: breathingProtocol.whenKey,
+                rhythm: activeProtocol.rhythmSummary
             )
         }
         .task(id: engine.state) { await runPhaseLoop() }

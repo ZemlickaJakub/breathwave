@@ -47,6 +47,18 @@ struct BreathingProtocol: Identifiable, Hashable, Codable, Sendable {
         "protocol.\(id).description"
     }
 
+    /// Catalog key for the "when to use it" hint.
+    var whenKey: String {
+        "protocol.\(id).when"
+    }
+
+    /// Phase durations as e.g. "4 · 7 · 8" — language-neutral.
+    var rhythmSummary: String {
+        phases
+            .map { $0.duration.formatted(.number.precision(.fractionLength(0...1))) }
+            .joined(separator: " · ")
+    }
+
     /// Om training drives a voiced drone instead of the surf and lets the
     /// user adjust the exhale ("om") length.
     var isOmTraining: Bool {

@@ -5,15 +5,28 @@ import SwiftUI
 struct ExerciseInfoSheet: View {
     let title: String
     let descriptionKey: String
+    let whenKey: String
+    /// Phase rhythm like "4 · 7 · 8" (seconds); nil for the meditation timer.
+    var rhythm: String?
 
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         NavigationStack {
             ScrollView {
-                Text(LocalizedStringKey(descriptionKey))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding()
+                VStack(alignment: .leading, spacing: 28) {
+                    if let rhythm {
+                        Text(verbatim: "\(rhythm) s")
+                            .font(.subheadline.monospacedDigit())
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 6)
+                            .background(.tint.opacity(0.15), in: Capsule())
+                    }
+                    section("What it does", icon: "sparkles", textKey: descriptionKey)
+                    section("When to use it", icon: "clock", textKey: whenKey)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(24)
             }
             .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
@@ -25,5 +38,15 @@ struct ExerciseInfoSheet: View {
         }
         .presentationDetents([.medium])
         .presentationDragIndicator(.visible)
+    }
+
+    private func section(_ header: LocalizedStringKey, icon: String, textKey: String) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Label(header, systemImage: icon)
+                .font(.headline)
+                .foregroundStyle(.tint)
+            Text(LocalizedStringKey(textKey))
+                .foregroundStyle(.secondary)
+        }
     }
 }

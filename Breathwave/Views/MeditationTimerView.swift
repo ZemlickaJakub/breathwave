@@ -57,7 +57,8 @@ struct MeditationTimerView: View {
         .sheet(isPresented: $showsInfo) {
             ExerciseInfoSheet(
                 title: String(localized: "Meditation"),
-                descriptionKey: "meditation.description"
+                descriptionKey: "meditation.description",
+                whenKey: "meditation.when"
             )
         }
         .task(id: engine.state) { await runTimerLoop() }

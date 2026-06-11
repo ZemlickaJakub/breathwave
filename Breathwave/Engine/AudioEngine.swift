@@ -33,13 +33,13 @@ final class AudioEngine {
         var gongPhases: [Double] = [0, 0, 0, 0]
     }
 
-    /// Singing-bowl voice: low fundamental, slightly inharmonic overtones,
-    /// long ring-out. Per-partial beating is added in the render loop.
+    /// Singing-bowl voice: warm fundamental, overtones kept very quiet so
+    /// the bowl hums rather than clangs. Per-partial beating in the render loop.
     private nonisolated static let gongPartials: [(frequency: Double, amplitude: Double, decay: Double)] = [
-        (220, 0.50, 7.0),
-        (446, 0.25, 4.5),
-        (586, 0.12, 3.0),
-        (880, 0.05, 1.5),
+        (220, 0.50, 8.0),
+        (440.5, 0.20, 5.0),
+        (587, 0.07, 2.5),
+        (880, 0.03, 1.2),
     ]
     private nonisolated static let gongDuration: TimeInterval = 8
 
@@ -246,16 +246,16 @@ final class AudioEngine {
                         if time > gongLimit {
                             renderState.gongStartSample = nil
                         } else {
-                            // Soft mallet: 40 ms swell instead of a hard strike.
-                            let attack = min(1, time / 0.04)
+                            // Soft mallet: a slow 150 ms swell — warmed, not struck.
+                            let attack = min(1, time / 0.15)
                             for (index, partial) in partials.enumerated() {
                                 renderState.gongPhases[index] += 2 * .pi * partial.frequency / sampleRate
                                 // Slow per-partial beating — the characteristic bowl shimmer.
-                                let beat = 1 + 0.25 * sin(2 * .pi * (0.7 + 0.3 * Double(index)) * time + Double(index) * 1.3)
+                                let beat = 1 + 0.18 * sin(2 * .pi * (0.5 + 0.25 * Double(index)) * time + Double(index) * 1.3)
                                 sample += sin(renderState.gongPhases[index])
                                     * partial.amplitude
                                     * exp(-time / partial.decay)
-                                    * attack * beat * 0.55 * renderState.gongVolume
+                                    * attack * beat * 0.5 * renderState.gongVolume
                             }
                         }
                     }
