@@ -22,6 +22,15 @@ struct HomeView: View {
                 }
             }
             .navigationTitle(Text(verbatim: "Breathwave"))
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink {
+                        StatsView()
+                    } label: {
+                        Label("Stats", systemImage: "chart.bar")
+                    }
+                }
+            }
             .navigationDestination(for: BreathingProtocol.self) { breathingProtocol in
                 BreathingSessionView(breathingProtocol: breathingProtocol)
             }

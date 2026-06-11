@@ -124,6 +124,20 @@ struct SessionStoreTests {
         #expect(store.currentStreak(asOf: date(2026, 6, 1)) == 2)
     }
 
+    // MARK: - Daily minutes (chart data)
+
+    @Test func dailyMinutesIncludesEmptyDaysOldestFirst() {
+        let store = SessionStore(fileURL: makeStoreURL(), calendar: Self.prague)
+        store.add(session(at: date(2026, 6, 9), duration: 300))
+        store.add(session(at: date(2026, 6, 11, 8), duration: 120))
+        store.add(session(at: date(2026, 6, 11, 20), duration: 180))
+
+        let daily = store.dailyMinutes(lastDays: 7, asOf: date(2026, 6, 11))
+        #expect(daily.count == 7)
+        #expect(daily.map(\.minutes) == [0, 0, 0, 0, 5, 0, 5])
+        #expect(daily.last?.day == Self.prague.startOfDay(for: date(2026, 6, 11)))
+    }
+
     @Test func calendarTimeZoneControlsDayBucketing() {
         // Two sessions two hours apart, straddling midnight UTC:
         // 23:00 UTC June 10 and 01:00 UTC June 11. In Prague (UTC+2, summer)

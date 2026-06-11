@@ -1,37 +1,43 @@
 import SwiftUI
 
-/// Scaffold pacer: a circle that grows on inhale, shrinks on exhale.
-/// TODO(Fáze 1): replace with the wave animation (Canvas + WaveShape).
+/// Breathing pacer: a circle filling with a wave — the water rises on inhale,
+/// holds steady, and falls on exhale.
 struct PacerView: View {
     let snapshot: BreathingEngine.Snapshot?
+    /// Current time driving the idle wave motion (pass the TimelineView date).
+    let time: TimeInterval
 
-    private static let minScale = 0.6
-    private static let maxScale = 1.0
+    private static let emptyLevel = 0.3
+    private static let fullLevel = 0.85
 
     var body: some View {
         VStack(spacing: 32) {
-            Circle()
-                .fill(.tint.opacity(0.35))
-                .overlay(Circle().strokeBorder(.tint, lineWidth: 2))
-                .frame(width: 220, height: 220)
-                .scaleEffect(scale)
+            ZStack {
+                WaveShape(level: level, phase: time * 1.4, amplitude: 0.05)
+                    .fill(.tint.opacity(0.3))
+                WaveShape(level: level, phase: time * 1.0 + .pi / 1.5, amplitude: 0.035)
+                    .fill(.tint.opacity(0.45))
+            }
+            .clipShape(Circle())
+            .overlay(Circle().strokeBorder(.tint.opacity(0.5), lineWidth: 2))
+            .frame(width: 240, height: 240)
             Text(phaseLabel)
                 .font(.title2)
         }
     }
 
-    private var scale: Double {
-        guard let snapshot else { return Self.minScale }
-        let range = Self.maxScale - Self.minScale
+    private var level: Double {
+        guard let snapshot else { return Self.emptyLevel }
+        let range = Self.fullLevel - Self.emptyLevel
         switch snapshot.phase {
         case .inhale:
-            return Self.minScale + range * snapshot.phaseProgress
+            return Self.emptyLevel + range * snapshot.phaseProgress
         case .holdAfterInhale:
-            return Self.maxScale
+            return Self.fullLevel
         case .exhale:
-            return Self.maxScale - range * snapshot.phaseProgress
+            return Self.fullLevel - range * snapshot.phaseProgress
         case .holdAfterExhale:
-            return Self.minScale
+            return Self.emptyLevel
         }
     }
 

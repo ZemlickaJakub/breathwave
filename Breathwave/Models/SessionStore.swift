@@ -51,6 +51,25 @@ final class SessionStore {
         return streak
     }
 
+    /// Practiced minutes per day for the last `count` days, oldest first.
+    /// Days without sessions are included with 0 minutes (for the bar chart).
+    func dailyMinutes(lastDays count: Int, asOf reference: Date = .now) -> [DailyMinutes] {
+        let today = calendar.startOfDay(for: reference)
+        return (0..<count).reversed().compactMap { offset in
+            guard let day = calendar.date(byAdding: .day, value: -offset, to: today) else { return nil }
+            let seconds = sessions
+                .filter { calendar.startOfDay(for: $0.completedAt) == day }
+                .reduce(0) { $0 + $1.duration }
+            return DailyMinutes(day: day, minutes: seconds / 60)
+        }
+    }
+
+    struct DailyMinutes: Identifiable, Equatable {
+        let day: Date
+        let minutes: Double
+        var id: Date { day }
+    }
+
     // MARK: - Persistence
 
     private func load() {
