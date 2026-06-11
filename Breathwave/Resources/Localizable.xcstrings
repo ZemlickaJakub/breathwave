@@ -348,6 +348,26 @@
         }
       }
     },
+    "Cancel" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zrušit"
+          }
+        }
+      }
+    },
+    "Custom Rhythm" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vlastní rytmus"
+          }
+        }
+      }
+    },
     "Done" : {
       "localizations" : {
         "cs" : {
@@ -854,6 +874,88 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Připrav se"
+          }
+        }
+      }
+    },
+    "Name" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Název"
+          }
+        }
+      }
+    },
+    "Rhythm" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rytmus"
+          }
+        }
+      }
+    },
+    "Save" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uložit"
+          }
+        }
+      }
+    },
+    "Save as preset" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uložit jako preset"
+          }
+        }
+      }
+    },
+    "Saved presets" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uložené presety"
+          }
+        }
+      }
+    },
+    "protocol.custom.description" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nastav si délku všech čtyř fází po svém — nádech, zádrž, výdech, zádrž. Rytmus, který ti sedí, je ten, u kterého vydržíš."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set the length of all four phases yourself — inhale, hold, exhale, hold. The rhythm that suits you is the one you can stay with."
+          }
+        }
+      }
+    },
+    "protocol.custom.when" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Když už víš, co ti funguje — nebo chceš experimentovat."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When you already know what works for you — or want to experiment."
           }
         }
       }

@@ -17,6 +17,12 @@ struct HomeView: View {
                             }
                             .buttonStyle(.plain)
                         }
+                        NavigationLink {
+                            CustomRhythmView()
+                        } label: {
+                            MenuCard(titleKey: "Custom Rhythm", icon: "slider.horizontal.3")
+                        }
+                        .buttonStyle(.plain)
                     }
                     sectionHeader("Meditation")
                     VStack(spacing: 12) {
