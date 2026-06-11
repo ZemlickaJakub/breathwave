@@ -18,8 +18,12 @@ final class AudioEngine {
         var droneStartSample: Double?
         var gongRequested = false
         var gongVolume: Double = 1
+        var gongVoice: GongVoice = .bowl
         var gongStartSample: Double?
         var sampleTime: Double = 0
+        // Timbre mix gains (surf: deep rumble; breeze: airy hiss).
+        var rumbleGain: Double = 0.7
+        var hissGain: Double = 0.5
         // Surf synthesis state.
         var noiseSeed: UInt64 = 0x9E3779B97F4A7C15
         var brown: Double = 0
@@ -33,15 +37,33 @@ final class AudioEngine {
         var gongPhases: [Double] = [0, 0, 0, 0]
     }
 
-    /// Singing-bowl voice: warm fundamental, overtones kept very quiet so
-    /// the bowl hums rather than clangs. Per-partial beating in the render loop.
-    private nonisolated static let gongPartials: [(frequency: Double, amplitude: Double, decay: Double)] = [
-        (220, 0.50, 8.0),
-        (440.5, 0.20, 5.0),
-        (587, 0.07, 2.5),
-        (880, 0.03, 1.2),
-    ]
-    private nonisolated static let gongDuration: TimeInterval = 8
+    /// One synthesized gong character: partials, mallet attack, beating depth.
+    struct GongVoice: Sendable {
+        var partials: [(frequency: Double, amplitude: Double, decay: Double)]
+        var attack: Double
+        var beatDepth: Double
+        var master: Double
+        var duration: TimeInterval
+
+        /// Warm singing bowl: hums rather than clangs, long ring-out.
+        nonisolated static let bowl = GongVoice(
+            partials: [(220, 0.50, 8.0), (440.5, 0.20, 5.0), (587, 0.07, 2.5), (880, 0.03, 1.2)],
+            attack: 0.15, beatDepth: 0.18, master: 0.5, duration: 8
+        )
+
+        /// Short gentle chime — a quiet high "ting".
+        nonisolated static let chime = GongVoice(
+            partials: [(1046.5, 0.35, 2.2), (2093, 0.12, 1.2), (2637, 0.06, 0.8), (3520, 0.03, 0.5)],
+            attack: 0.03, beatDepth: 0.05, master: 0.4, duration: 4
+        )
+
+        nonisolated static func voice(for sound: GongSound) -> GongVoice {
+            switch sound {
+            case .bowl: .bowl
+            case .chime: .chime
+            }
+        }
+    }
 
     private let logger = Logger(subsystem: "cz.jakubzemlicka.breathwave", category: "AudioEngine")
     private let avEngine = AVAudioEngine()
@@ -54,7 +76,7 @@ final class AudioEngine {
     /// Activates the audio session and starts rendering. Both programs nil
     /// renders silence — that still keeps the app running in the background,
     /// which the session timer relies on.
-    func startSession(program: OceanProgram?, drone: DroneProgram? = nil) {
+    func startSession(program: OceanProgram?, drone: DroneProgram? = nil, gongSound: GongSound = .bowl) {
         do {
             try activateIfNeeded()
             state.withLock {
@@ -64,9 +86,22 @@ final class AudioEngine {
                 $0.droneProgram = drone
                 $0.droneOffset = 0
                 $0.droneStartSample = nil
+                $0.gongVoice = GongVoice.voice(for: gongSound)
+                Self.applyTimbre(of: program, to: &$0)
             }
         } catch {
             logger.error("Audio start failed: \(error)")
+        }
+    }
+
+    private nonisolated static func applyTimbre(of program: OceanProgram?, to renderState: inout RenderState) {
+        switch program?.timbre {
+        case .breeze:
+            renderState.rumbleGain = 0.12
+            renderState.hissGain = 0.55
+        case .surf, nil:
+            renderState.rumbleGain = 0.7
+            renderState.hissGain = 0.5
         }
     }
 
@@ -86,6 +121,7 @@ final class AudioEngine {
             $0.droneProgram = drone
             $0.droneOffset = elapsed
             $0.droneStartSample = nil
+            Self.applyTimbre(of: program, to: &$0)
         }
     }
 
@@ -101,13 +137,14 @@ final class AudioEngine {
     /// Plays the closing gong and tears the session down once it rings out.
     func finishSession() {
         guard isSessionActive else { return }
-        state.withLock {
+        let ringOut = state.withLock {
             $0.program = nil
             $0.droneProgram = nil
+            return $0.gongVoice.duration
         }
         playGong()
         Task {
-            try? await Task.sleep(for: .seconds(Self.gongDuration))
+            try? await Task.sleep(for: .seconds(ringOut))
             self.deactivate()
         }
     }
@@ -165,8 +202,6 @@ final class AudioEngine {
         state: OSAllocatedUnfairLock<RenderState>,
         sampleRate: Double
     ) -> AVAudioSourceNode {
-        let partials = gongPartials
-        let gongLimit = gongDuration + 1
         // Per-sample smoothing coefficients (single-pole, time constants in seconds).
         let amplitudeSlew = 1 / (0.35 * sampleRate)
         let cutoffSlew = 1 / (0.15 * sampleRate)
@@ -208,7 +243,8 @@ final class AudioEngine {
                     renderState.slowSwell += (white - renderState.slowSwell) * swellSlew
                     let swell = 1 + max(-0.35, min(0.35, renderState.slowSwell * 60))
 
-                    var sample = (renderState.brown * 0.7 + renderState.lowPassed * 0.5)
+                    var sample = (renderState.brown * renderState.rumbleGain
+                        + renderState.lowPassed * renderState.hissGain)
                         * renderState.currentAmplitude * swell * 0.9
 
                     // Om drone: warm tone with two soft harmonics and a touch of vibrato.
@@ -242,20 +278,21 @@ final class AudioEngine {
                         renderState.gongPhases = [0, 0, 0, 0]
                     }
                     if let gongStart = renderState.gongStartSample {
+                        let voice = renderState.gongVoice
                         let time = (renderState.sampleTime - gongStart) / sampleRate
-                        if time > gongLimit {
+                        if time > voice.duration + 1 {
                             renderState.gongStartSample = nil
                         } else {
-                            // Soft mallet: a slow 150 ms swell — warmed, not struck.
-                            let attack = min(1, time / 0.15)
-                            for (index, partial) in partials.enumerated() {
+                            // Soft mallet swell — warmed, not struck.
+                            let attack = min(1, time / voice.attack)
+                            for (index, partial) in voice.partials.enumerated() {
                                 renderState.gongPhases[index] += 2 * .pi * partial.frequency / sampleRate
                                 // Slow per-partial beating — the characteristic bowl shimmer.
-                                let beat = 1 + 0.18 * sin(2 * .pi * (0.5 + 0.25 * Double(index)) * time + Double(index) * 1.3)
+                                let beat = 1 + voice.beatDepth * sin(2 * .pi * (0.5 + 0.25 * Double(index)) * time + Double(index) * 1.3)
                                 sample += sin(renderState.gongPhases[index])
                                     * partial.amplitude
                                     * exp(-time / partial.decay)
-                                    * attack * beat * 0.5 * renderState.gongVolume
+                                    * attack * beat * voice.master * renderState.gongVolume
                             }
                         }
                     }

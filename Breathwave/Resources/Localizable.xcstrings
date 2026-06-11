@@ -438,12 +438,82 @@
         }
       }
     },
-    "Ocean sound" : {
+    "Ambient sound" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zvuk oceánu"
+            "value" : "Zvuk na pozadí"
+          }
+        }
+      }
+    },
+    "Breathing sound" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zvuk dýchání"
+          }
+        }
+      }
+    },
+    "Breeze" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vánek"
+          }
+        }
+      }
+    },
+    "Chime" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jemné cinknutí"
+          }
+        }
+      }
+    },
+    "Gong" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gong"
+          }
+        }
+      }
+    },
+    "Ocean" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oceán"
+          }
+        }
+      }
+    },
+    "Singing bowl" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tibetská mísa"
+          }
+        }
+      }
+    },
+    "Sounds" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zvuky"
           }
         }
       }

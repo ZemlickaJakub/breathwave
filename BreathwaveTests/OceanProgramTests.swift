@@ -74,4 +74,19 @@ struct OceanProgramTests {
         let program = OceanProgram(segments: [])
         #expect(program.value(at: 5).amplitude == 0)
     }
+
+    @Test func breezeUsesHigherCutoffs() {
+        let surf = OceanProgram.breathing(.box)
+        let breeze = OceanProgram.breathing(.box, timbre: .breeze)
+        #expect(breeze.timbre == .breeze)
+        #expect(breeze.segments[0].startCutoff > surf.segments[0].startCutoff)
+        #expect(breeze.segments[0].endCutoff > surf.segments[0].endCutoff)
+    }
+
+    @Test func ambientBreezeIsBrighterThanSurf() {
+        let surf = OceanProgram.ambient()
+        let breeze = OceanProgram.ambient(timbre: .breeze)
+        #expect(breeze.value(at: 1).cutoff > surf.value(at: 1).cutoff)
+        #expect(breeze.value(at: 1).amplitude == surf.value(at: 1).amplitude)
+    }
 }

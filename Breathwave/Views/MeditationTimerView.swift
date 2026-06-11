@@ -43,6 +43,7 @@ struct MeditationTimerView: View {
             )
         }
         .padding()
+        .calmBackground()
         .navigationTitle("Meditation")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -94,7 +95,7 @@ struct MeditationTimerView: View {
                 }
                 .labelsHidden()
             }
-            Toggle("Ocean sound", isOn: $ambientEnabled)
+            Toggle("Ambient sound", isOn: $ambientEnabled)
                 .disabled(!settings.soundEnabled)
         }
         .padding(.horizontal, 8)
@@ -107,7 +108,10 @@ struct MeditationTimerView: View {
         bellsPlayed = 0
         engine.start(.meditation, duration: TimeInterval(selectedMinutes * 60))
         let wantsAmbient = settings.soundEnabled && ambientEnabled
-        audio.startSession(program: wantsAmbient ? .ambient() : nil)
+        audio.startSession(
+            program: wantsAmbient ? .ambient(timbre: settings.breathSound.timbre) : nil,
+            gongSound: settings.gongSound
+        )
         if settings.soundEnabled { audio.playGong() }
     }
 
@@ -119,7 +123,10 @@ struct MeditationTimerView: View {
     private func resumeSession() {
         engine.resume()
         let wantsAmbient = settings.soundEnabled && ambientEnabled
-        audio.resumeProgram(wantsAmbient ? .ambient() : nil, at: engine.elapsed)
+        audio.resumeProgram(
+            wantsAmbient ? .ambient(timbre: settings.breathSound.timbre) : nil,
+            at: engine.elapsed
+        )
     }
 
     private func endSession() {

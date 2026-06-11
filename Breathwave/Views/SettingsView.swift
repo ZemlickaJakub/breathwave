@@ -14,6 +14,21 @@ struct SettingsView: View {
                 Text("Session")
             }
             Section {
+                Picker("Breathing sound", selection: $settings.breathSound) {
+                    ForEach(BreathSound.allCases) { sound in
+                        Text(LocalizedStringKey(sound.nameKey)).tag(sound)
+                    }
+                }
+                Picker("Gong", selection: $settings.gongSound) {
+                    ForEach(GongSound.allCases) { sound in
+                        Text(LocalizedStringKey(sound.nameKey)).tag(sound)
+                    }
+                }
+            } header: {
+                Text("Sounds")
+            }
+            .disabled(!settings.soundEnabled)
+            Section {
                 Toggle("Save to Apple Health", isOn: $settings.healthSyncEnabled)
                     .disabled(!healthService.isAvailable)
             } footer: {

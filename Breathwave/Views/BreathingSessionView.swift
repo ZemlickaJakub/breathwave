@@ -57,6 +57,7 @@ struct BreathingSessionView: View {
             )
         }
         .padding()
+        .calmBackground()
         .navigationTitle(breathingProtocol.localizedName)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -113,8 +114,9 @@ struct BreathingSessionView: View {
         let sound = settings.soundEnabled
         let om = breathingProtocol.isOmTraining
         audio.startSession(
-            program: sound && !om ? .breathing(activeProtocol) : nil,
-            drone: sound && om ? .om(activeProtocol) : nil
+            program: sound && !om ? .breathing(activeProtocol, timbre: settings.breathSound.timbre) : nil,
+            drone: sound && om ? .om(activeProtocol) : nil,
+            gongSound: settings.gongSound
         )
     }
 
@@ -128,7 +130,7 @@ struct BreathingSessionView: View {
         let sound = settings.soundEnabled
         let om = breathingProtocol.isOmTraining
         audio.resumeProgram(
-            sound && !om ? .breathing(activeProtocol) : nil,
+            sound && !om ? .breathing(activeProtocol, timbre: settings.breathSound.timbre) : nil,
             drone: sound && om ? .om(activeProtocol) : nil,
             at: engine.elapsed
         )

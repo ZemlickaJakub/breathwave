@@ -17,6 +17,12 @@ final class AppSettings {
     var hasCompletedOnboarding: Bool {
         didSet { defaults.set(hasCompletedOnboarding, forKey: Keys.onboarding) }
     }
+    var breathSound: BreathSound {
+        didSet { defaults.set(breathSound.rawValue, forKey: Keys.breathSound) }
+    }
+    var gongSound: GongSound {
+        didSet { defaults.set(gongSound.rawValue, forKey: Keys.gongSound) }
+    }
 
     @ObservationIgnored private let defaults: UserDefaults
 
@@ -26,6 +32,8 @@ final class AppSettings {
         hapticsEnabled = defaults.object(forKey: Keys.haptics) as? Bool ?? true
         healthSyncEnabled = defaults.bool(forKey: Keys.healthSync)
         hasCompletedOnboarding = defaults.bool(forKey: Keys.onboarding)
+        breathSound = BreathSound(rawValue: defaults.string(forKey: Keys.breathSound) ?? "") ?? .ocean
+        gongSound = GongSound(rawValue: defaults.string(forKey: Keys.gongSound) ?? "") ?? .bowl
     }
 
     private enum Keys {
@@ -33,5 +41,7 @@ final class AppSettings {
         static let haptics = "settings.haptics"
         static let healthSync = "settings.healthSync"
         static let onboarding = "onboarding.completed"
+        static let breathSound = "settings.breathSound"
+        static let gongSound = "settings.gongSound"
     }
 }
