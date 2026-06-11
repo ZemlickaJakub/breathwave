@@ -8,10 +8,10 @@ struct AboutView: View {
     var body: some View {
         List {
             Section {
-                Text("Breathwave was built in 14 days by Jakub and his AI agent — no team of developers. It is free, has no ads and collects no data.")
+                Text("Breathwave was vibecoded: Jakub built it with his AI agent — no team of developers, no investor. It is free, has no ads and collects no data.")
                 if websiteURL != nil {
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("Want your own app or AI assistant?")
+                        Text("Interested in an app or an AI assistant like this for your business? Get in touch via jakubzemlicka.cz.")
                             .foregroundStyle(.secondary)
                         Button("Open jakubzemlicka.cz") {
                             showsWebsite = true

@@ -30,6 +30,13 @@ struct HomeView: View {
                 } header: {
                     Text("Meditation")
                 }
+                Section {
+                    NavigationLink {
+                        AboutView()
+                    } label: {
+                        Label("About", systemImage: "info.circle")
+                    }
+                }
             }
             .navigationTitle(Text(verbatim: "Breathwave"))
             .toolbar {

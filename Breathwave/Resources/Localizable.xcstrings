@@ -83,12 +83,12 @@
         }
       }
     },
-    "Breathwave was built in 14 days by Jakub and his AI agent — no team of developers. It is free, has no ads and collects no data." : {
+    "Breathwave was vibecoded: Jakub built it with his AI agent — no team of developers, no investor. It is free, has no ads and collects no data." : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Breathwave jsem postavil za 14 dní se svým AI agentem. Bez týmu vývojářů. Je zdarma, bez reklam a nesbírá žádná data."
+            "value" : "Breathwave vznikl vibecodingem: postavil jsem ho se svým AI agentem — bez týmu vývojářů, bez investora. Je zdarma, bez reklam a nesbírá žádná data."
           }
         }
       }
@@ -363,12 +363,12 @@
         }
       }
     },
-    "Want your own app or AI assistant?" : {
+    "Interested in an app or an AI assistant like this for your business? Get in touch via jakubzemlicka.cz." : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chceš vlastní appku nebo AI asistenta?"
+            "value" : "Máš zájem o podobnou appku nebo AI asistenta pro svou firmu? Ozvi se přes jakubzemlicka.cz."
           }
         }
       }
