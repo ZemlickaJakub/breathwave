@@ -27,6 +27,9 @@ struct HomeView: View {
                     } label: {
                         Label("Meditation Timer", systemImage: "timer")
                     }
+                    NavigationLink(value: BreathingProtocol.om) {
+                        Label("Om Chanting", systemImage: "waveform")
+                    }
                 } header: {
                     Text("Meditation")
                 }

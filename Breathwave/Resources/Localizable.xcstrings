@@ -50,6 +50,145 @@
     "%lld min" : {
       "shouldTranslate" : false
     },
+    "%lld s" : {
+      "shouldTranslate" : false
+    },
+    "About this exercise" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O tomto cvičení"
+          }
+        }
+      }
+    },
+    "meditation.description" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gong na začátku, gong na konci a mezi tím ticho — nebo oceán. Prostě seď a pozoruj. O zbytek se postará časovač. Volitelné intervalové gongy ti jemně připomenou, kolik času uběhlo."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A gong to begin, a gong to end, and silence — or the ocean — in between. Just sit and observe; the timer takes care of the rest. Optional interval bells gently mark the passing time."
+          }
+        }
+      }
+    },
+    "Om" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Óm"
+          }
+        }
+      }
+    },
+    "Om Chanting" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Óm chanting"
+          }
+        }
+      }
+    },
+    "Om length" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Délka óm"
+          }
+        }
+      }
+    },
+    "protocol.box.description" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Čtyři stejné fáze: nádech, zádrž, výdech, zádrž. Rytmus pro soustředění a klidnou hlavu — hodí se před prezentací, těžkým rozhovorem nebo startem. Oblíbený u sportovců a potápěčů."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Four equal parts: breathe in, hold, breathe out, hold. A steadying rhythm for focus and a clear head — useful before a presentation, a hard conversation or a start line. A favorite of athletes and divers."
+          }
+        }
+      }
+    },
+    "protocol.coherent.description" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pomalý, vyrovnaný rytmus — zhruba pět a půl sekundy nádech, pět a půl výdech. Tělo se při něm přirozeně usadí do klidu. Skvělý základ na každý den."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A slow, even rhythm — about five and a half seconds in, five and a half out. Breathing this way lets the body settle into its natural calm. A great everyday default."
+          }
+        }
+      }
+    },
+    "protocol.extended-exhale.description" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Když je výdech delší než nádech, tělo to čte jako signál, že se může uvolnit. Rychlý reset ve stresových chvílích — kdekoli, kdykoli."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When the exhale is longer than the inhale, the body reads it as a signal that it is safe to relax. A quick reset for stressful moments — anywhere, anytime."
+          }
+        }
+      }
+    },
+    "protocol.four-seven-eight.description" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nádech na čtyři, zádrž na sedm, výdech na osm. Dlouhá zádrž a ještě delší výdech všechno zpomalí — nejlepší večer nebo v posteli, když se hlava nechce zastavit."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Breathe in for four, hold for seven, let go for eight. The long hold and even longer exhale slow everything down — best in the evening or in bed when thoughts won't stop."
+          }
+        }
+      }
+    },
+    "protocol.om.description" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zhluboka se nadechni a celý výdech nech nést dlouhé „óóóm“. Jemná vibrace vlastního hlasu spolu s prodlouženým výdechem podporuje přirozené zklidnění — bývá spojována s bloudivým nervem (vagus). Laď se podle tónu, který hraje při výdechu."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Breathe in deeply, then let a long voiced “om” carry the whole exhale. The gentle vibration of your own voice and the extended exhale support natural calm — often associated with the vagus nerve. Tune your hum to the tone that plays during the exhale."
+          }
+        }
+      }
+    },
     "4-7-8" : {
       "shouldTranslate" : false
     },

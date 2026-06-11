@@ -41,6 +41,17 @@ struct BreathingProtocol: Identifiable, Hashable, Codable, Sendable {
     var localizedName: String {
         String(localized: String.LocalizationValue(nameKey))
     }
+
+    /// Catalog key for the "what is this good for" description.
+    var descriptionKey: String {
+        "protocol.\(id).description"
+    }
+
+    /// Om training drives a voiced drone instead of the surf and lets the
+    /// user adjust the exhale ("om") length.
+    var isOmTraining: Bool {
+        id == "om"
+    }
 }
 
 extension BreathingProtocol {
@@ -78,5 +89,13 @@ extension BreathingProtocol {
         id: "meditation",
         nameKey: "Meditation",
         inhale: 1, holdAfterInhale: 0, exhale: 1, holdAfterExhale: 0
+    )
+
+    /// Om training: deep breath in, long voiced "om" on the exhale.
+    /// The exhale length is user-adjustable in the session screen.
+    static let om = BreathingProtocol(
+        id: "om",
+        nameKey: "Om Chanting",
+        inhale: 4, holdAfterInhale: 0, exhale: 12, holdAfterExhale: 0
     )
 }

@@ -8,6 +8,7 @@ struct MeditationTimerView: View {
     @State private var ambientEnabled = true
     @State private var bellsPlayed = 0
     @State private var hasRecorded = false
+    @State private var showsInfo = false
     @Environment(SessionStore.self) private var sessionStore
     @Environment(AppSettings.self) private var settings
     @Environment(HealthService.self) private var healthService
@@ -33,11 +34,32 @@ struct MeditationTimerView: View {
             if engine.state == .idle || engine.state == .finished {
                 options
             }
-            controls
+            SessionControls(
+                state: engine.state,
+                onStart: startSession,
+                onPause: pauseSession,
+                onResume: resumeSession,
+                onEnd: endSession
+            )
         }
         .padding()
         .navigationTitle("Meditation")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    showsInfo = true
+                } label: {
+                    Label("About this exercise", systemImage: "info.circle")
+                }
+            }
+        }
+        .sheet(isPresented: $showsInfo) {
+            ExerciseInfoSheet(
+                title: String(localized: "Meditation"),
+                descriptionKey: "meditation.description"
+            )
+        }
         .task(id: engine.state) { await runTimerLoop() }
         .onDisappear { teardown() }
     }
@@ -75,41 +97,6 @@ struct MeditationTimerView: View {
                 .disabled(!settings.soundEnabled)
         }
         .padding(.horizontal, 8)
-    }
-
-    @ViewBuilder
-    private var controls: some View {
-        switch engine.state {
-        case .idle:
-            Button("Start") { startSession() }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
-        case .finished:
-            VStack(spacing: 12) {
-                Text("Done")
-                    .font(.headline)
-                    .foregroundStyle(.secondary)
-                Button("Start") { startSession() }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
-            }
-        case .running:
-            HStack(spacing: 16) {
-                Button("Pause") { pauseSession() }
-                    .buttonStyle(.bordered)
-                Button("End") { endSession() }
-                    .buttonStyle(.borderedProminent)
-            }
-            .controlSize(.large)
-        case .paused:
-            HStack(spacing: 16) {
-                Button("Resume") { resumeSession() }
-                    .buttonStyle(.borderedProminent)
-                Button("End") { endSession() }
-                    .buttonStyle(.bordered)
-            }
-            .controlSize(.large)
-        }
     }
 
     // MARK: - Session lifecycle

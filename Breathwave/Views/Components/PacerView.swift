@@ -6,6 +6,8 @@ struct PacerView: View {
     let snapshot: BreathingEngine.Snapshot?
     /// Current time driving the idle wave motion (pass the TimelineView date).
     let time: TimeInterval
+    /// Om training shows "Om" instead of "Breathe Out".
+    var exhaleLabel: LocalizedStringKey = "Breathe Out"
 
     /// Exhale empties the lungs — the water drops to a small puddle,
     /// not a hard zero, so the circle never looks dead.
@@ -48,7 +50,7 @@ struct PacerView: View {
         switch snapshot.phase {
         case .inhale: return "Breathe In"
         case .holdAfterInhale, .holdAfterExhale: return "Hold"
-        case .exhale: return "Breathe Out"
+        case .exhale: return exhaleLabel
         }
     }
 }
