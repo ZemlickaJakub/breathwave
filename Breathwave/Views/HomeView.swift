@@ -2,6 +2,7 @@ import SwiftUI
 
 struct HomeView: View {
     @Environment(SessionStore.self) private var sessionStore
+    @Environment(AppSettings.self) private var settings
 
     var body: some View {
         NavigationStack {
@@ -20,9 +21,25 @@ struct HomeView: View {
                         Text("Streak: \(streak) days")
                     }
                 }
+                Section {
+                    NavigationLink {
+                        MeditationTimerView()
+                    } label: {
+                        Label("Meditation Timer", systemImage: "timer")
+                    }
+                } header: {
+                    Text("Meditation")
+                }
             }
             .navigationTitle(Text(verbatim: "Breathwave"))
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    NavigationLink {
+                        SettingsView()
+                    } label: {
+                        Label("Settings", systemImage: "gearshape")
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink {
                         StatsView()
@@ -35,6 +52,16 @@ struct HomeView: View {
                 BreathingSessionView(breathingProtocol: breathingProtocol)
             }
         }
+        .fullScreenCover(isPresented: showsOnboarding) {
+            OnboardingView { settings.hasCompletedOnboarding = true }
+        }
+    }
+
+    private var showsOnboarding: Binding<Bool> {
+        Binding(
+            get: { !settings.hasCompletedOnboarding },
+            set: { if !$0 { settings.hasCompletedOnboarding = true } }
+        )
     }
 }
 
@@ -61,4 +88,6 @@ private struct ProtocolRow: View {
 #Preview {
     HomeView()
         .environment(SessionStore(fileURL: FileManager.default.temporaryDirectory.appending(path: "preview-sessions.json")))
+        .environment(AppSettings())
+        .environment(HealthService())
 }

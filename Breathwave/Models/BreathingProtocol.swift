@@ -71,4 +71,12 @@ extension BreathingProtocol {
     /// Built-in presets shown on the home screen.
     /// The fifth protocol (custom rhythm with saved presets) comes in Phase 2.
     static let presets: [BreathingProtocol] = [.coherent, .box, .fourSevenEight, .extendedExhale]
+
+    /// Internal carrier for the meditation timer — reuses the engine's
+    /// absolute-time session logic; the phases themselves are not shown.
+    static let meditation = BreathingProtocol(
+        id: "meditation",
+        nameKey: "Meditation",
+        inhale: 1, holdAfterInhale: 0, exhale: 1, holdAfterExhale: 0
+    )
 }

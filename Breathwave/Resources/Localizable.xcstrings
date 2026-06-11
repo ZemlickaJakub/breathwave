@@ -47,8 +47,331 @@
         }
       }
     },
+    "%lld min" : {
+      "shouldTranslate" : false
+    },
     "4-7-8" : {
       "shouldTranslate" : false
+    },
+    "About" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O aplikaci"
+          }
+        }
+      }
+    },
+    "Breathe with the wave" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dýchej s vlnou"
+          }
+        }
+      }
+    },
+    "Breathwave is free and ad-free. Tips support development and unlock nothing." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Breathwave je zdarma a bez reklam. Příspěvky podporují vývoj a nic neodemykají."
+          }
+        }
+      }
+    },
+    "Breathwave was built in 14 days by Jakub and his AI agent — no team of developers. It is free, has no ads and collects no data." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Breathwave jsem postavil za 14 dní se svým AI agentem. Bez týmu vývojářů. Je zdarma, bez reklam a nesbírá žádná data."
+          }
+        }
+      }
+    },
+    "Completed sessions are saved to Apple Health as Mindful Minutes. Breathwave never reads any Health data." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokončená cvičení se ukládají do Apple Zdraví jako minuty mindfulness. Breathwave žádná data ze Zdraví nečte."
+          }
+        }
+      }
+    },
+    "Continue" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokračovat"
+          }
+        }
+      }
+    },
+    "Done" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hotovo"
+          }
+        }
+      }
+    },
+    "Get Started" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jdeme na to"
+          }
+        }
+      }
+    },
+    "Haptics" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haptika"
+          }
+        }
+      }
+    },
+    "Interval bells" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intervalové gongy"
+          }
+        }
+      }
+    },
+    "Length" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Délka"
+          }
+        }
+      }
+    },
+    "Loading…" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Načítám…"
+          }
+        }
+      }
+    },
+    "Meditation" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meditace"
+          }
+        }
+      }
+    },
+    "Meditation Timer" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meditační timer"
+          }
+        }
+      }
+    },
+    "No accounts, no ads, no tracking. Everything stays on your phone." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Žádné účty, žádné reklamy, žádné sledování. Všechno zůstává v tvém telefonu."
+          }
+        }
+      }
+    },
+    "Ocean sound" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zvuk oceánu"
+          }
+        }
+      }
+    },
+    "Off" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vypnuto"
+          }
+        }
+      }
+    },
+    "Open jakubzemlicka.cz" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otevřít jakubzemlicka.cz"
+          }
+        }
+      }
+    },
+    "Pick a protocol and follow the rising and falling water." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyber protokol a nech se vést stoupající a klesající hladinou."
+          }
+        }
+      }
+    },
+    "Private by design" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Soukromí především"
+          }
+        }
+      }
+    },
+    "Save to Apple Health" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukládat do Apple Zdraví"
+          }
+        }
+      }
+    },
+    "Screen off, session on" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Displej zhasne, cvičení běží"
+          }
+        }
+      }
+    },
+    "Session" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cvičení"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nastavení"
+          }
+        }
+      }
+    },
+    "Skip" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přeskočit"
+          }
+        }
+      }
+    },
+    "Sound" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zvuk"
+          }
+        }
+      }
+    },
+    "Support Breathwave" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Podpoř Breathwave"
+          }
+        }
+      }
+    },
+    "Thank you! 🌊" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Díky! 🌊"
+          }
+        }
+      }
+    },
+    "The ocean keeps guiding you even with the screen off." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oceán tě vede dál, i když displej zhasne."
+          }
+        }
+      }
+    },
+    "The story" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Příběh"
+          }
+        }
+      }
+    },
+    "Tips are unavailable right now." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Příspěvky teď nejsou dostupné."
+          }
+        }
+      }
+    },
+    "Want your own app or AI assistant?" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chceš vlastní appku nebo AI asistenta?"
+          }
+        }
+      }
     },
     "Current streak" : {
       "localizations" : {
