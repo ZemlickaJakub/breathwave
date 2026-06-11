@@ -59,11 +59,11 @@ final class AudioEngine {
             attack: 0.03, beatDepth: 0.05, master: 0.4, duration: 4
         )
 
+        /// Synthesized fallback used only when the bundled sample is missing.
         nonisolated static func voice(for sound: GongSound) -> GongVoice {
             switch sound {
-            case .bowl: .bowl
             case .chime: .chime
-            case .zenBowl: .bowl  // synth fallback; the sample plays via the player node
+            case .zenBowl: .bowl
             }
         }
     }
@@ -74,23 +74,22 @@ final class AudioEngine {
     private var isConfigured = false
     private(set) var isSessionActive = false
 
-    // Sample-based gong (zen bowl): loaded from the bundle when present.
+    // Sample-based gongs, loaded from the bundle when present.
     private var samplePlayer: AVAudioPlayerNode?
-    private var sampleBuffer: AVAudioPCMBuffer?
-    private var sampleDuration: TimeInterval = 0
-    private var currentGongSound: GongSound = .bowl
+    private var sampleBuffers: [GongSound: AVAudioPCMBuffer] = [:]
+    private var sampleDurations: [GongSound: TimeInterval] = [:]
+    private var currentGongSound: GongSound = .zenBowl
 
     // MARK: - Session control
 
     /// Activates the audio session and starts rendering. Both programs nil
     /// renders silence — that still keeps the app running in the background,
     /// which the session timer relies on.
-    func startSession(program: OceanProgram?, drone: DroneProgram? = nil, gongSound: GongSound = .bowl) {
+    func startSession(program: OceanProgram?, drone: DroneProgram? = nil, gongSound: GongSound = .zenBowl) {
         do {
             try activateIfNeeded()
-            let resolvedGong = gongSound == .zenBowl && sampleBuffer == nil ? GongSound.bowl : gongSound
-            currentGongSound = resolvedGong
-            let voice = GongVoice.voice(for: resolvedGong)
+            currentGongSound = gongSound
+            let voice = GongVoice.voice(for: gongSound)
             state.withLock {
                 $0.program = program
                 $0.programOffset = 0
@@ -139,13 +138,13 @@ final class AudioEngine {
         }
     }
 
-    /// One bowl strike; volume < 1 gives a softer interval bell.
+    /// One gong strike; volume < 1 gives a softer interval bell.
     func playGong(volume: Double = 1) {
         guard isSessionActive else { return }
-        if currentGongSound == .zenBowl, let samplePlayer, let sampleBuffer {
+        if let samplePlayer, let buffer = sampleBuffers[currentGongSound] {
             samplePlayer.volume = Float(volume)
             samplePlayer.stop()
-            samplePlayer.scheduleBuffer(sampleBuffer, at: nil)
+            samplePlayer.scheduleBuffer(buffer, at: nil)
             samplePlayer.play()
             return
         }
@@ -163,7 +162,7 @@ final class AudioEngine {
             $0.droneProgram = nil
             return $0.gongVoice.duration
         }
-        if currentGongSound == .zenBowl, sampleDuration > 0 {
+        if let sampleDuration = sampleDurations[currentGongSound] {
             // Let the recording ring out fully before the session closes.
             ringOut = min(sampleDuration + 0.5, 30)
         }
@@ -220,28 +219,33 @@ final class AudioEngine {
         let source = Self.makeSourceNode(state: state, sampleRate: sampleRate)
         avEngine.attach(source)
         avEngine.connect(source, to: avEngine.mainMixerNode, format: format)
-        loadGongSampleIfPresent()
+        loadGongSamples()
     }
 
-    /// Loads the optional zen-bowl sample (Resources/Sounds/gong-zen-bowl.*).
-    private func loadGongSampleIfPresent() {
-        guard let url = GongSound.zenBowlURL else { return }
-        do {
-            let file = try AVAudioFile(forReading: url)
-            guard let buffer = AVAudioPCMBuffer(
-                pcmFormat: file.processingFormat,
-                frameCapacity: AVAudioFrameCount(file.length)
-            ) else { return }
-            try file.read(into: buffer)
-            let player = AVAudioPlayerNode()
-            avEngine.attach(player)
-            avEngine.connect(player, to: avEngine.mainMixerNode, format: file.processingFormat)
-            samplePlayer = player
-            sampleBuffer = buffer
-            sampleDuration = Double(file.length) / file.processingFormat.sampleRate
-        } catch {
-            logger.error("Gong sample failed to load: \(error)")
+    /// Loads the bundled gong samples (Resources/Sounds/gong-*.m4a).
+    private func loadGongSamples() {
+        var sharedFormat: AVAudioFormat?
+        for sound in GongSound.allCases {
+            guard let url = sound.sampleURL else { continue }
+            do {
+                let file = try AVAudioFile(forReading: url)
+                guard let buffer = AVAudioPCMBuffer(
+                    pcmFormat: file.processingFormat,
+                    frameCapacity: AVAudioFrameCount(file.length)
+                ) else { continue }
+                try file.read(into: buffer)
+                sampleBuffers[sound] = buffer
+                sampleDurations[sound] = Double(file.length) / file.processingFormat.sampleRate
+                sharedFormat = file.processingFormat
+            } catch {
+                logger.error("Gong sample \(sound.rawValue) failed to load: \(error)")
+            }
         }
+        guard let sharedFormat, !sampleBuffers.isEmpty else { return }
+        let player = AVAudioPlayerNode()
+        avEngine.attach(player)
+        avEngine.connect(player, to: avEngine.mainMixerNode, format: sharedFormat)
+        samplePlayer = player
     }
 
     // MARK: - Realtime rendering

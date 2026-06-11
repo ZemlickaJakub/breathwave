@@ -33,9 +33,7 @@ final class AppSettings {
         healthSyncEnabled = defaults.bool(forKey: Keys.healthSync)
         hasCompletedOnboarding = defaults.bool(forKey: Keys.onboarding)
         breathSound = BreathSound(rawValue: defaults.string(forKey: Keys.breathSound) ?? "") ?? .ocean
-        let storedGong = GongSound(rawValue: defaults.string(forKey: Keys.gongSound) ?? "") ?? .bowl
-        // Fall back when the stored choice needs a sample that is no longer bundled.
-        gongSound = storedGong.isAvailable ? storedGong : .bowl
+        gongSound = GongSound(rawValue: defaults.string(forKey: Keys.gongSound) ?? "") ?? .zenBowl
     }
 
     private enum Keys {

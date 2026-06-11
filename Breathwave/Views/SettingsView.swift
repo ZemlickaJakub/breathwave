@@ -20,7 +20,7 @@ struct SettingsView: View {
                     }
                 }
                 Picker("Gong", selection: $settings.gongSound) {
-                    ForEach(GongSound.available) { sound in
+                    ForEach(GongSound.allCases) { sound in
                         Text(LocalizedStringKey(sound.nameKey)).tag(sound)
                     }
                 }
