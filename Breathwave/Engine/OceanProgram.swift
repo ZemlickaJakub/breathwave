@@ -31,11 +31,12 @@ struct OceanProgram: Equatable, Sendable {
     static let highCutoff: Double = 1400
     static let holdAmplitude: Double = 0.15
 
-    /// Cutoff range per timbre — breeze lives higher, with no deep rumble.
+    /// Cutoff range per timbre — breeze stays low and narrow so it washes
+    /// gently instead of hissing like a storm.
     private static func cutoffRange(for timbre: Timbre) -> (low: Double, high: Double) {
         switch timbre {
         case .surf: (lowCutoff, highCutoff)
-        case .breeze: (700, 2600)
+        case .breeze: (380, 950)
         }
     }
 
@@ -65,7 +66,7 @@ struct OceanProgram: Equatable, Sendable {
 
     /// Steady distant surf (or breeze) for the meditation timer.
     static func ambient(timbre: Timbre = .surf) -> OceanProgram {
-        let cutoff = timbre == .surf ? 650.0 : 1200.0
+        let cutoff = timbre == .surf ? 650.0 : 800.0
         return OceanProgram(
             segments: [
                 Segment(duration: 60, startCutoff: cutoff, endCutoff: cutoff,

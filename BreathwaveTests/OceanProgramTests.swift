@@ -75,12 +75,15 @@ struct OceanProgramTests {
         #expect(program.value(at: 5).amplitude == 0)
     }
 
-    @Test func breezeUsesHigherCutoffs() {
+    @Test func breezeIsGentlerThanSurf() {
         let surf = OceanProgram.breathing(.box)
         let breeze = OceanProgram.breathing(.box, timbre: .breeze)
         #expect(breeze.timbre == .breeze)
-        #expect(breeze.segments[0].startCutoff > surf.segments[0].startCutoff)
-        #expect(breeze.segments[0].endCutoff > surf.segments[0].endCutoff)
+        // Quieter peak and a narrower sweep — a wash, not a storm.
+        #expect(breeze.segments[0].endCutoff < surf.segments[0].endCutoff)
+        let breezeSweep = breeze.segments[0].endCutoff - breeze.segments[0].startCutoff
+        let surfSweep = surf.segments[0].endCutoff - surf.segments[0].startCutoff
+        #expect(breezeSweep < surfSweep)
     }
 
     @Test func ambientBreezeIsBrighterThanSurf() {

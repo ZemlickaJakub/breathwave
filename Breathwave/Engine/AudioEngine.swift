@@ -24,6 +24,8 @@ final class AudioEngine {
         // Timbre mix gains (surf: deep rumble; breeze: airy hiss).
         var rumbleGain: Double = 0.7
         var hissGain: Double = 0.5
+        /// Depth of the slow random swell — breeze keeps it shallow (no gusts).
+        var swellDepth: Double = 0.35
         // Surf synthesis state.
         var noiseSeed: UInt64 = 0x9E3779B97F4A7C15
         var brown: Double = 0
@@ -61,6 +63,7 @@ final class AudioEngine {
             switch sound {
             case .bowl: .bowl
             case .chime: .chime
+            case .zenBowl: .bowl  // synth fallback; the sample plays via the player node
             }
         }
     }
@@ -71,6 +74,12 @@ final class AudioEngine {
     private var isConfigured = false
     private(set) var isSessionActive = false
 
+    // Sample-based gong (zen bowl): loaded from the bundle when present.
+    private var samplePlayer: AVAudioPlayerNode?
+    private var sampleBuffer: AVAudioPCMBuffer?
+    private var sampleDuration: TimeInterval = 0
+    private var currentGongSound: GongSound = .bowl
+
     // MARK: - Session control
 
     /// Activates the audio session and starts rendering. Both programs nil
@@ -79,6 +88,9 @@ final class AudioEngine {
     func startSession(program: OceanProgram?, drone: DroneProgram? = nil, gongSound: GongSound = .bowl) {
         do {
             try activateIfNeeded()
+            let resolvedGong = gongSound == .zenBowl && sampleBuffer == nil ? GongSound.bowl : gongSound
+            currentGongSound = resolvedGong
+            let voice = GongVoice.voice(for: resolvedGong)
             state.withLock {
                 $0.program = program
                 $0.programOffset = 0
@@ -86,7 +98,7 @@ final class AudioEngine {
                 $0.droneProgram = drone
                 $0.droneOffset = 0
                 $0.droneStartSample = nil
-                $0.gongVoice = GongVoice.voice(for: gongSound)
+                $0.gongVoice = voice
                 Self.applyTimbre(of: program, to: &$0)
             }
         } catch {
@@ -97,11 +109,13 @@ final class AudioEngine {
     private nonisolated static func applyTimbre(of program: OceanProgram?, to renderState: inout RenderState) {
         switch program?.timbre {
         case .breeze:
-            renderState.rumbleGain = 0.12
-            renderState.hissGain = 0.55
+            renderState.rumbleGain = 0.3
+            renderState.hissGain = 0.32
+            renderState.swellDepth = 0.15
         case .surf, nil:
             renderState.rumbleGain = 0.7
             renderState.hissGain = 0.5
+            renderState.swellDepth = 0.35
         }
     }
 
@@ -128,6 +142,13 @@ final class AudioEngine {
     /// One bowl strike; volume < 1 gives a softer interval bell.
     func playGong(volume: Double = 1) {
         guard isSessionActive else { return }
+        if currentGongSound == .zenBowl, let samplePlayer, let sampleBuffer {
+            samplePlayer.volume = Float(volume)
+            samplePlayer.stop()
+            samplePlayer.scheduleBuffer(sampleBuffer, at: nil)
+            samplePlayer.play()
+            return
+        }
         state.withLock {
             $0.gongRequested = true
             $0.gongVolume = volume
@@ -137,10 +158,13 @@ final class AudioEngine {
     /// Plays the closing gong and tears the session down once it rings out.
     func finishSession() {
         guard isSessionActive else { return }
-        let ringOut = state.withLock {
+        var ringOut = state.withLock {
             $0.program = nil
             $0.droneProgram = nil
             return $0.gongVoice.duration
+        }
+        if currentGongSound == .zenBowl, sampleDuration > 0 {
+            ringOut = min(sampleDuration, 15)
         }
         playGong()
         Task {
@@ -158,6 +182,7 @@ final class AudioEngine {
             $0.gongRequested = false
             $0.gongStartSample = nil
         }
+        samplePlayer?.stop()
         avEngine.stop()
         do {
             try AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
@@ -194,6 +219,28 @@ final class AudioEngine {
         let source = Self.makeSourceNode(state: state, sampleRate: sampleRate)
         avEngine.attach(source)
         avEngine.connect(source, to: avEngine.mainMixerNode, format: format)
+        loadGongSampleIfPresent()
+    }
+
+    /// Loads the optional zen-bowl sample (Resources/Sounds/gong-zen-bowl.*).
+    private func loadGongSampleIfPresent() {
+        guard let url = GongSound.zenBowlURL else { return }
+        do {
+            let file = try AVAudioFile(forReading: url)
+            guard let buffer = AVAudioPCMBuffer(
+                pcmFormat: file.processingFormat,
+                frameCapacity: AVAudioFrameCount(file.length)
+            ) else { return }
+            try file.read(into: buffer)
+            let player = AVAudioPlayerNode()
+            avEngine.attach(player)
+            avEngine.connect(player, to: avEngine.mainMixerNode, format: file.processingFormat)
+            samplePlayer = player
+            sampleBuffer = buffer
+            sampleDuration = Double(file.length) / file.processingFormat.sampleRate
+        } catch {
+            logger.error("Gong sample failed to load: \(error)")
+        }
     }
 
     // MARK: - Realtime rendering
@@ -241,7 +288,8 @@ final class AudioEngine {
                     renderState.lowPassed += (white - renderState.lowPassed) * alpha
                     // Slow random swell so consecutive waves never sound identical.
                     renderState.slowSwell += (white - renderState.slowSwell) * swellSlew
-                    let swell = 1 + max(-0.35, min(0.35, renderState.slowSwell * 60))
+                    let depth = renderState.swellDepth
+                    let swell = 1 + max(-depth, min(depth, renderState.slowSwell * 60))
 
                     var sample = (renderState.brown * renderState.rumbleGain
                         + renderState.lowPassed * renderState.hissGain)
