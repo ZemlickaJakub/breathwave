@@ -7,8 +7,10 @@ struct PacerView: View {
     /// Current time driving the idle wave motion (pass the TimelineView date).
     let time: TimeInterval
 
-    private static let emptyLevel = 0.3
-    private static let fullLevel = 0.85
+    /// Exhale empties the lungs — the water drops to a small puddle,
+    /// not a hard zero, so the circle never looks dead.
+    private static let emptyLevel = 0.08
+    private static let fullLevel = 0.95
 
     var body: some View {
         VStack(spacing: 32) {
