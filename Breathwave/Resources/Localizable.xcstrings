@@ -508,6 +508,26 @@
         }
       }
     },
+    "Credits" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poděkování"
+          }
+        }
+      }
+    },
+    "Singing bowl recording: Valera N. Trubin, Wikimedia Commons, CC BY 4.0." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nahrávka tibetské mísy: Valera N. Trubin, Wikimedia Commons, CC BY 4.0."
+          }
+        }
+      }
+    },
     "Singing bowl" : {
       "localizations" : {
         "cs" : {

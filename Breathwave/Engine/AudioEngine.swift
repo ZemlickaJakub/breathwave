@@ -164,7 +164,8 @@ final class AudioEngine {
             return $0.gongVoice.duration
         }
         if currentGongSound == .zenBowl, sampleDuration > 0 {
-            ringOut = min(sampleDuration, 15)
+            // Let the recording ring out fully before the session closes.
+            ringOut = min(sampleDuration + 0.5, 30)
         }
         playGong()
         Task {

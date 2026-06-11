@@ -22,6 +22,13 @@ struct AboutView: View {
                 Text("The story")
             }
             TipJarView()
+            Section {
+                Text("Singing bowl recording: Valera N. Trubin, Wikimedia Commons, CC BY 4.0.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            } header: {
+                Text("Credits")
+            }
         }
         .navigationTitle("About")
         .sheet(isPresented: $showsWebsite) {
