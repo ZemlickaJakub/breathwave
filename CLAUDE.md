@@ -12,8 +12,9 @@ Brief a realizační plán (architektura, App Store metadata, review rizika): `d
 
 ## Build, test, run
 ```bash
-xcodebuild -scheme Breathwave -destination 'platform=iOS Simulator,name=iPhone 16' build
-xcodebuild -scheme Breathwave -destination 'platform=iOS Simulator,name=iPhone 16' test
+export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer  # xcode-select míří na CLT
+xcodebuild -scheme Breathwave -destination 'platform=iOS Simulator,name=iPhone 17' build
+xcodebuild -scheme Breathwave -destination 'platform=iOS Simulator,name=iPhone 17' test
 xcrun simctl launch booted cz.jakubzemlicka.breathwave
 ```
 
