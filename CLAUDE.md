@@ -1,4 +1,4 @@
-# Vlna — iOS breathing & meditation app
+# Breathwave — iOS breathing & meditation app
 
 Minimalistická iOS appka (SwiftUI) na řízené dýchání a meditační timer.
 Free, bez analytiky, bez backendu. Solo projekt Jakuba, vyvíjený Claude Code.
@@ -12,9 +12,9 @@ Brief a realizační plán (architektura, App Store metadata, review rizika): `d
 
 ## Build, test, run
 ```bash
-xcodebuild -scheme Vlna -destination 'platform=iOS Simulator,name=iPhone 16' build
-xcodebuild -scheme Vlna -destination 'platform=iOS Simulator,name=iPhone 16' test
-xcrun simctl launch booted cz.jakubzemlicka.vlna
+xcodebuild -scheme Breathwave -destination 'platform=iOS Simulator,name=iPhone 16' build
+xcodebuild -scheme Breathwave -destination 'platform=iOS Simulator,name=iPhone 16' test
+xcrun simctl launch booted cz.jakubzemlicka.breathwave
 ```
 
 ## Konvence
