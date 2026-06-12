@@ -6,37 +6,72 @@ struct SettingsView: View {
 
     var body: some View {
         @Bindable var settings = settings
-        Form {
-            Section {
-                Toggle("Haptics", isOn: $settings.hapticsEnabled)
-            } header: {
-                Text("Session")
-            }
-            Section {
-                Picker("Breathing sound", selection: $settings.breathSound) {
-                    ForEach(BreathSound.allCases) { sound in
-                        Text(LocalizedStringKey(sound.nameKey)).tag(sound)
-                    }
+        ScrollView {
+            VStack(alignment: .leading, spacing: 24) {
+                VStack(alignment: .leading, spacing: 10) {
+                    SectionHeader("Session")
+                    Toggle("Haptics", isOn: $settings.hapticsEnabled)
+                        .font(.headline)
+                        .fontDesign(.serif)
+                        .tint(.accentColor)
+                        .cardChrome()
                 }
-                Picker("Gong", selection: $settings.gongSound) {
-                    ForEach(GongSound.allCases) { sound in
-                        Text(LocalizedStringKey(sound.nameKey)).tag(sound)
+                VStack(alignment: .leading, spacing: 10) {
+                    SectionHeader("Sounds")
+                    VStack(spacing: 12) {
+                        HStack {
+                            Text("Breathing sound")
+                                .font(.headline)
+                                .fontDesign(.serif)
+                            Spacer()
+                            Picker("Breathing sound", selection: $settings.breathSound) {
+                                ForEach(BreathSound.allCases) { sound in
+                                    Text(LocalizedStringKey(sound.nameKey)).tag(sound)
+                                }
+                            }
+                            .labelsHidden()
+                        }
+                        Divider()
+                        HStack {
+                            Text("Gong")
+                                .font(.headline)
+                                .fontDesign(.serif)
+                            Spacer()
+                            Picker("Gong", selection: $settings.gongSound) {
+                                ForEach(GongSound.allCases) { sound in
+                                    Text(LocalizedStringKey(sound.nameKey)).tag(sound)
+                                }
+                            }
+                            .labelsHidden()
+                        }
                     }
+                    .cardChrome()
                 }
-            } header: {
-                Text("Sounds")
+                VStack(alignment: .leading, spacing: 10) {
+                    SectionHeader("Health")
+                    Toggle("Save to Apple Health", isOn: $settings.healthSyncEnabled)
+                        .font(.headline)
+                        .fontDesign(.serif)
+                        .tint(.accentColor)
+                        .disabled(!healthService.isAvailable)
+                        .cardChrome()
+                    Text("Completed sessions are saved to Apple Health as Mindful Minutes. Breathwave never reads any Health data.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .padding(.horizontal, 4)
+                }
+                NavigationLink {
+                    AboutView()
+                } label: {
+                    MenuCard(titleKey: "About", icon: "info.circle")
+                }
+                .buttonStyle(.plain)
             }
-            Section {
-                Toggle("Save to Apple Health", isOn: $settings.healthSyncEnabled)
-                    .disabled(!healthService.isAvailable)
-            } footer: {
-                Text("Completed sessions are saved to Apple Health as Mindful Minutes. Breathwave never reads any Health data.")
-            }
-            Section {
-                NavigationLink("About") { AboutView() }
-            }
+            .padding(20)
         }
+        .calmBackground()
         .navigationTitle("Settings")
+        .navigationBarTitleDisplayMode(.inline)
         .onChange(of: settings.healthSyncEnabled) { _, enabled in
             guard enabled else { return }
             Task {

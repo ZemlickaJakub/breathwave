@@ -12,7 +12,7 @@ struct HomeView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
                     header
-                    sectionHeader("Breathing")
+                    SectionHeader("Breathing")
                     VStack(spacing: 12) {
                         ForEach(BreathingProtocol.presets) { breathingProtocol in
                             NavigationLink(value: breathingProtocol) {
@@ -27,7 +27,7 @@ struct HomeView: View {
                         }
                         .buttonStyle(.plain)
                     }
-                    sectionHeader("Meditation")
+                    SectionHeader("Meditation")
                     VStack(spacing: 12) {
                         NavigationLink {
                             MeditationTimerView()
@@ -95,14 +95,6 @@ struct HomeView: View {
             }
         }
         .padding(.top, 8)
-    }
-
-    private func sectionHeader(_ key: LocalizedStringKey) -> some View {
-        Text(key)
-            .font(.footnote.weight(.semibold))
-            .textCase(.uppercase)
-            .kerning(1.2)
-            .foregroundStyle(.secondary)
     }
 
     private var showsOnboarding: Binding<Bool> {
