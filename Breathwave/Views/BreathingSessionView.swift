@@ -118,17 +118,18 @@ struct BreathingSessionView: View {
         )
     }
 
-    /// Breath-synced surf; nil (silent render) when sound or the breathing
-    /// sound is off, or in om training — the session still stays alive
-    /// in the background either way.
+    /// Breath-synced surf; nil (silent render) when the breathing sound is
+    /// off or in om training — the session still stays alive in the
+    /// background either way.
     private var breathingProgram: OceanProgram? {
-        guard settings.soundEnabled, !breathingProtocol.isOmTraining,
+        guard !breathingProtocol.isOmTraining,
               let timbre = settings.breathSound.timbre else { return nil }
         return .breathing(activeProtocol, timbre: timbre)
     }
 
+    /// Om drone; the breathing-sound Off switch silences it too.
     private var droneProgram: DroneProgram? {
-        guard settings.soundEnabled, breathingProtocol.isOmTraining else { return nil }
+        guard breathingProtocol.isOmTraining, settings.breathSound != .off else { return nil }
         return .om(activeProtocol)
     }
 
@@ -157,11 +158,8 @@ struct BreathingSessionView: View {
             audio.deactivate()
             return
         }
-        if settings.soundEnabled {
-            audio.finishSession()
-        } else {
-            audio.deactivate()
-        }
+        // finishSession skips the gong itself when the gong sound is off.
+        audio.finishSession()
         let session = Session(
             completedAt: .now,
             duration: engine.elapsed,

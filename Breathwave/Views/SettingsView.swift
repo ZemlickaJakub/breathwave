@@ -8,7 +8,6 @@ struct SettingsView: View {
         @Bindable var settings = settings
         Form {
             Section {
-                Toggle("Sound", isOn: $settings.soundEnabled)
                 Toggle("Haptics", isOn: $settings.hapticsEnabled)
             } header: {
                 Text("Session")
@@ -27,7 +26,6 @@ struct SettingsView: View {
             } header: {
                 Text("Sounds")
             }
-            .disabled(!settings.soundEnabled)
             Section {
                 Toggle("Save to Apple Health", isOn: $settings.healthSyncEnabled)
                     .disabled(!healthService.isAvailable)

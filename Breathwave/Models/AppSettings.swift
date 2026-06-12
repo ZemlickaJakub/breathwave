@@ -5,9 +5,6 @@ import Observation
 @MainActor
 @Observable
 final class AppSettings {
-    var soundEnabled: Bool {
-        didSet { defaults.set(soundEnabled, forKey: Keys.sound) }
-    }
     var hapticsEnabled: Bool {
         didSet { defaults.set(hapticsEnabled, forKey: Keys.haptics) }
     }
@@ -28,7 +25,6 @@ final class AppSettings {
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
-        soundEnabled = defaults.object(forKey: Keys.sound) as? Bool ?? true
         hapticsEnabled = defaults.object(forKey: Keys.haptics) as? Bool ?? true
         healthSyncEnabled = defaults.bool(forKey: Keys.healthSync)
         hasCompletedOnboarding = defaults.bool(forKey: Keys.onboarding)
@@ -37,7 +33,6 @@ final class AppSettings {
     }
 
     private enum Keys {
-        static let sound = "settings.sound"
         static let haptics = "settings.haptics"
         static let healthSync = "settings.healthSync"
         static let onboarding = "onboarding.completed"

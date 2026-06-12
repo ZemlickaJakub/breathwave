@@ -96,7 +96,7 @@ struct MeditationTimerView: View {
                 .labelsHidden()
             }
             Toggle("Ambient sound", isOn: $ambientEnabled)
-                .disabled(!settings.soundEnabled || settings.breathSound == .off)
+                .disabled(settings.breathSound == .off)
         }
         .padding(.horizontal, 8)
     }
@@ -108,13 +108,14 @@ struct MeditationTimerView: View {
         bellsPlayed = 0
         engine.start(.meditation, duration: TimeInterval(selectedMinutes * 60))
         audio.startSession(program: ambientProgram, gongSound: settings.gongSound)
-        if settings.soundEnabled { audio.playGong() }
+        // playGong itself skips when the gong sound is off.
+        audio.playGong()
     }
 
-    /// Steady ambient; nil when sound is off, the ambient toggle is off,
-    /// or the breathing sound is set to Off.
+    /// Steady ambient; nil when the ambient toggle is off or the breathing
+    /// sound is set to Off.
     private var ambientProgram: OceanProgram? {
-        guard settings.soundEnabled, ambientEnabled,
+        guard ambientEnabled,
               let timbre = settings.breathSound.ambientTimbre else { return nil }
         return .ambient(timbre: timbre)
     }
@@ -143,11 +144,8 @@ struct MeditationTimerView: View {
             audio.deactivate()
             return
         }
-        if settings.soundEnabled {
-            audio.finishSession()
-        } else {
-            audio.deactivate()
-        }
+        // finishSession skips the gong itself when the gong sound is off.
+        audio.finishSession()
         let session = Session(completedAt: .now, duration: engine.elapsed, kind: .meditation)
         sessionStore.add(session)
         if settings.healthSyncEnabled {
@@ -177,7 +175,7 @@ struct MeditationTimerView: View {
     }
 
     private func playIntervalBellIfDue() {
-        guard bellMinutes > 0, settings.soundEnabled else { return }
+        guard bellMinutes > 0 else { return }
         let interval = TimeInterval(bellMinutes * 60)
         let due = Int(engine.elapsed / interval)
         guard due > bellsPlayed else { return }

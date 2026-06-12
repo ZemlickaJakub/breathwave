@@ -3,6 +3,9 @@ import SwiftUI
 struct HomeView: View {
     @Environment(SessionStore.self) private var sessionStore
     @Environment(AppSettings.self) private var settings
+    /// One greeting per launch — HomeView is the root view, so the initial
+    /// State value is computed exactly once per app run.
+    @State private var greeting = Greetings.pickForLaunch()
 
     var body: some View {
         NavigationStack {
@@ -78,6 +81,9 @@ struct HomeView: View {
         VStack(alignment: .leading, spacing: 6) {
             Text(verbatim: "Breathwave")
                 .font(.system(size: 36, weight: .semibold, design: .serif))
+            Text(LocalizedStringKey(greeting))
+                .font(.system(.subheadline, design: .serif).italic())
+                .foregroundStyle(.secondary)
             let streak = sessionStore.currentStreak()
             if streak > 0 {
                 Text("Streak: \(streak) days")

@@ -21,13 +21,19 @@ final class AudioEngine {
         var gongVoice: GongVoice = .bowl
         var gongStartSample: Double?
         var sampleTime: Double = 0
-        // Timbre mix gains (surf: deep rumble; breeze: airy hiss; breath: band-passed air).
+        // Timbre mix gains (surf: deep rumble; breeze: whistling wind; breath: band-passed air).
         var rumbleGain: Double = 0.7
         var hissGain: Double = 0.5
         var bandGain: Double = 0
         var lowPassedNarrow: Double = 0
-        /// Depth of the slow random swell — breeze keeps it shallow (no gusts).
+        /// Depth of the slow random swell — breeze uses it for gusts.
         var swellDepth: Double = 0.35
+        // Resonant band (state-variable filter): wind whistle / breath formant.
+        var resoGain: Double = 0
+        /// SVF damping (1/Q): low = narrow whistle, high = broad airy formant.
+        var resoDamping: Double = 1
+        var svfLow: Double = 0
+        var svfBand: Double = 0
         // Surf synthesis state.
         var noiseSeed: UInt64 = 0x9E3779B97F4A7C15
         var brown: Double = 0
@@ -110,19 +116,29 @@ final class AudioEngine {
     private nonisolated static func applyTimbre(of program: OceanProgram?, to renderState: inout RenderState) {
         switch program?.timbre {
         case .breeze:
-            renderState.rumbleGain = 0.3
-            renderState.hissGain = 0.32
+            // Wind: no ocean rumble — a narrow whistling resonance that drifts
+            // with the gusts, over a light airy hiss.
+            renderState.rumbleGain = 0.06
+            renderState.hissGain = 0.16
             renderState.bandGain = 0
-            renderState.swellDepth = 0.15
+            renderState.resoGain = 0.2
+            renderState.resoDamping = 0.18
+            renderState.swellDepth = 0.65
         case .breath:
+            // Breath: band-passed air through a broad vocal-tract formant,
+            // nearly steady (no gusts), silent rumble.
             renderState.rumbleGain = 0
-            renderState.hissGain = 0.12
-            renderState.bandGain = 0.55
-            renderState.swellDepth = 0.1
+            renderState.hissGain = 0.04
+            renderState.bandGain = 0.4
+            renderState.resoGain = 0.35
+            renderState.resoDamping = 0.7
+            renderState.swellDepth = 0.06
         case .surf, nil:
             renderState.rumbleGain = 0.7
             renderState.hissGain = 0.5
             renderState.bandGain = 0
+            renderState.resoGain = 0
+            renderState.resoDamping = 1
             renderState.swellDepth = 0.35
         }
     }
@@ -313,9 +329,25 @@ final class AudioEngine {
                     let depth = renderState.swellDepth
                     let swell = 1 + max(-depth, min(depth, renderState.slowSwell * 60))
 
+                    // Resonant band (SVF on white noise): the whistle of wind,
+                    // the formant of breath. The center frequency follows the
+                    // program cutoff and drifts with the gusts, so wind pitch
+                    // rises and falls as it swells.
+                    var resonant = 0.0
+                    if renderState.resoGain > 0 {
+                        let center = min(4000, renderState.currentCutoff * swell)
+                        let f = 2 * sin(.pi * center / sampleRate)
+                        renderState.svfLow += f * renderState.svfBand
+                        let high = white - renderState.svfLow
+                            - renderState.resoDamping * renderState.svfBand
+                        renderState.svfBand += f * high
+                        resonant = renderState.svfBand
+                    }
+
                     var sample = (renderState.brown * renderState.rumbleGain
                         + renderState.lowPassed * renderState.hissGain
-                        + bandPassed * renderState.bandGain)
+                        + bandPassed * renderState.bandGain
+                        + resonant * renderState.resoGain)
                         * renderState.currentAmplitude * swell * 0.9
 
                     // Om drone: warm tone with two soft harmonics and a touch of vibrato.
