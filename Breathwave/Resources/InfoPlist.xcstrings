@@ -1,0 +1,22 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "NSHealthUpdateUsageDescription" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Breathwave může ukládat dokončená dechová cvičení a meditace do Apple Zdraví jako minuty mindfulness. Je to volitelné."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Breathwave can save your completed breathing and meditation sessions to Apple Health as Mindful Minutes. This is optional."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
