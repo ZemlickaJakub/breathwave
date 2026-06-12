@@ -1,0 +1,98 @@
+{
+  "identifier" : "B4000000-0000-0000-0000-0000000000F0",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "B4000000-0000-0000-0000-0000000000A1",
+      "localizations" : [
+        {
+          "description" : "A voluntary tip. Unlocks nothing.",
+          "displayName" : "Small tip",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "Dobrovolný příspěvek. Nic neodemyká.",
+          "displayName" : "Malý příspěvek",
+          "locale" : "cs"
+        }
+      ],
+      "productID" : "cz.jakubzemlicka.breathwave.tip.small",
+      "referenceName" : "Tip — Small",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "2.99",
+      "familyShareable" : false,
+      "internalID" : "B4000000-0000-0000-0000-0000000000A2",
+      "localizations" : [
+        {
+          "description" : "A voluntary tip. Unlocks nothing.",
+          "displayName" : "Medium tip",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "Dobrovolný příspěvek. Nic neodemyká.",
+          "displayName" : "Střední příspěvek",
+          "locale" : "cs"
+        }
+      ],
+      "productID" : "cz.jakubzemlicka.breathwave.tip.medium",
+      "referenceName" : "Tip — Medium",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "B4000000-0000-0000-0000-0000000000A3",
+      "localizations" : [
+        {
+          "description" : "A voluntary tip. Unlocks nothing.",
+          "displayName" : "Large tip",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "Dobrovolný příspěvek. Nic neodemyká.",
+          "displayName" : "Velký příspěvek",
+          "locale" : "cs"
+        }
+      ],
+      "productID" : "cz.jakubzemlicka.breathwave.tip.large",
+      "referenceName" : "Tip — Large",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "9.99",
+      "familyShareable" : false,
+      "internalID" : "B4000000-0000-0000-0000-0000000000A4",
+      "localizations" : [
+        {
+          "description" : "A voluntary tip. Unlocks nothing.",
+          "displayName" : "Patron tip",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "Dobrovolný příspěvek. Nic neodemyká.",
+          "displayName" : "Mecenášský příspěvek",
+          "locale" : "cs"
+        }
+      ],
+      "productID" : "cz.jakubzemlicka.breathwave.tip.patron",
+      "referenceName" : "Tip — Patron",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}

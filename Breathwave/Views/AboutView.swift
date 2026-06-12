@@ -16,8 +16,8 @@ struct AboutView: View {
             hero
             storySection
             ideasSection
-            promiseSection
             contactSection
+            promiseSection
             TipJarView()
         }
         .scrollContentBackground(.hidden)

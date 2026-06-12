@@ -84,6 +84,12 @@ final class ScreenshotTests: XCTestCase {
         app.staticTexts[strings.about].firstMatch.tap()
         Thread.sleep(forTimeInterval: 1.0)
         snap("\(language)-06-about")
+
+        // 07 — Tip jar at the bottom of About (needs the StoreKit config).
+        app.swipeUp(velocity: .fast)
+        app.swipeUp(velocity: .fast)
+        Thread.sleep(forTimeInterval: 1.0)
+        snap("\(language)-07-tipjar")
     }
 
     private func snap(_ name: String) {
