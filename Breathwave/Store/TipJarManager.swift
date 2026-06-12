@@ -5,7 +5,12 @@ import StoreKit
 @MainActor
 @Observable
 final class TipJarManager {
-    nonisolated static let productIDs = ["tip.small", "tip.medium", "tip.large", "tip.patron"]
+    nonisolated static let productIDs = [
+        "cz.jakubzemlicka.breathwave.tip.small",
+        "cz.jakubzemlicka.breathwave.tip.medium",
+        "cz.jakubzemlicka.breathwave.tip.large",
+        "cz.jakubzemlicka.breathwave.tip.patron",
+    ]
 
     private(set) var products: [Product] = []
     private(set) var hasThanked = false

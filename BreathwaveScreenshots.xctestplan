@@ -1,0 +1,31 @@
+{
+  "configurations" : [
+    {
+      "id" : "B4000000-0000-0000-0000-0000000000C1",
+      "name" : "Default",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "storeKitConfigurationFileReference" : {
+      "identifier" : "Breathwave.storekit"
+    },
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Breathwave.xcodeproj",
+      "identifier" : "B40000000000000000000002",
+      "name" : "Breathwave"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Breathwave.xcodeproj",
+        "identifier" : "B40000000000000000000022",
+        "name" : "BreathwaveUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
