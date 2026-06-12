@@ -92,4 +92,19 @@ struct OceanProgramTests {
         #expect(breeze.value(at: 1).cutoff > surf.value(at: 1).cutoff)
         #expect(breeze.value(at: 1).amplitude == surf.value(at: 1).amplitude)
     }
+
+    @Test func breathHoldsAreNearlySilent() {
+        let breath = OceanProgram.breathing(.box, timbre: .breath)
+        let surf = OceanProgram.breathing(.box)
+        #expect(breath.timbre == .breath)
+        #expect(breath.value(at: 6).amplitude < surf.value(at: 6).amplitude)
+        #expect(breath.value(at: 6).amplitude <= 0.05)
+        #expect(breath.value(at: 14).amplitude <= 0.05)
+    }
+
+    @Test func breathOpensWiderThanBreeze() {
+        let breath = OceanProgram.breathing(.box, timbre: .breath)
+        let breeze = OceanProgram.breathing(.box, timbre: .breeze)
+        #expect(breath.segments[0].endCutoff > breeze.segments[0].endCutoff)
+    }
 }

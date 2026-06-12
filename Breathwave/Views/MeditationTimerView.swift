@@ -96,7 +96,7 @@ struct MeditationTimerView: View {
                 .labelsHidden()
             }
             Toggle("Ambient sound", isOn: $ambientEnabled)
-                .disabled(!settings.soundEnabled)
+                .disabled(!settings.soundEnabled || settings.breathSound == .off)
         }
         .padding(.horizontal, 8)
     }
@@ -107,12 +107,16 @@ struct MeditationTimerView: View {
         hasRecorded = false
         bellsPlayed = 0
         engine.start(.meditation, duration: TimeInterval(selectedMinutes * 60))
-        let wantsAmbient = settings.soundEnabled && ambientEnabled
-        audio.startSession(
-            program: wantsAmbient ? .ambient(timbre: settings.breathSound.timbre) : nil,
-            gongSound: settings.gongSound
-        )
+        audio.startSession(program: ambientProgram, gongSound: settings.gongSound)
         if settings.soundEnabled { audio.playGong() }
+    }
+
+    /// Steady ambient; nil when sound is off, the ambient toggle is off,
+    /// or the breathing sound is set to Off.
+    private var ambientProgram: OceanProgram? {
+        guard settings.soundEnabled, ambientEnabled,
+              let timbre = settings.breathSound.ambientTimbre else { return nil }
+        return .ambient(timbre: timbre)
     }
 
     private func pauseSession() {
@@ -122,11 +126,7 @@ struct MeditationTimerView: View {
 
     private func resumeSession() {
         engine.resume()
-        let wantsAmbient = settings.soundEnabled && ambientEnabled
-        audio.resumeProgram(
-            wantsAmbient ? .ambient(timbre: settings.breathSound.timbre) : nil,
-            at: engine.elapsed
-        )
+        audio.resumeProgram(ambientProgram, at: engine.elapsed)
     }
 
     private func endSession() {

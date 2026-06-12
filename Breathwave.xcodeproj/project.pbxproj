@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
@@ -22,10 +22,9 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		B40000000000000000000008 /* Exceptions for "Breathwave" folder in "Breathwave" target */ = {
+		B40000000000000000000008 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Breathwave.entitlements,
 				Info.plist,
 			);
 			target = B40000000000000000000002 /* Breathwave */;
@@ -33,27 +32,8 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		B40000000000000000000006 /* Breathwave */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				B40000000000000000000008 /* Exceptions for "Breathwave" folder in "Breathwave" target */,
-			);
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = Breathwave;
-			sourceTree = "<group>";
-		};
-		B40000000000000000000007 /* BreathwaveTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = BreathwaveTests;
-			sourceTree = "<group>";
-		};
+		B40000000000000000000006 /* Breathwave */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (B40000000000000000000008 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Breathwave; sourceTree = "<group>"; };
+		B40000000000000000000007 /* BreathwaveTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BreathwaveTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,7 +150,6 @@
 			);
 			mainGroup = B4000000000000000000001B;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			productRefGroup = B4000000000000000000001A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -354,6 +333,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 5A27589J9T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Breathwave/Info.plist;
@@ -382,6 +362,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 5A27589J9T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Breathwave/Info.plist;

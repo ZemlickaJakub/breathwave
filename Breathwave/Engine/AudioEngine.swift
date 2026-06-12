@@ -21,9 +21,11 @@ final class AudioEngine {
         var gongVoice: GongVoice = .bowl
         var gongStartSample: Double?
         var sampleTime: Double = 0
-        // Timbre mix gains (surf: deep rumble; breeze: airy hiss).
+        // Timbre mix gains (surf: deep rumble; breeze: airy hiss; breath: band-passed air).
         var rumbleGain: Double = 0.7
         var hissGain: Double = 0.5
+        var bandGain: Double = 0
+        var lowPassedNarrow: Double = 0
         /// Depth of the slow random swell — breeze keeps it shallow (no gusts).
         var swellDepth: Double = 0.35
         // Surf synthesis state.
@@ -63,7 +65,7 @@ final class AudioEngine {
         nonisolated static func voice(for sound: GongSound) -> GongVoice {
             switch sound {
             case .chime: .chime
-            case .zenBowl: .bowl
+            case .zenBowl, .off: .bowl  // .off never plays — guarded in playGong
             }
         }
     }
@@ -110,10 +112,17 @@ final class AudioEngine {
         case .breeze:
             renderState.rumbleGain = 0.3
             renderState.hissGain = 0.32
+            renderState.bandGain = 0
             renderState.swellDepth = 0.15
+        case .breath:
+            renderState.rumbleGain = 0
+            renderState.hissGain = 0.12
+            renderState.bandGain = 0.55
+            renderState.swellDepth = 0.1
         case .surf, nil:
             renderState.rumbleGain = 0.7
             renderState.hissGain = 0.5
+            renderState.bandGain = 0
             renderState.swellDepth = 0.35
         }
     }
@@ -140,7 +149,7 @@ final class AudioEngine {
 
     /// One gong strike; volume < 1 gives a softer interval bell.
     func playGong(volume: Double = 1) {
-        guard isSessionActive else { return }
+        guard isSessionActive, currentGongSound != .off else { return }
         if let samplePlayer, let buffer = sampleBuffers[currentGongSound] {
             samplePlayer.volume = Float(volume)
             samplePlayer.stop()
@@ -157,6 +166,10 @@ final class AudioEngine {
     /// Plays the closing gong and tears the session down once it rings out.
     func finishSession() {
         guard isSessionActive else { return }
+        guard currentGongSound != .off else {
+            deactivate()
+            return
+        }
         var ringOut = state.withLock {
             $0.program = nil
             $0.droneProgram = nil
@@ -291,13 +304,18 @@ final class AudioEngine {
                     // Foam hiss: white noise through the swelling low-pass.
                     let alpha = min(0.95, 2 * .pi * renderState.currentCutoff / sampleRate)
                     renderState.lowPassed += (white - renderState.lowPassed) * alpha
+                    // Narrow companion filter; the difference gives band-passed
+                    // "air" for the breath timbre.
+                    renderState.lowPassedNarrow += (white - renderState.lowPassedNarrow) * (alpha * 0.25)
+                    let bandPassed = renderState.lowPassed - renderState.lowPassedNarrow
                     // Slow random swell so consecutive waves never sound identical.
                     renderState.slowSwell += (white - renderState.slowSwell) * swellSlew
                     let depth = renderState.swellDepth
                     let swell = 1 + max(-depth, min(depth, renderState.slowSwell * 60))
 
                     var sample = (renderState.brown * renderState.rumbleGain
-                        + renderState.lowPassed * renderState.hissGain)
+                        + renderState.lowPassed * renderState.hissGain
+                        + bandPassed * renderState.bandGain)
                         * renderState.currentAmplitude * swell * 0.9
 
                     // Om drone: warm tone with two soft harmonics and a touch of vibrato.

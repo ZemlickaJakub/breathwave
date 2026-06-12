@@ -5,10 +5,12 @@ import Foundation
 /// exhale; holds are a quiet murmur — the ocean never goes fully silent.
 /// `value(at:)` runs on the realtime audio thread — keep it allocation-free.
 struct OceanProgram: Equatable, Sendable {
-    /// Sound character: surf has a deep rumble, breeze is light and airy.
+    /// Sound character: surf has a deep rumble, breeze is light and airy,
+    /// breath mimics calm human breathing (band-passed air, silent holds).
     enum Timbre: Equatable, Sendable {
         case surf
         case breeze
+        case breath
     }
 
     struct Segment: Equatable, Sendable {
@@ -32,12 +34,18 @@ struct OceanProgram: Equatable, Sendable {
     static let holdAmplitude: Double = 0.15
 
     /// Cutoff range per timbre — breeze stays low and narrow so it washes
-    /// gently instead of hissing like a storm.
+    /// gently instead of hissing like a storm; breath opens up as air flows.
     private static func cutoffRange(for timbre: Timbre) -> (low: Double, high: Double) {
         switch timbre {
         case .surf: (lowCutoff, highCutoff)
         case .breeze: (380, 950)
+        case .breath: (600, 2400)
         }
+    }
+
+    /// Real breath holds are silent; the ocean keeps murmuring.
+    private static func holdAmplitude(for timbre: Timbre) -> Double {
+        timbre == .breath ? 0.04 : holdAmplitude
     }
 
     /// Breath-synced surf: the wave builds during the inhale and washes out
@@ -45,6 +53,7 @@ struct OceanProgram: Equatable, Sendable {
     /// the renderer's slew, which is what makes the "crash" feel natural.
     static func breathing(_ breathingProtocol: BreathingProtocol, timbre: Timbre = .surf) -> OceanProgram {
         let (low, high) = cutoffRange(for: timbre)
+        let holdLevel = holdAmplitude(for: timbre)
         let segments = breathingProtocol.phases.map { spec -> Segment in
             switch spec.phase {
             case .inhale:
@@ -52,13 +61,13 @@ struct OceanProgram: Equatable, Sendable {
                         startAmplitude: 0.25, endAmplitude: 0.95)
             case .holdAfterInhale:
                 Segment(duration: spec.duration, startCutoff: high, endCutoff: high,
-                        startAmplitude: holdAmplitude, endAmplitude: holdAmplitude)
+                        startAmplitude: holdLevel, endAmplitude: holdLevel)
             case .exhale:
                 Segment(duration: spec.duration, startCutoff: high, endCutoff: low,
                         startAmplitude: 0.85, endAmplitude: 0.2)
             case .holdAfterExhale:
                 Segment(duration: spec.duration, startCutoff: low, endCutoff: low,
-                        startAmplitude: holdAmplitude, endAmplitude: holdAmplitude)
+                        startAmplitude: holdLevel, endAmplitude: holdLevel)
             }
         }
         return OceanProgram(segments: segments, timbre: timbre)

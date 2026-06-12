@@ -111,13 +111,25 @@ struct BreathingSessionView: View {
         engine.start(activeProtocol, duration: selectedMinutes.map { TimeInterval($0 * 60) })
         // A nil program renders silence but keeps the audio session — and the
         // app — alive in the background with the screen off.
-        let sound = settings.soundEnabled
-        let om = breathingProtocol.isOmTraining
         audio.startSession(
-            program: sound && !om ? .breathing(activeProtocol, timbre: settings.breathSound.timbre) : nil,
-            drone: sound && om ? .om(activeProtocol) : nil,
+            program: breathingProgram,
+            drone: droneProgram,
             gongSound: settings.gongSound
         )
+    }
+
+    /// Breath-synced surf; nil (silent render) when sound or the breathing
+    /// sound is off, or in om training — the session still stays alive
+    /// in the background either way.
+    private var breathingProgram: OceanProgram? {
+        guard settings.soundEnabled, !breathingProtocol.isOmTraining,
+              let timbre = settings.breathSound.timbre else { return nil }
+        return .breathing(activeProtocol, timbre: timbre)
+    }
+
+    private var droneProgram: DroneProgram? {
+        guard settings.soundEnabled, breathingProtocol.isOmTraining else { return nil }
+        return .om(activeProtocol)
     }
 
     private func pauseSession() {
@@ -127,13 +139,7 @@ struct BreathingSessionView: View {
 
     private func resumeSession() {
         engine.resume()
-        let sound = settings.soundEnabled
-        let om = breathingProtocol.isOmTraining
-        audio.resumeProgram(
-            sound && !om ? .breathing(activeProtocol, timbre: settings.breathSound.timbre) : nil,
-            drone: sound && om ? .om(activeProtocol) : nil,
-            at: engine.elapsed
-        )
+        audio.resumeProgram(breathingProgram, drone: droneProgram, at: engine.elapsed)
     }
 
     private func endSession() {
