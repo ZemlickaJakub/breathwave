@@ -11,14 +11,17 @@ final class ScreenshotTests: XCTestCase {
         let settings: String
         let start: String
         let end: String
+        let about: String
 
         static let en = Strings(
             coherent: "Coherent Breathing", meditationTimer: "Meditation Timer",
-            stats: "Stats", settings: "Settings", start: "Start", end: "End"
+            stats: "Stats", settings: "Settings", start: "Start", end: "End",
+            about: "About"
         )
         static let cs = Strings(
             coherent: "Koherentní dech", meditationTimer: "Meditační timer",
-            stats: "Statistiky", settings: "Nastavení", start: "Začít", end: "Ukončit"
+            stats: "Statistiky", settings: "Nastavení", start: "Začít", end: "Ukončit",
+            about: "O aplikaci"
         )
     }
 
@@ -75,6 +78,12 @@ final class ScreenshotTests: XCTestCase {
         app.buttons[strings.settings].tap()
         Thread.sleep(forTimeInterval: 1.0)
         snap("\(language)-05-settings")
+
+        // 06 — About with the story and ideas row.
+        XCTAssertTrue(app.staticTexts[strings.about].waitForExistence(timeout: 5))
+        app.staticTexts[strings.about].firstMatch.tap()
+        Thread.sleep(forTimeInterval: 1.0)
+        snap("\(language)-06-about")
     }
 
     private func snap(_ name: String) {

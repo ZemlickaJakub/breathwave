@@ -15,8 +15,8 @@ struct AboutView: View {
         List {
             hero
             storySection
-            promiseSection
             ideasSection
+            promiseSection
             contactSection
             TipJarView()
         }
@@ -80,20 +80,24 @@ struct AboutView: View {
     @ViewBuilder private var ideasSection: some View {
         if ideasURL != nil {
             Section {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Have an idea, or is something missing? Breathwave is built in the open — share your thoughts on GitHub.")
-                        .foregroundStyle(.secondary)
-                    Button("Share an idea") {
-                        showsIdeas = true
-                    }
-                    .sheet(isPresented: $showsIdeas) {
-                        if let ideasURL {
-                            SafariView(url: ideasURL)
-                                .ignoresSafeArea()
-                        }
+                Button {
+                    showsIdeas = true
+                } label: {
+                    HStack {
+                        Label("Have an idea? Tell me on GitHub.", systemImage: "lightbulb")
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .font(.caption.weight(.semibold))
+                            .foregroundStyle(.tertiary)
                     }
                 }
-                .padding(.vertical, 4)
+                .foregroundStyle(.primary)
+                .sheet(isPresented: $showsIdeas) {
+                    if let ideasURL {
+                        SafariView(url: ideasURL)
+                            .ignoresSafeArea()
+                    }
+                }
             } header: {
                 Text("Ideas and requests")
             }

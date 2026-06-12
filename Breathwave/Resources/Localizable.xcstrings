@@ -54,7 +54,14 @@
       "shouldTranslate": false
     },
     "4-7-8": {
-      "shouldTranslate": false
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4-7-8"
+          }
+        }
+      }
     },
     "About": {
       "localizations": {
@@ -213,12 +220,32 @@
         }
       }
     },
+    "Breathe. Be.": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dýchej. Buď."
+          }
+        }
+      }
+    },
     "Breathing": {
       "localizations": {
         "cs": {
           "stringUnit": {
             "state": "translated",
             "value": "Dýchání"
+          }
+        }
+      }
+    },
+    "Breathing Bells": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dechové zvonky"
           }
         }
       }
@@ -239,6 +266,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Breathwave je zdarma a bez reklam. Příspěvky podporují vývoj a nic neodemykají."
+          }
+        }
+      }
+    },
+    "Breathwave was born from a simple wish: a quiet place to breathe, without ads, subscriptions or anything pulling at your attention.": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Breathwave vznikl z jednoduchého přání: mít tiché místo k dýchání — bez reklam, předplatných a čehokoli, co tahá za pozornost."
           }
         }
       }
@@ -461,12 +498,32 @@
         }
       }
     },
+    "Free forever": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navždy zdarma"
+          }
+        }
+      }
+    },
     "Get Started": {
       "localizations": {
         "cs": {
           "stringUnit": {
             "state": "translated",
             "value": "Jdeme na to"
+          }
+        }
+      }
+    },
+    "Get in touch": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ozvi se"
           }
         }
       }
@@ -502,12 +559,12 @@
         }
       }
     },
-    "Have an idea, or is something missing? Breathwave is built in the open — share your thoughts on GitHub.": {
+    "Have an idea? Tell me on GitHub.": {
       "localizations": {
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Máš nápad, nebo ti něco chybí? Breathwave vzniká otevřeně — napiš mi na GitHubu."
+            "value": "Máš nápad? Napiš mi na GitHubu."
           }
         }
       }
@@ -564,6 +621,16 @@
         }
       }
     },
+    "Interested in an app or an AI assistant like this for your business?": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chceš podobnou appku nebo AI asistenta pro svůj byznys?"
+          }
+        }
+      }
+    },
     "Interested in an app or an AI assistant like this for your business? Get in touch via jakubzemlicka.cz.": {
       "localizations": {
         "cs": {
@@ -580,6 +647,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Intervalové gongy"
+          }
+        }
+      }
+    },
+    "It was vibecoded — Jakub built it together with his AI agent. No team of developers, no investors, just curiosity and many calm breaths.": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Je vibecoded — Jakub ho postavil společně se svým AI agentem. Žádný tým vývojářů, žádní investoři, jen zvědavost a spousta klidných nádechů."
           }
         }
       }
@@ -709,12 +786,32 @@
         }
       }
     },
+    "No ads, no subscriptions": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Žádné reklamy, žádné předplatné"
+          }
+        }
+      }
+    },
     "No sessions yet": {
       "localizations": {
         "cs": {
           "stringUnit": {
             "state": "translated",
             "value": "Zatím žádná cvičení"
+          }
+        }
+      }
+    },
+    "No tracking — everything stays on your device": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Žádné sledování — vše zůstává ve tvém zařízení"
           }
         }
       }
@@ -986,16 +1083,6 @@
         }
       }
     },
-    "Share an idea": {
-      "localizations": {
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Poslat nápad"
-          }
-        }
-      }
-    },
     "Silence speaks": {
       "extractionState": "manual",
       "localizations": {
@@ -1163,6 +1250,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Oceán tě vede dál, i když displej zhasne."
+          }
+        }
+      }
+    },
+    "The promise": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slib"
           }
         }
       }
