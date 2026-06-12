@@ -24,6 +24,9 @@ struct OceanProgram: Equatable, Sendable {
 
     var segments: [Segment]
     var timbre: Timbre = .surf
+    /// Marks the meditation-timer soundtrack; when the bundled ambient
+    /// recording is present it replaces this synthesized program.
+    var isAmbient = false
 
     var cycleDuration: TimeInterval {
         segments.reduce(0) { $0 + $1.duration }
@@ -54,17 +57,25 @@ struct OceanProgram: Equatable, Sendable {
     static func breathing(_ breathingProtocol: BreathingProtocol, timbre: Timbre = .surf) -> OceanProgram {
         let (low, high) = cutoffRange(for: timbre)
         let holdLevel = holdAmplitude(for: timbre)
+        // Breath is not one long sweep (that reads as wind): the inhale is
+        // bright air through the nose, the exhale a darker mouth "haa" —
+        // two distinct registers. Holds are silent, so the cutoff jump
+        // between them is never heard.
+        let isBreath = timbre == .breath
         let segments = breathingProtocol.phases.map { spec -> Segment in
             switch spec.phase {
             case .inhale:
-                Segment(duration: spec.duration, startCutoff: low, endCutoff: high,
+                Segment(duration: spec.duration,
+                        startCutoff: isBreath ? 1300 : low, endCutoff: high,
                         startAmplitude: 0.25, endAmplitude: 0.95)
             case .holdAfterInhale:
                 Segment(duration: spec.duration, startCutoff: high, endCutoff: high,
                         startAmplitude: holdLevel, endAmplitude: holdLevel)
             case .exhale:
-                Segment(duration: spec.duration, startCutoff: high, endCutoff: low,
-                        startAmplitude: 0.85, endAmplitude: 0.2)
+                Segment(duration: spec.duration,
+                        startCutoff: isBreath ? 950 : high, endCutoff: low,
+                        startAmplitude: isBreath ? 0.95 : 0.85,
+                        endAmplitude: isBreath ? 0.15 : 0.2)
             case .holdAfterExhale:
                 Segment(duration: spec.duration, startCutoff: low, endCutoff: low,
                         startAmplitude: holdLevel, endAmplitude: holdLevel)
@@ -81,7 +92,8 @@ struct OceanProgram: Equatable, Sendable {
                 Segment(duration: 60, startCutoff: cutoff, endCutoff: cutoff,
                         startAmplitude: 0.35, endAmplitude: 0.35)
             ],
-            timbre: timbre
+            timbre: timbre,
+            isAmbient: true
         )
     }
 

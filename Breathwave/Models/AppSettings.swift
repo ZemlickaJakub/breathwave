@@ -29,7 +29,8 @@ final class AppSettings {
         healthSyncEnabled = defaults.bool(forKey: Keys.healthSync)
         hasCompletedOnboarding = defaults.bool(forKey: Keys.onboarding)
         breathSound = BreathSound(rawValue: defaults.string(forKey: Keys.breathSound) ?? "") ?? .ocean
-        gongSound = GongSound(rawValue: defaults.string(forKey: Keys.gongSound) ?? "") ?? .zenBowl
+        // A previously stored "zenBowl" no longer parses and falls back here.
+        gongSound = GongSound(rawValue: defaults.string(forKey: Keys.gongSound) ?? "") ?? .chime
     }
 
     private enum Keys {

@@ -191,12 +191,29 @@ struct BreathingSessionView: View {
                 completeSession()
                 break
             }
-            if settings.hapticsEnabled,
-               let snapshot = engine.snapshot, snapshot.phase != lastHapticPhase {
+            if let snapshot = engine.snapshot, snapshot.phase != lastHapticPhase {
                 lastHapticPhase = snapshot.phase
-                haptics.play(snapshot.phase, duration: snapshot.phaseRemaining)
+                if settings.hapticsEnabled {
+                    haptics.play(snapshot.phase, duration: snapshot.phaseRemaining)
+                }
+                // No-op unless bundled breath recordings are active. The
+                // duration caps the bell at the phase plus the following
+                // hold; the ring is ducked to a soft level during holds.
+                audio.playBreathPhase(
+                    snapshot.phase,
+                    duration: snapshot.phaseRemaining + followingHoldDuration(after: snapshot.phase)
+                )
             }
             try? await Task.sleep(for: .milliseconds(50))
+        }
+    }
+
+    /// Hold length right after `phase`; zero when no hold follows.
+    private func followingHoldDuration(after phase: BreathPhase) -> TimeInterval {
+        switch phase {
+        case .inhale: activeProtocol.holdAfterInhale
+        case .exhale: activeProtocol.holdAfterExhale
+        case .holdAfterInhale, .holdAfterExhale: 0
         }
     }
 }

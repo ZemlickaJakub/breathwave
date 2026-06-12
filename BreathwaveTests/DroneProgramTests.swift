@@ -4,9 +4,34 @@ import Testing
 
 struct DroneProgramTests {
     @Test func omMirrorsProtocolPhases() {
+        // The exhale is split into delay + swell-in + sustain + release.
         let program = DroneProgram.om(.om)
-        #expect(program.segments.count == 2)
-        #expect(program.cycleDuration == 16)
+        #expect(program.segments.count == 5)
+        #expect(abs(program.cycleDuration - 16) < 1e-9)
+    }
+
+    @Test func omStaysSilentBrieflyAfterInhale() {
+        // The short delay gives the lungs room to turn around.
+        let program = DroneProgram.om(.om)
+        #expect(program.value(at: 4.3).amplitude == 0)
+    }
+
+    @Test func omSwellsInAfterDelay() {
+        let program = DroneProgram.om(.om)
+        let onset = program.value(at: 5.5)
+        let sustained = program.value(at: 8)
+        #expect(onset.amplitude > 0)
+        #expect(onset.amplitude < sustained.amplitude)
+    }
+
+    @Test func omReleasesBeforeExhaleEnds() {
+        // The release ramps to silence right at the exhale boundary, so
+        // the next inhale never lands mid-om.
+        let program = DroneProgram.om(.om)
+        let releasing = program.value(at: 15.5)
+        let sustained = program.value(at: 12)
+        #expect(releasing.amplitude < sustained.amplitude)
+        #expect(program.value(at: 15.999).amplitude < 0.01)
     }
 
     @Test func droneIsSilentDuringInhale() {
@@ -22,9 +47,11 @@ struct DroneProgramTests {
     }
 
     @Test func droneFadesSlightlyTowardExhaleEnd() {
+        // Compare two points inside the sustain (after the swell-in,
+        // before the release).
         let program = DroneProgram.om(.om)
-        let early = program.value(at: 4.5)
-        let late = program.value(at: 15.5)
+        let early = program.value(at: 8)
+        let late = program.value(at: 14)
         #expect(early.amplitude > late.amplitude)
     }
 

@@ -108,7 +108,7 @@ struct MeditationTimerView: View {
         bellsPlayed = 0
         engine.start(.meditation, duration: TimeInterval(selectedMinutes * 60))
         audio.startSession(program: ambientProgram, gongSound: settings.gongSound)
-        // playGong itself skips when the gong sound is off.
+        // Opening chime; playGong itself skips when the gong sound is off.
         audio.playGong()
     }
 

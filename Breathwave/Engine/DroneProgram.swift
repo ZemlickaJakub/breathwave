@@ -19,18 +19,32 @@ struct DroneProgram: Equatable, Sendable {
 
     /// Comfortable humming pitch (~C3) for most voices.
     static let omFrequency: Double = 130
-    static let omAmplitude: Double = 0.32
+    static let omAmplitude: Double = 0.95
 
-    /// Voiced "om" through the exhale, silence elsewhere; the renderer's
-    /// amplitude slew shapes the soft on/offsets.
+    /// Voiced "om" through the exhale, silence elsewhere. The exhale is
+    /// shaped to give the lungs room on both ends: a short silent delay
+    /// (settle after the inhale), a slow swell-in, the sustain, and a
+    /// release that fades out before the exhale ends — so the next inhale
+    /// never lands mid-om.
     static func om(_ breathingProtocol: BreathingProtocol) -> DroneProgram {
-        let segments = breathingProtocol.phases.map { spec -> Segment in
+        var segments: [Segment] = []
+        for spec in breathingProtocol.phases {
             if spec.phase == .exhale {
-                Segment(duration: spec.duration, frequency: omFrequency,
-                        startAmplitude: omAmplitude, endAmplitude: omAmplitude * 0.85)
+                let delay = min(0.8, spec.duration * 0.1)
+                let rise = min(2.5, spec.duration * 0.25)
+                let release = min(1.5, spec.duration * 0.15)
+                let sustain = spec.duration - delay - rise - release
+                segments.append(Segment(duration: delay, frequency: omFrequency,
+                                        startAmplitude: 0, endAmplitude: 0))
+                segments.append(Segment(duration: rise, frequency: omFrequency,
+                                        startAmplitude: 0, endAmplitude: omAmplitude))
+                segments.append(Segment(duration: sustain, frequency: omFrequency,
+                                        startAmplitude: omAmplitude, endAmplitude: omAmplitude * 0.9))
+                segments.append(Segment(duration: release, frequency: omFrequency,
+                                        startAmplitude: omAmplitude * 0.9, endAmplitude: 0))
             } else {
-                Segment(duration: spec.duration, frequency: omFrequency,
-                        startAmplitude: 0, endAmplitude: 0)
+                segments.append(Segment(duration: spec.duration, frequency: omFrequency,
+                                        startAmplitude: 0, endAmplitude: 0))
             }
         }
         return DroneProgram(segments: segments)

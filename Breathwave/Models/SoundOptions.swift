@@ -1,7 +1,8 @@
 import Foundation
 
 /// Breathing-guide sound character. Ocean is the default surf, breeze is
-/// a lighter airy wash, breath mimics calm human breathing, off is silent.
+/// a lighter airy wash, breath plays the bundled breathing-bell recordings,
+/// off is silent.
 enum BreathSound: String, CaseIterable, Identifiable, Sendable {
     case ocean
     case breeze
@@ -14,7 +15,7 @@ enum BreathSound: String, CaseIterable, Identifiable, Sendable {
         switch self {
         case .ocean: "Ocean"
         case .breeze: "Breeze"
-        case .breath: "Breath"
+        case .breath: "Breathing Bells"
         case .off: "Off"
         }
     }
@@ -40,11 +41,10 @@ enum BreathSound: String, CaseIterable, Identifiable, Sendable {
     }
 }
 
-/// Gong character. The sounds play bundled samples (Resources/Sounds)
+/// Gong character. The chime plays a bundled sample (Resources/Sounds)
 /// with a synthesized fallback; off skips gongs entirely.
 enum GongSound: String, CaseIterable, Identifiable, Sendable {
     case chime
-    case zenBowl
     case off
 
     var id: String { rawValue }
@@ -52,7 +52,6 @@ enum GongSound: String, CaseIterable, Identifiable, Sendable {
     var nameKey: String {
         switch self {
         case .chime: "Chime"
-        case .zenBowl: "Zen bowl"
         case .off: "Off"
         }
     }
@@ -60,7 +59,6 @@ enum GongSound: String, CaseIterable, Identifiable, Sendable {
     private var sampleResourceName: String? {
         switch self {
         case .chime: "gong-chime"
-        case .zenBowl: "gong-zen-bowl"
         case .off: nil
         }
     }
