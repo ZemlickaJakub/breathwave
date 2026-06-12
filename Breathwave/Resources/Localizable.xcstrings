@@ -1,1062 +1,45 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "%lld days" : {
-      "localizations" : {
-        "cs" : {
-          "variations" : {
-            "plural" : {
-              "few" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld dny"
+  "sourceLanguage": "en",
+  "strings": {
+    "%lld days": {
+      "localizations": {
+        "cs": {
+          "variations": {
+            "plural": {
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld dny"
                 }
               },
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld den"
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld den"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld dní"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld dní"
                 }
               }
             }
           }
         },
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld day"
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld day"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld days"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "%lld min" : {
-      "shouldTranslate" : false
-    },
-    "%lld s" : {
-      "shouldTranslate" : false
-    },
-    "4-7-8" : {
-      "shouldTranslate" : false
-    },
-    "About" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O aplikaci"
-          }
-        }
-      }
-    },
-    "About this exercise" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "O tomto cvičení"
-          }
-        }
-      }
-    },
-    "Ambient sound" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zvuk na pozadí"
-          }
-        }
-      }
-    },
-    "Be kind to yourself" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buď laskavý k sobě"
-          }
-        }
-      }
-    },
-    "Be love" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buď láskou"
-          }
-        }
-      }
-    },
-    "Be the silence between thoughts" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buď tichem mezi myšlenkami"
-          }
-        }
-      }
-    },
-    "Be the wave, not the drop" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buď vlnou, ne kapkou"
-          }
-        }
-      }
-    },
-    "Box Breathing" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Box breathing"
-          }
-        }
-      }
-    },
-    "Breath" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dech"
-          }
-        }
-      }
-    },
-    "Breathe In" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nádech"
-          }
-        }
-      }
-    },
-    "Breathe Out" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Výdech"
-          }
-        }
-      }
-    },
-    "Breathe and be" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dýchej a buď"
-          }
-        }
-      }
-    },
-    "Breathe deeply, live lightly" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dýchej hluboko, žij lehce"
-          }
-        }
-      }
-    },
-    "Breathe in the present" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nadechni se přítomnosti"
-          }
-        }
-      }
-    },
-    "Breathe with the wave" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dýchej s vlnou"
-          }
-        }
-      }
-    },
-    "Breathing" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dýchání"
-          }
-        }
-      }
-    },
-    "Breathing sound" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zvuk dýchání"
-          }
-        }
-      }
-    },
-    "Breathwave is free and ad-free. Tips support development and unlock nothing." : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Breathwave je zdarma a bez reklam. Příspěvky podporují vývoj a nic neodemykají."
-          }
-        }
-      }
-    },
-    "Breathwave was vibecoded: Jakub built it with his AI agent — no team of developers, no investor. It is free, has no ads and collects no data." : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Breathwave vznikl vibecodingem: postavil jsem ho se svým AI agentem — bez týmu vývojářů, bez investora. Je zdarma, bez reklam a nesbírá žádná data."
-          }
-        }
-      }
-    },
-    "Breeze" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vánek"
-          }
-        }
-      }
-    },
-    "Calm begins within" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Klid začíná uvnitř"
-          }
-        }
-      }
-    },
-    "Calm is your home" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Klid je tvůj domov"
-          }
-        }
-      }
-    },
-    "Calm within you" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Klid v tobě"
-          }
-        }
-      }
-    },
-    "Cancel" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zrušit"
-          }
-        }
-      }
-    },
-    "Chime" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jemné cinknutí"
-          }
-        }
-      }
-    },
-    "Coherent Breathing" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Koherentní dech"
-          }
-        }
-      }
-    },
-    "Completed sessions are saved to Apple Health as Mindful Minutes. Breathwave never reads any Health data." : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dokončená cvičení se ukládají do Apple Zdraví jako minuty mindfulness. Breathwave žádná data ze Zdraví nečte."
-          }
-        }
-      }
-    },
-    "Continue" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pokračovat"
-          }
-        }
-      }
-    },
-    "Current streak" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aktuální série"
-          }
-        }
-      }
-    },
-    "Custom Rhythm" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vlastní rytmus"
-          }
-        }
-      }
-    },
-    "Dissolve into the present" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rozpusť se v přítomnosti"
-          }
-        }
-      }
-    },
-    "Done" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hotovo"
-          }
-        }
-      }
-    },
-    "End" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ukončit"
-          }
-        }
-      }
-    },
-    "Energy flows where attention goes" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Energie plyne, kam pozornost teče"
-          }
-        }
-      }
-    },
-    "Every breath a new beginning" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Každý nádech nový začátek"
-          }
-        }
-      }
-    },
-    "Everything lives in silence" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "V tichu je všechno"
-          }
-        }
-      }
-    },
-    "Extended Exhale" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Prodloužený výdech"
-          }
-        }
-      }
-    },
-    "Finish your first breathing session and your progress will show up here." : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dokonči první dechové cvičení a tady uvidíš svůj pokrok."
-          }
-        }
-      }
-    },
-    "Flow like water" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Plyň jako voda"
-          }
-        }
-      }
-    },
-    "Get Started" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jdeme na to"
-          }
-        }
-      }
-    },
-    "Gong" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gong"
-          }
-        }
-      }
-    },
-    "Gratitude opens the heart" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vděčnost otevírá srdce"
-          }
-        }
-      }
-    },
-    "Haptics" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Haptika"
-          }
-        }
-      }
-    },
-    "Heart wide open" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Srdce otevřené dokořán"
-          }
-        }
-      }
-    },
-    "Here and now" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tady a teď"
-          }
-        }
-      }
-    },
-    "Hold" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zádrž"
-          }
-        }
-      }
-    },
-    "Interested in an app or an AI assistant like this for your business? Get in touch via jakubzemlicka.cz." : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Máš zájem o podobnou appku nebo AI asistenta pro svou firmu? Ozvi se přes jakubzemlicka.cz."
-          }
-        }
-      }
-    },
-    "Interval bells" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Intervalové gongy"
-          }
-        }
-      }
-    },
-    "Last 7 days" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Posledních 7 dní"
-          }
-        }
-      }
-    },
-    "Length" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Délka"
-          }
-        }
-      }
-    },
-    "Let go of what weighs you down" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nech jít, co tě tíží"
-          }
-        }
-      }
-    },
-    "Let the light in" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nech světlo dovnitř"
-          }
-        }
-      }
-    },
-    "Let your light shine" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rozsviť svoje světlo"
-          }
-        }
-      }
-    },
-    "Loading…" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Načítám…"
-          }
-        }
-      }
-    },
-    "Love is your nature" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Láska je tvoje přirozenost"
-          }
-        }
-      }
-    },
-    "Meditation" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Meditace"
-          }
-        }
-      }
-    },
-    "Meditation Timer" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Meditační timer"
-          }
-        }
-      }
-    },
-    "Namaste 🙏" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Namasté 🙏"
-          }
-        }
-      }
-    },
-    "Name" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Název"
-          }
-        }
-      }
-    },
-    "No accounts, no ads, no tracking. Everything stays on your phone." : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Žádné účty, žádné reklamy, žádné sledování. Všechno zůstává v tvém telefonu."
-          }
-        }
-      }
-    },
-    "No sessions yet" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zatím žádná cvičení"
-          }
-        }
-      }
-    },
-    "Nothing is missing here" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tady nic nechybí"
-          }
-        }
-      }
-    },
-    "Observe, don't judge" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vnímej, neposuzuj"
-          }
-        }
-      }
-    },
-    "Ocean" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Oceán"
-          }
-        }
-      }
-    },
-    "Off" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vypnuto"
-          }
-        }
-      }
-    },
-    "Om" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Óm"
-          }
-        }
-      }
-    },
-    "Om Chanting" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Óm chanting"
-          }
-        }
-      }
-    },
-    "Om length" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Délka óm"
-          }
-        }
-      }
-    },
-    "Open jakubzemlicka.cz" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Otevřít jakubzemlicka.cz"
-          }
-        }
-      }
-    },
-    "Open yourself to the moment" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Otevři se okamžiku"
-          }
-        }
-      }
-    },
-    "Pause" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pozastavit"
-          }
-        }
-      }
-    },
-    "Peace be with you" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mír s tebou"
-          }
-        }
-      }
-    },
-    "Peace begins with a breath" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mír začíná nádechem"
-          }
-        }
-      }
-    },
-    "Pick a protocol and follow the rising and falling water." : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vyber protokol a nech se vést stoupající a klesající hladinou."
-          }
-        }
-      }
-    },
-    "Private by design" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Soukromí především"
-          }
-        }
-      }
-    },
-    "Ready" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Připrav se"
-          }
-        }
-      }
-    },
-    "Rest in the present" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spočiň v přítomnosti"
-          }
-        }
-      }
-    },
-    "Rest on your breath" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spočiň na dechu"
-          }
-        }
-      }
-    },
-    "Resume" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pokračovat"
-          }
-        }
-      }
-    },
-    "Rhythm" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rytmus"
-          }
-        }
-      }
-    },
-    "Save" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Uložit"
-          }
-        }
-      }
-    },
-    "Save as preset" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Uložit jako preset"
-          }
-        }
-      }
-    },
-    "Save to Apple Health" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ukládat do Apple Zdraví"
-          }
-        }
-      }
-    },
-    "Saved presets" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Uložené presety"
-          }
-        }
-      }
-    },
-    "Screen off, session on" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Displej zhasne, cvičení běží"
-          }
-        }
-      }
-    },
-    "Session" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cvičení"
-          }
-        }
-      }
-    },
-    "Settings" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nastavení"
-          }
-        }
-      }
-    },
-    "Silence speaks" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ticho mluví"
-          }
-        }
-      }
-    },
-    "Skip" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Přeskočit"
-          }
-        }
-      }
-    },
-    "Softness is courage" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Měkkost je odvaha"
-          }
-        }
-      }
-    },
-    "Sounds" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zvuky"
-          }
-        }
-      }
-    },
-    "Start" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Začít"
-          }
-        }
-      }
-    },
-    "Stats" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Statistiky"
-          }
-        }
-      }
-    },
-    "Streak: %lld days" : {
-      "localizations" : {
-        "cs" : {
-          "variations" : {
-            "plural" : {
-              "few" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Série: %lld dny po sobě"
-                }
-              },
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Série: %lld den"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Série: %lld dní po sobě"
-                }
-              }
-            }
-          }
-        },
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Streak: %lld day"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Streak: %lld days"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld days"
                 }
               }
             }
@@ -1064,617 +47,1654 @@
         }
       }
     },
-    "Sunshine in your soul" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Slunce v duši"
+    "%lld min": {
+      "shouldTranslate": false
+    },
+    "%lld s": {
+      "shouldTranslate": false
+    },
+    "4-7-8": {
+      "shouldTranslate": false
+    },
+    "About": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O aplikaci"
           }
         }
       }
     },
-    "Support Breathwave" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Podpoř Breathwave"
+    "About this exercise": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O tomto cvičení"
           }
         }
       }
     },
-    "Take root, and you will bloom" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zakořeň se, rozkvět přijde"
+    "Ambient sound": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zvuk na pozadí"
           }
         }
       }
     },
-    "Thank you! 🌊" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Díky! 🌊"
+    "Be kind to yourself": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buď laskavý k sobě"
           }
         }
       }
     },
-    "The light in me greets the light in you" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Světlo ve mně zdraví světlo v tobě"
+    "Be love": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buď láskou"
           }
         }
       }
     },
-    "The ocean keeps guiding you even with the screen off." : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Oceán tě vede dál, i když displej zhasne."
+    "Be the silence between thoughts": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buď tichem mezi myšlenkami"
           }
         }
       }
     },
-    "The story" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Příběh"
+    "Be the wave, not the drop": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buď vlnou, ne kapkou"
           }
         }
       }
     },
-    "The universe embraces you" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vesmír tě objímá"
+    "Box Breathing": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Box breathing"
           }
         }
       }
     },
-    "The universe is in no hurry, neither are you" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vesmír nikam nespěchá, ani ty nemusíš"
+    "Breath": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dech"
           }
         }
       }
     },
-    "The universe is listening" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vesmír ti naslouchá"
+    "Breathe In": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nádech"
           }
         }
       }
     },
-    "Tips are unavailable right now." : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Příspěvky teď nejsou dostupné."
+    "Breathe Out": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Výdech"
           }
         }
       }
     },
-    "Today is a gift" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dnešek je dar"
+    "Breathe and be": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dýchej a buď"
           }
         }
       }
     },
-    "Today is calling you" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dnešek tě volá"
+    "Breathe deeply, live lightly": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dýchej hluboko, žij lehce"
           }
         }
       }
     },
-    "Today you bloom" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dnes kveteš"
+    "Breathe in the present": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nadechni se přítomnosti"
           }
         }
       }
     },
-    "Total time" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Celkový čas"
+    "Breathe with the wave": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dýchej s vlnou"
           }
         }
       }
     },
-    "Trust the flow" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Důvěřuj proudu"
+    "Breathing": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dýchání"
           }
         }
       }
     },
-    "Trust your breath" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Důvěřuj svému dechu"
+    "Breathing sound": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zvuk dýchání"
           }
         }
       }
     },
-    "Welcome back to yourself" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vítej zpátky k sobě"
+    "Breathwave is free and ad-free. Tips support development and unlock nothing.": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Breathwave je zdarma a bez reklam. Příspěvky podporují vývoj a nic neodemykají."
           }
         }
       }
     },
-    "Welcome home, within yourself" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vítej doma, v sobě"
+    "Breathwave was vibecoded: Jakub built it with his AI agent — no team of developers, no investor. It is free, has no ads and collects no data.": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Breathwave vznikl vibecodingem: postavil jsem ho se svým AI agentem — bez týmu vývojářů, bez investora. Je zdarma, bez reklam a nesbírá žádná data."
           }
         }
       }
     },
-    "Welcome to stillness" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vítej v klidu"
+    "Breeze": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vánek"
           }
         }
       }
     },
-    "Welcome, beautiful soul" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vítej, krásná duše"
+    "Calm begins within": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klid začíná uvnitř"
           }
         }
       }
     },
-    "Welcome, traveler" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vítej, poutníku"
+    "Calm is your home": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klid je tvůj domov"
           }
         }
       }
     },
-    "What it does" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "K čemu slouží"
+    "Calm within you": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klid v tobě"
           }
         }
       }
     },
-    "When to use it" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kdy se hodí"
+    "Cancel": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zrušit"
           }
         }
       }
     },
-    "You are a miracle in motion" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jsi zázrak v pohybu"
+    "Chime": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jemné cinknutí"
           }
         }
       }
     },
-    "You are exactly where you need to be" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jsi přesně tam, kde máš být"
+    "Coherent Breathing": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koherentní dech"
           }
         }
       }
     },
-    "You are more than enough" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jsi víc než dost"
+    "Completed sessions are saved to Apple Health as Mindful Minutes. Breathwave never reads any Health data.": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dokončená cvičení se ukládají do Apple Zdraví jako minuty mindfulness. Breathwave žádná data ze Zdraví nečte."
           }
         }
       }
     },
-    "You are part of the whole" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jsi součást celku"
+    "Continue": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pokračovat"
           }
         }
       }
     },
-    "Your breath holds you" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tvůj dech tě drží"
+    "Current streak": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktuální série"
           }
         }
       }
     },
-    "Your calm is your strength" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tvůj klid je tvoje síla"
+    "Custom Rhythm": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vlastní rytmus"
           }
         }
       }
     },
-    "Your heart knows the answer" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tvoje srdce zná odpověď"
+    "Dissolve into the present": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rozpusť se v přítomnosti"
           }
         }
       }
     },
-    "Your journey begins now" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tvoje cesta začíná teď"
+    "Done": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hotovo"
           }
         }
       }
     },
-    "Your presence is a gift" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tvoje přítomnost je dar"
+    "End": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukončit"
           }
         }
       }
     },
-    "Your soul breathes with you" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tvoje duše dýchá s tebou"
+    "Energy flows where attention goes": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Energie plyne, kam pozornost teče"
           }
         }
       }
     },
-    "Your soul knows the way" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tvoje duše ví cestu"
+    "Every breath a new beginning": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Každý nádech nový začátek"
           }
         }
       }
     },
-    "Zen bowl" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zen mísa"
+    "Everything lives in silence": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "V tichu je všechno"
           }
         }
       }
     },
-    "meditation.description" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gong na začátku, gong na konci a mezi tím ticho — nebo oceán. Prostě seď a pozoruj; o zbytek se postará časovač. Volitelné intervalové gongy ti jemně připomenou, kolik času uběhlo."
+    "Extended Exhale": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prodloužený výdech"
+          }
+        }
+      }
+    },
+    "Finish your first breathing session and your progress will show up here.": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dokonči první dechové cvičení a tady uvidíš svůj pokrok."
+          }
+        }
+      }
+    },
+    "Flow like water": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plyň jako voda"
+          }
+        }
+      }
+    },
+    "Get Started": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jdeme na to"
+          }
+        }
+      }
+    },
+    "Gong": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gong"
+          }
+        }
+      }
+    },
+    "Gratitude opens the heart": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vděčnost otevírá srdce"
+          }
+        }
+      }
+    },
+    "Haptics": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haptika"
+          }
+        }
+      }
+    },
+    "Have an idea, or is something missing? Breathwave is built in the open — share your thoughts on GitHub.": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Máš nápad, nebo ti něco chybí? Breathwave vzniká otevřeně — napiš nám na GitHubu."
+          }
+        }
+      }
+    },
+    "Heart wide open": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Srdce otevřené dokořán"
+          }
+        }
+      }
+    },
+    "Here and now": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tady a teď"
+          }
+        }
+      }
+    },
+    "Hold": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zádrž"
+          }
+        }
+      }
+    },
+    "Ideas and requests": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nápady a přání"
+          }
+        }
+      }
+    },
+    "Interested in an app or an AI assistant like this for your business? Get in touch via jakubzemlicka.cz.": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Máš zájem o podobnou appku nebo AI asistenta pro svou firmu? Ozvi se přes jakubzemlicka.cz."
+          }
+        }
+      }
+    },
+    "Interval bells": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Intervalové gongy"
+          }
+        }
+      }
+    },
+    "Last 7 days": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Posledních 7 dní"
+          }
+        }
+      }
+    },
+    "Length": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Délka"
+          }
+        }
+      }
+    },
+    "Let go of what weighs you down": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nech jít, co tě tíží"
+          }
+        }
+      }
+    },
+    "Let the light in": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nech světlo dovnitř"
+          }
+        }
+      }
+    },
+    "Let your light shine": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rozsviť svoje světlo"
+          }
+        }
+      }
+    },
+    "Loading…": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Načítám…"
+          }
+        }
+      }
+    },
+    "Love is your nature": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Láska je tvoje přirozenost"
+          }
+        }
+      }
+    },
+    "Meditation": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meditace"
+          }
+        }
+      }
+    },
+    "Meditation Timer": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meditační timer"
+          }
+        }
+      }
+    },
+    "Namaste 🙏": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Namasté 🙏"
+          }
+        }
+      }
+    },
+    "Name": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Název"
+          }
+        }
+      }
+    },
+    "No accounts, no ads, no tracking. Everything stays on your phone.": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Žádné účty, žádné reklamy, žádné sledování. Všechno zůstává v tvém telefonu."
+          }
+        }
+      }
+    },
+    "No sessions yet": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zatím žádná cvičení"
+          }
+        }
+      }
+    },
+    "Nothing is missing here": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tady nic nechybí"
+          }
+        }
+      }
+    },
+    "Observe, don't judge": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vnímej, neposuzuj"
+          }
+        }
+      }
+    },
+    "Ocean": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oceán"
+          }
+        }
+      }
+    },
+    "Off": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vypnuto"
+          }
+        }
+      }
+    },
+    "Om": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Óm"
+          }
+        }
+      }
+    },
+    "Om Chanting": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Óm chanting"
+          }
+        }
+      }
+    },
+    "Om length": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Délka óm"
+          }
+        }
+      }
+    },
+    "Open jakubzemlicka.cz": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otevřít jakubzemlicka.cz"
+          }
+        }
+      }
+    },
+    "Open yourself to the moment": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otevři se okamžiku"
+          }
+        }
+      }
+    },
+    "Pause": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pozastavit"
+          }
+        }
+      }
+    },
+    "Peace be with you": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mír s tebou"
+          }
+        }
+      }
+    },
+    "Peace begins with a breath": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mír začíná nádechem"
+          }
+        }
+      }
+    },
+    "Pick a protocol and follow the rising and falling water.": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vyber protokol a nech se vést stoupající a klesající hladinou."
+          }
+        }
+      }
+    },
+    "Private by design": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soukromí především"
+          }
+        }
+      }
+    },
+    "Ready": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Připrav se"
+          }
+        }
+      }
+    },
+    "Rest in the present": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spočiň v přítomnosti"
+          }
+        }
+      }
+    },
+    "Rest on your breath": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spočiň na dechu"
+          }
+        }
+      }
+    },
+    "Resume": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pokračovat"
+          }
+        }
+      }
+    },
+    "Rhythm": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rytmus"
+          }
+        }
+      }
+    },
+    "Save": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uložit"
+          }
+        }
+      }
+    },
+    "Save as preset": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uložit jako preset"
+          }
+        }
+      }
+    },
+    "Save to Apple Health": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukládat do Apple Zdraví"
+          }
+        }
+      }
+    },
+    "Saved presets": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uložené presety"
+          }
+        }
+      }
+    },
+    "Screen off, session on": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Displej zhasne, cvičení běží"
+          }
+        }
+      }
+    },
+    "Session": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cvičení"
+          }
+        }
+      }
+    },
+    "Settings": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nastavení"
+          }
+        }
+      }
+    },
+    "Share an idea": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poslat nápad"
+          }
+        }
+      }
+    },
+    "Silence speaks": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ticho mluví"
+          }
+        }
+      }
+    },
+    "Skip": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Přeskočit"
+          }
+        }
+      }
+    },
+    "Softness is courage": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Měkkost je odvaha"
+          }
+        }
+      }
+    },
+    "Sounds": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zvuky"
+          }
+        }
+      }
+    },
+    "Start": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Začít"
+          }
+        }
+      }
+    },
+    "Stats": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Statistiky"
+          }
+        }
+      }
+    },
+    "Streak: %lld days": {
+      "localizations": {
+        "cs": {
+          "variations": {
+            "plural": {
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Série: %lld dny po sobě"
+                }
+              },
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Série: %lld den"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Série: %lld dní po sobě"
+                }
+              }
+            }
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A gong to begin, a gong to end, and silence — or the ocean — in between. Just sit and observe; the timer takes care of the rest. Optional interval bells gently mark the passing time."
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Streak: %lld day"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Streak: %lld days"
+                }
+              }
+            }
           }
         }
       }
     },
-    "meditation.when" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kdykoli si chceš sednout beze slov a bez vedení — od pěti minut po hodinu."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Whenever you want to sit without words or guidance — from five minutes to an hour."
+    "Sunshine in your soul": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slunce v duši"
           }
         }
       }
     },
-    "protocol.box.description" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Čtyři stejné fáze: nádech, zádrž, výdech, zádrž. Rytmus pro soustředění a klidnou hlavu. Oblíbený u sportovců a potápěčů."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Four equal parts: breathe in, hold, breathe out, hold. A steadying rhythm for focus and a clear head. A favorite of athletes and divers."
+    "Support Breathwave": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podpoř Breathwave"
           }
         }
       }
     },
-    "protocol.box.when" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Před prezentací, těžkým rozhovorem nebo startem."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Before a presentation, a hard conversation or a start line."
+    "Take root, and you will bloom": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zakořeň se, rozkvět přijde"
           }
         }
       }
     },
-    "protocol.coherent.description" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pomalý, vyrovnaný rytmus — zhruba pět a půl sekundy nádech, pět a půl výdech. Tělo se při něm přirozeně usadí do klidu."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A slow, even rhythm — about five and a half seconds in, five and a half out. Breathing this way lets the body settle into its natural calm."
+    "Thank you! 🌊": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Díky! 🌊"
           }
         }
       }
     },
-    "protocol.coherent.when" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Skvělý základ na každý den — ráno, o pauze i večer."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A great everyday default — mornings, breaks and evenings."
+    "The light in me greets the light in you": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Světlo ve mně zdraví světlo v tobě"
           }
         }
       }
     },
-    "protocol.custom.description" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nastav si délku všech čtyř fází po svém — nádech, zádrž, výdech, zádrž. Rytmus, který ti sedí, je ten, u kterého vydržíš."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Set the length of all four phases yourself — inhale, hold, exhale, hold. The rhythm that suits you is the one you can stay with."
+    "The ocean keeps guiding you even with the screen off.": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oceán tě vede dál, i když displej zhasne."
           }
         }
       }
     },
-    "protocol.custom.when" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Když už víš, co ti funguje — nebo chceš experimentovat."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "When you already know what works for you — or want to experiment."
+    "The story": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Příběh"
           }
         }
       }
     },
-    "protocol.extended-exhale.description" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Když je výdech delší než nádech, tělo to čte jako signál, že se může uvolnit."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "When the exhale is longer than the inhale, the body reads it as a signal that it is safe to relax."
+    "The universe embraces you": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vesmír tě objímá"
           }
         }
       }
     },
-    "protocol.extended-exhale.when" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rychlý reset ve stresových chvílích — kdekoli, kdykoli."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A quick reset for stressful moments — anywhere, anytime."
+    "The universe is in no hurry, neither are you": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vesmír nikam nespěchá, ani ty nemusíš"
           }
         }
       }
     },
-    "protocol.four-seven-eight.description" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nádech na čtyři, zádrž na sedm, výdech na osm. Dlouhá zádrž a ještě delší výdech všechno zpomalí."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Breathe in for four, hold for seven, let go for eight. The long hold and even longer exhale slow everything down."
+    "The universe is listening": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vesmír ti naslouchá"
           }
         }
       }
     },
-    "protocol.four-seven-eight.when" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nejlepší večer nebo v posteli, když se hlava nechce zastavit."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Best in the evening or in bed when thoughts won't stop."
+    "Tips are unavailable right now.": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Příspěvky teď nejsou dostupné."
           }
         }
       }
     },
-    "protocol.om.description" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zhluboka se nadechni a celý výdech nech nést dlouhé „óóóm“. Jemná vibrace vlastního hlasu spolu s prodlouženým výdechem podporuje přirozené zklidnění — bývá spojována s bloudivým nervem (vagus). Laď se podle tónu, který hraje při výdechu."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Breathe in deeply, then let a long voiced “om” carry the whole exhale. The gentle vibration of your own voice and the extended exhale support natural calm — often associated with the vagus nerve. Tune your hum to the tone that plays during the exhale."
+    "Today is a gift": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dnešek je dar"
           }
         }
       }
     },
-    "protocol.om.when" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kdykoli chceš hluboké uvolnění — a nevadí ti, že jsi u toho slyšet."
+    "Today is calling you": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dnešek tě volá"
+          }
+        }
+      }
+    },
+    "Today you bloom": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dnes kveteš"
+          }
+        }
+      }
+    },
+    "Total time": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Celkový čas"
+          }
+        }
+      }
+    },
+    "Trust the flow": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Důvěřuj proudu"
+          }
+        }
+      }
+    },
+    "Trust your breath": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Důvěřuj svému dechu"
+          }
+        }
+      }
+    },
+    "Welcome back to yourself": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vítej zpátky k sobě"
+          }
+        }
+      }
+    },
+    "Welcome home, within yourself": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vítej doma, v sobě"
+          }
+        }
+      }
+    },
+    "Welcome to stillness": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vítej v klidu"
+          }
+        }
+      }
+    },
+    "Welcome, beautiful soul": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vítej, krásná duše"
+          }
+        }
+      }
+    },
+    "Welcome, traveler": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vítej, poutníku"
+          }
+        }
+      }
+    },
+    "What it does": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "K čemu slouží"
+          }
+        }
+      }
+    },
+    "When to use it": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kdy se hodí"
+          }
+        }
+      }
+    },
+    "You are a miracle in motion": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jsi zázrak v pohybu"
+          }
+        }
+      }
+    },
+    "You are exactly where you need to be": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jsi přesně tam, kde máš být"
+          }
+        }
+      }
+    },
+    "You are more than enough": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jsi víc než dost"
+          }
+        }
+      }
+    },
+    "You are part of the whole": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jsi součást celku"
+          }
+        }
+      }
+    },
+    "Your breath holds you": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tvůj dech tě drží"
+          }
+        }
+      }
+    },
+    "Your calm is your strength": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tvůj klid je tvoje síla"
+          }
+        }
+      }
+    },
+    "Your heart knows the answer": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tvoje srdce zná odpověď"
+          }
+        }
+      }
+    },
+    "Your journey begins now": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tvoje cesta začíná teď"
+          }
+        }
+      }
+    },
+    "Your presence is a gift": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tvoje přítomnost je dar"
+          }
+        }
+      }
+    },
+    "Your soul breathes with you": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tvoje duše dýchá s tebou"
+          }
+        }
+      }
+    },
+    "Your soul knows the way": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tvoje duše ví cestu"
+          }
+        }
+      }
+    },
+    "meditation.description": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ticho — nebo oceán — a na závěr jemné cinknutí. Prostě seď a pozoruj; o zbytek se postará časovač. Volitelné intervalové zvonky ti jemně připomenou, kolik času uběhlo."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Whenever you want deep release — and don't mind being heard."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Silence — or the ocean — with a gentle chime to close. Just sit and observe; the timer takes care of the rest. Optional interval bells gently mark the passing time."
+          }
+        }
+      }
+    },
+    "meditation.when": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kdykoli si chceš sednout beze slov a bez vedení — od pěti minut po hodinu."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Whenever you want to sit without words or guidance — from five minutes to an hour."
+          }
+        }
+      }
+    },
+    "protocol.box.description": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Čtyři stejné fáze: nádech, zádrž, výdech, zádrž. Rytmus pro soustředění a klidnou hlavu. Oblíbený u sportovců a potápěčů."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Four equal parts: breathe in, hold, breathe out, hold. A steadying rhythm for focus and a clear head. A favorite of athletes and divers."
+          }
+        }
+      }
+    },
+    "protocol.box.when": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Před prezentací, těžkým rozhovorem nebo startem."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Before a presentation, a hard conversation or a start line."
+          }
+        }
+      }
+    },
+    "protocol.coherent.description": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pomalý, vyrovnaný rytmus — zhruba pět a půl sekundy nádech, pět a půl výdech. Tělo se při něm přirozeně usadí do klidu."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A slow, even rhythm — about five and a half seconds in, five and a half out. Breathing this way lets the body settle into its natural calm."
+          }
+        }
+      }
+    },
+    "protocol.coherent.when": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skvělý základ na každý den — ráno, o pauze i večer."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A great everyday default — mornings, breaks and evenings."
+          }
+        }
+      }
+    },
+    "protocol.custom.description": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nastav si délku všech čtyř fází po svém — nádech, zádrž, výdech, zádrž. Rytmus, který ti sedí, je ten, u kterého vydržíš."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set the length of all four phases yourself — inhale, hold, exhale, hold. The rhythm that suits you is the one you can stay with."
+          }
+        }
+      }
+    },
+    "protocol.custom.when": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Když už víš, co ti funguje — nebo chceš experimentovat."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "When you already know what works for you — or want to experiment."
+          }
+        }
+      }
+    },
+    "protocol.extended-exhale.description": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Když je výdech delší než nádech, tělo to čte jako signál, že se může uvolnit."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "When the exhale is longer than the inhale, the body reads it as a signal that it is safe to relax."
+          }
+        }
+      }
+    },
+    "protocol.extended-exhale.when": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rychlý reset ve stresových chvílích — kdekoli, kdykoli."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A quick reset for stressful moments — anywhere, anytime."
+          }
+        }
+      }
+    },
+    "protocol.four-seven-eight.description": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nádech na čtyři, zádrž na sedm, výdech na osm. Dlouhá zádrž a ještě delší výdech všechno zpomalí."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Breathe in for four, hold for seven, let go for eight. The long hold and even longer exhale slow everything down."
+          }
+        }
+      }
+    },
+    "protocol.four-seven-eight.when": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nejlepší večer nebo v posteli, když se hlava nechce zastavit."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Best in the evening or in bed when thoughts won't stop."
+          }
+        }
+      }
+    },
+    "protocol.om.description": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zhluboka se nadechni a celý výdech nech nést dlouhé „óóóm“. Jemná vibrace vlastního hlasu spolu s prodlouženým výdechem podporuje přirozené zklidnění — bývá spojována s bloudivým nervem (vagus). Laď se podle tónu, který hraje při výdechu."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Breathe in deeply, then let a long voiced “om” carry the whole exhale. The gentle vibration of your own voice and the extended exhale support natural calm — often associated with the vagus nerve. Tune your hum to the tone that plays during the exhale."
+          }
+        }
+      }
+    },
+    "protocol.om.when": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kdykoli chceš hluboké uvolnění — a nevadí ti, že jsi u toho slyšet."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Whenever you want deep release — and don't mind being heard."
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

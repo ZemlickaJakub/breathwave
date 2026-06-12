@@ -58,11 +58,3 @@ private struct CardChevron: View {
             .foregroundStyle(.tertiary)
     }
 }
-
-private extension View {
-    func cardChrome() -> some View {
-        padding(16)
-            .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
-            .shadow(color: .black.opacity(0.06), radius: 12, y: 5)
-    }
-}

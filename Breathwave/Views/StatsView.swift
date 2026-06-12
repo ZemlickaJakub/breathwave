@@ -5,28 +5,54 @@ struct StatsView: View {
     @Environment(SessionStore.self) private var sessionStore
 
     var body: some View {
-        List {
-            if sessionStore.sessions.isEmpty {
-                ContentUnavailableView(
-                    "No sessions yet",
-                    systemImage: "water.waves",
-                    description: Text("Finish your first breathing session and your progress will show up here.")
-                )
-            } else {
-                Section {
-                    LabeledContent("Current streak") {
-                        Text("\(sessionStore.currentStreak()) days")
-                    }
-                    LabeledContent("Total time") {
-                        Text(totalTimeText)
-                    }
-                }
-                Section("Last 7 days") {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 24) {
+                if sessionStore.sessions.isEmpty {
+                    ContentUnavailableView(
+                        "No sessions yet",
+                        systemImage: "water.waves",
+                        description: Text("Finish your first breathing session and your progress will show up here.")
+                    )
+                    .padding(.top, 80)
+                } else {
+                    summaryCard
+                    sectionHeader("Last 7 days")
                     weeklyChart
+                        .cardChrome()
                 }
             }
+            .padding(20)
         }
+        .calmBackground()
         .navigationTitle("Stats")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private var summaryCard: some View {
+        VStack(spacing: 12) {
+            LabeledContent("Current streak") {
+                Text("\(sessionStore.currentStreak()) days")
+                    .foregroundStyle(.primary)
+            }
+            .font(.headline)
+            .fontDesign(.serif)
+            Divider()
+            LabeledContent("Total time") {
+                Text(totalTimeText)
+                    .foregroundStyle(.primary)
+            }
+            .font(.headline)
+            .fontDesign(.serif)
+        }
+        .cardChrome()
+    }
+
+    private func sectionHeader(_ key: LocalizedStringKey) -> some View {
+        Text(key)
+            .font(.footnote.weight(.semibold))
+            .textCase(.uppercase)
+            .kerning(1.2)
+            .foregroundStyle(.secondary)
     }
 
     private var totalTimeText: String {
