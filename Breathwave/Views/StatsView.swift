@@ -16,7 +16,7 @@ struct StatsView: View {
                     .padding(.top, 80)
                 } else {
                     summaryCard
-                    sectionHeader("Last 7 days")
+                    SectionHeader("Last 7 days")
                     weeklyChart
                         .cardChrome()
                 }
@@ -45,14 +45,6 @@ struct StatsView: View {
             .fontDesign(.serif)
         }
         .cardChrome()
-    }
-
-    private func sectionHeader(_ key: LocalizedStringKey) -> some View {
-        Text(key)
-            .font(.footnote.weight(.semibold))
-            .textCase(.uppercase)
-            .kerning(1.2)
-            .foregroundStyle(.secondary)
     }
 
     private var totalTimeText: String {

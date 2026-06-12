@@ -507,7 +507,17 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Máš nápad, nebo ti něco chybí? Breathwave vzniká otevřeně — napiš nám na GitHubu."
+            "value": "Máš nápad, nebo ti něco chybí? Breathwave vzniká otevřeně — napiš mi na GitHubu."
+          }
+        }
+      }
+    },
+    "Health": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zdraví"
           }
         }
       }
