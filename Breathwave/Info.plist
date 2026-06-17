@@ -4,6 +4,8 @@
 <dict>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Breathwave only writes your completed sessions to Apple Health and does not read any of your health data.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>Breathwave can save your completed breathing and meditation sessions to Apple Health as Mindful Minutes. This is optional.</string>
 	<key>UIBackgroundModes</key>

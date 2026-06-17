@@ -37,6 +37,26 @@ final class ScreenshotTests: XCTestCase {
         captureAll(language: "cs", strings: .cs)
     }
 
+    /// Tip jar only, with mocked products (StoreKit does not load headless).
+    /// Used for the IAP review screenshot.
+    func testTipJarScreenshot() throws {
+        let app = XCUIApplication()
+        app.launchArguments = [
+            "-AppleLanguages", "(en)",
+            "-onboarding.completed", "YES",
+            "-screenshot.mockTips",
+        ]
+        app.launch()
+
+        XCTAssertTrue(app.staticTexts[Strings.en.about].waitForExistence(timeout: 5))
+        app.staticTexts[Strings.en.about].firstMatch.tap()
+        Thread.sleep(forTimeInterval: 1.0)
+        app.swipeUp(velocity: .fast)
+        app.swipeUp(velocity: .fast)
+        Thread.sleep(forTimeInterval: 1.0)
+        snap("en-07-tipjar")
+    }
+
     private func captureAll(language: String, strings: Strings) {
         let app = XCUIApplication()
         app.launchArguments = [
