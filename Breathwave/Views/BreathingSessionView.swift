@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct BreathingSessionView: View {
     let breathingProtocol: BreathingProtocol
@@ -18,8 +19,6 @@ struct BreathingSessionView: View {
 
     /// Sessions shorter than this are treated as accidental and not recorded.
     private static let minimumRecordedDuration: TimeInterval = 30
-    private static let durationChoices: [Int?] = [1, 3, 5, 10, 15, nil]
-    private static let omExhaleChoices = [8, 10, 12, 15, 20]
 
     /// Om training adjusts the exhale length; everything else runs as-is.
     private var activeProtocol: BreathingProtocol {
@@ -30,23 +29,34 @@ struct BreathingSessionView: View {
     }
 
     var body: some View {
+        @Bindable var settings = settings
         VStack(spacing: 32) {
             Spacer()
             TimelineView(.animation) { context in
                 VStack(spacing: 24) {
-                    PacerView(
-                        snapshot: engine.snapshot,
-                        time: context.date.timeIntervalSinceReferenceDate,
-                        exhaleLabel: breathingProtocol.isOmTraining ? "Om" : "Breathe Out"
-                    )
+                    if isDarkSession {
+                        DarkPacerView(snapshot: engine.snapshot)
+                    } else {
+                        PacerView(
+                            snapshot: engine.snapshot,
+                            time: context.date.timeIntervalSinceReferenceDate,
+                            exhaleLabel: breathingProtocol.isOmTraining ? "Om" : "Breathe Out"
+                        )
+                    }
                     Text(elapsedText)
                         .font(.title3.monospacedDigit())
                         .foregroundStyle(.secondary)
+                        .opacity(isDarkSession ? 0.35 : 1)
                 }
             }
             Spacer()
             if engine.state == .idle || engine.state == .finished {
-                pickers
+                SessionSetupPickers(
+                    isOmTraining: breathingProtocol.isOmTraining,
+                    omExhaleSeconds: $omExhaleSeconds,
+                    selectedMinutes: $selectedMinutes,
+                    inTheDark: $settings.inTheDarkEnabled
+                )
             }
             SessionControls(
                 state: engine.state,
@@ -55,9 +65,23 @@ struct BreathingSessionView: View {
                 onResume: resumeSession,
                 onEnd: endSession
             )
+            .opacity(isDarkSession ? 0.3 : 1)
         }
         .padding()
+        .background {
+            if isDarkSession {
+                Color.black.ignoresSafeArea()
+            }
+        }
+        .animation(.easeInOut(duration: 0.8), value: isDarkSession)
         .calmBackground()
+        .toolbar(isDarkSession ? .hidden : .visible, for: .navigationBar)
+        .statusBarHidden(isDarkSession)
+        // Dark sessions have no visual reason to stay awake for iOS, so keep
+        // the screen alive manually; audio covers a screen that does lock.
+        .onChange(of: isDarkSession) { _, dark in
+            UIApplication.shared.isIdleTimerDisabled = dark
+        }
         .navigationTitle(breathingProtocol.localizedName)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -85,21 +109,10 @@ struct BreathingSessionView: View {
         Duration.seconds(engine.elapsed).formatted(.time(pattern: .minuteSecond))
     }
 
-    private var pickers: some View {
-        VStack(spacing: 12) {
-            if breathingProtocol.isOmTraining {
-                HStack {
-                    Text("Om length")
-                    Spacer()
-                    Picker("Om length", selection: $omExhaleSeconds) {
-                        ForEach(Self.omExhaleChoices, id: \.self) { Text("\($0) s").tag($0) }
-                    }
-                    .labelsHidden()
-                }
-                .padding(.horizontal, 8)
-            }
-            DurationPicker(minutes: $selectedMinutes, choices: Self.durationChoices)
-        }
+    /// Running in the dark: near-black screen, haptics and sound lead.
+    /// Pausing brightens the screen back up for interaction.
+    private var isDarkSession: Bool {
+        settings.inTheDarkEnabled && engine.state == .running
     }
 
     // MARK: - Session lifecycle
@@ -173,6 +186,7 @@ struct BreathingSessionView: View {
     }
 
     private func teardown() {
+        UIApplication.shared.isIdleTimerDisabled = false
         if engine.state == .running || engine.state == .paused {
             audio.deactivate()
         }

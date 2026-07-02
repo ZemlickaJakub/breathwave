@@ -25,6 +25,16 @@ final class BreathingEngine {
         var elapsed: TimeInterval
         /// nil for open-ended sessions.
         var remaining: TimeInterval?
+
+        /// How full the lungs are at this moment: 0 empty, 1 full.
+        var lungFill: Double {
+            switch phase {
+            case .inhale: phaseProgress
+            case .holdAfterInhale: 1
+            case .exhale: 1 - phaseProgress
+            case .holdAfterExhale: 0
+            }
+        }
     }
 
     private(set) var state: State = .idle

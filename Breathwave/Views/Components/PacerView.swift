@@ -32,17 +32,7 @@ struct PacerView: View {
 
     private var level: Double {
         guard let snapshot else { return Self.emptyLevel }
-        let range = Self.fullLevel - Self.emptyLevel
-        switch snapshot.phase {
-        case .inhale:
-            return Self.emptyLevel + range * snapshot.phaseProgress
-        case .holdAfterInhale:
-            return Self.fullLevel
-        case .exhale:
-            return Self.fullLevel - range * snapshot.phaseProgress
-        case .holdAfterExhale:
-            return Self.emptyLevel
-        }
+        return Self.emptyLevel + (Self.fullLevel - Self.emptyLevel) * snapshot.lungFill
     }
 
     private var phaseLabel: LocalizedStringKey {
