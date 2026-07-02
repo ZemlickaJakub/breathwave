@@ -222,7 +222,7 @@ Doporučení Claude:
 - **Ideál: resubmit až po Fázi 1** (motion = reálný důkaz odlišnosti). Fáze 3 + 2 mezitím přidávají hodnotu a polish.
 - **Minimum: po Fázi 2** (garden = silná vizuální identita).
 
-Jakubovo rozhodnutí: _(doplnit)_
+Jakubovo rozhodnutí (2026-07-02): resubmit po Fázi 1 jako **verze 1.1** (build 2). Metadata: `docs/appstore/metadata_2026-07-02.md`.
 
 ---
 
