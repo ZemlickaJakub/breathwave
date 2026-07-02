@@ -103,6 +103,14 @@ extension BreathingProtocol {
         inhale: 1, holdAfterInhale: 0, exhale: 1, holdAfterExhale: 0
     )
 
+    /// Internal carrier for the breath-sensing screen — reuses the engine's
+    /// time tracking; the phases are driven by the sensor, not the clock.
+    static let breathSensing = BreathingProtocol(
+        id: "breath-sensing",
+        nameKey: "Breath Sensor",
+        inhale: 1, holdAfterInhale: 0, exhale: 1, holdAfterExhale: 0
+    )
+
     /// Om training: deep breath in, long voiced "om" on the exhale.
     /// The exhale length is user-adjustable in the session screen.
     static let om = BreathingProtocol(

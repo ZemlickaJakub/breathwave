@@ -1,6 +1,52 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld breaths/min" : {
+      "localizations" : {
+        "cs" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld dechy/min"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld dech/min"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld dechů/min"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld breath/min"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld breaths/min"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "%lld days" : {
       "localizations" : {
         "cs" : {
@@ -160,6 +206,16 @@
         }
       }
     },
+    "Breath Sensor" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senzor dechu"
+          }
+        }
+      }
+    },
     "Breathe and be" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -199,6 +255,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nadechni se přítomnosti"
+          }
+        }
+      }
+    },
+    "Breathe naturally — the wave follows your real breath, measured by motion." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dýchej přirozeně — vlna sleduje tvůj skutečný dech podle pohybu."
           }
         }
       }
@@ -442,6 +508,16 @@
         }
       }
     },
+    "Each finished session grows a unique bloom. Your garden starts with your next breath." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Každé dokončené cvičení nechá vyrůst jedinečný květ. Tvoje zahrada začíná dalším nádechem."
+          }
+        }
+      }
+    },
     "End" : {
       "localizations" : {
         "cs" : {
@@ -496,6 +572,16 @@
         }
       }
     },
+    "Finding your breath…" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hledám tvůj dech…"
+          }
+        }
+      }
+    },
     "Finish your first breathing session and your progress will show up here." : {
       "localizations" : {
         "cs" : {
@@ -523,6 +609,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Navždy zdarma"
+          }
+        }
+      }
+    },
+    "Garden" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zahrada"
           }
         }
       }
@@ -640,6 +736,16 @@
         }
       }
     },
+    "In the dark" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Potmě"
+          }
+        }
+      }
+    },
     "Interested in an app or an AI assistant like this for your business?" : {
       "localizations" : {
         "cs" : {
@@ -730,6 +836,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rozsviť svoje světlo"
+          }
+        }
+      }
+    },
+    "Lie down and rest your iPhone flat on your belly." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lehni si a polož si iPhone naplocho na břicho."
           }
         }
       }
@@ -856,6 +972,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Žádné reklamy, žádné předplatné"
+          }
+        }
+      }
+    },
+    "No blooms yet" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zatím žádné květy"
           }
         }
       }
@@ -1414,6 +1540,16 @@
         }
       }
     },
+    "Steadiness: %lld %" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stabilita: %lld %"
+          }
+        }
+      }
+    },
     "Streak: %lld days" : {
       "localizations" : {
         "cs" : {
@@ -1529,6 +1665,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Slib"
+          }
+        }
+      }
+    },
+    "The screen dims to black. Sound and gentle vibrations guide your breath." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Displej ztmavne do černa. Dechem tě provedou zvuk a jemné vibrace."
           }
         }
       }
