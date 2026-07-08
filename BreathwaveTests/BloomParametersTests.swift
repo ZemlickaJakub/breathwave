@@ -6,15 +6,13 @@ struct BloomParametersTests {
     private func makeSession(
         id: UUID = UUID(uuidString: "AAAAAAAA-BBBB-CCCC-DDDD-EEEEFFFF0001")!,
         duration: TimeInterval = 300,
-        kind: Session.Kind = .breathing(protocolID: "box"),
-        steadiness: Double? = nil
+        kind: Session.Kind = .breathing(protocolID: "box")
     ) -> Session {
         Session(
             id: id,
             completedAt: Date(timeIntervalSince1970: 1_750_000_000),
             duration: duration,
-            kind: kind,
-            steadiness: steadiness
+            kind: kind
         )
     }
 
@@ -43,15 +41,9 @@ struct BloomParametersTests {
         #expect(meditation.baseHue >= 0.68)
     }
 
-    @Test func steadierBreathGrowsTidierFlowers() {
-        let steady = BloomParameters.from(makeSession(kind: .breathSensing, steadiness: 0.95))
-        let loose = BloomParameters.from(makeSession(kind: .breathSensing, steadiness: 0.2))
-        #expect(steady.petalWobble < loose.petalWobble)
-    }
-
     @Test func parametersStayInRenderableRanges() {
         for duration: TimeInterval in [10, 300, 900, 3600] {
-            for kind in [Session.Kind.breathing(protocolID: "coherent"), .meditation, .breathSensing] {
+            for kind in [Session.Kind.breathing(protocolID: "coherent"), .meditation] {
                 let params = BloomParameters.from(makeSession(duration: duration, kind: kind))
                 #expect((6...12).contains(params.petalCount))
                 #expect((2...3).contains(params.layerCount))

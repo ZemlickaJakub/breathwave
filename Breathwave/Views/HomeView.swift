@@ -26,12 +26,6 @@ struct HomeView: View {
                             MenuCard(titleKey: "Custom Rhythm", icon: "slider.horizontal.3")
                         }
                         .buttonStyle(.plain)
-                        NavigationLink {
-                            BreathSensingView()
-                        } label: {
-                            MenuCard(titleKey: "Breath Sensor", icon: "wave.3.right")
-                        }
-                        .buttonStyle(.plain)
                     }
                     SectionHeader("Meditation")
                     VStack(spacing: 12) {

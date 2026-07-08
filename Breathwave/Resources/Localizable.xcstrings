@@ -206,16 +206,6 @@
         }
       }
     },
-    "Breath Sensor" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Senzor dechu"
-          }
-        }
-      }
-    },
     "Breathe and be" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -255,16 +245,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nadechni se přítomnosti"
-          }
-        }
-      }
-    },
-    "Breathe naturally — the wave follows your real breath, measured by motion." : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dýchej přirozeně — vlna sleduje tvůj skutečný dech podle pohybu."
           }
         }
       }
@@ -836,16 +816,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rozsviť svoje světlo"
-          }
-        }
-      }
-    },
-    "Lie down and rest your iPhone flat on your belly." : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lehni si a polož si iPhone naplocho na břicho."
           }
         }
       }
@@ -1536,16 +1506,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Statistiky"
-          }
-        }
-      }
-    },
-    "Steadiness: %lld %" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Stabilita: %lld %"
           }
         }
       }

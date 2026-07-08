@@ -1,12 +1,10 @@
 import Foundation
 
-/// A completed breathing, meditation, or breath-sensing session.
+/// A completed breathing or meditation session.
 struct Session: Identifiable, Hashable, Codable, Sendable {
     enum Kind: Hashable, Codable, Sendable {
         case breathing(protocolID: String)
         case meditation
-        /// Motion-sensed breathing: the phone on the belly measured the breath.
-        case breathSensing
     }
 
     let id: UUID
@@ -15,20 +13,16 @@ struct Session: Identifiable, Hashable, Codable, Sendable {
     /// Actual practiced time in seconds.
     let duration: TimeInterval
     let kind: Kind
-    /// Breath-sensing sessions record how even the rhythm was (0...1).
-    let steadiness: Double?
 
     init(
         id: UUID = UUID(),
         completedAt: Date,
         duration: TimeInterval,
-        kind: Kind,
-        steadiness: Double? = nil
+        kind: Kind
     ) {
         self.id = id
         self.completedAt = completedAt
         self.duration = duration
         self.kind = kind
-        self.steadiness = steadiness
     }
 }

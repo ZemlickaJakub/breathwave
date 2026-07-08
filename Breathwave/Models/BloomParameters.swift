@@ -24,19 +24,16 @@ extension BloomParameters {
         // Longer practice grows fuller flowers: 6 petals up to 12 at 15+ minutes.
         let petalCount = 6 + min(6, Int(session.duration / 150))
         let layerCount = session.duration >= 300 ? 3 : 2
-        // Breathing blooms live in sea tones, meditation in violets,
-        // sensed breath in greens.
+        // Breathing blooms live in sea tones, meditation in violets.
         let hueBand: ClosedRange<Double> = switch session.kind {
         case .breathing: 0.44...0.60
         case .meditation: 0.68...0.80
-        case .breathSensing: 0.26...0.38
         }
         let baseHue = hueBand.lowerBound + random.unit() * (hueBand.upperBound - hueBand.lowerBound)
         let petalAspect = 0.35 + random.unit() * 0.25
         let rotationOffset = random.unit() * 2 * .pi
-        // A steady measured breath grows a tidy flower; no measurement
-        // keeps the default natural wobble.
-        let petalWobble = session.steadiness.map { 0.05 + (1 - $0) * 0.18 } ?? 0.16
+        // Each flower keeps its own gentle petal-length variation.
+        let petalWobble = 0.08 + random.unit() * 0.14
         return BloomParameters(
             petalCount: petalCount,
             layerCount: layerCount,
