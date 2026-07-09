@@ -73,6 +73,16 @@ struct FocusView: View {
             .controlSize(.large)
 
             if focus.hasSelection {
+                HStack {
+                    Text("Unlock for")
+                    Spacer()
+                    Picker("Unlock for", selection: graceBinding(focus)) {
+                        ForEach(FocusShared.graceChoices, id: \.self) { Text("\($0) min").tag($0) }
+                    }
+                    .labelsHidden()
+                }
+                .font(.subheadline)
+
                 Button {
                     focus.isGuarding ? focus.stopGuarding() : focus.startGuarding()
                 } label: {
@@ -83,8 +93,20 @@ struct FocusView: View {
                 .controlSize(.large)
                 .tint(focus.isGuarding ? .secondary : .accentColor)
             }
+
+            NavigationLink {
+                FocusStatsView()
+            } label: {
+                Label("Your pauses", systemImage: "chart.bar")
+                    .font(.subheadline)
+            }
+            .padding(.top, 4)
         }
         .padding(.horizontal, 40)
+    }
+
+    private func graceBinding(_ focus: FocusGuardService) -> Binding<Int> {
+        Binding(get: { focus.graceMinutes }, set: { focus.graceMinutes = $0 })
     }
 }
 

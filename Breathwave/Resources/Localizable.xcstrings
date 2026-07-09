@@ -2042,6 +2042,236 @@
           }
         }
       }
+    },
+    "First Bloom" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "První květ"
+          }
+        }
+      }
+    },
+    "Ten Petals" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deset lístků"
+          }
+        }
+      }
+    },
+    "Fifty in Flower" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Padesát v květu"
+          }
+        }
+      }
+    },
+    "A Hundred Blooms" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sto květů"
+          }
+        }
+      }
+    },
+    "Unbroken Garden" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nepřerušená zahrada"
+          }
+        }
+      }
+    },
+    "Day in Full Bloom" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den v plném květu"
+          }
+        }
+      }
+    },
+    "Thriving" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozkvétáš"
+          }
+        }
+      }
+    },
+    "You let the urge pass for the first time." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poprvé se ti podařilo nechat nutkání odeznít."
+          }
+        }
+      }
+    },
+    "Ten pauses resisted. The habit is taking root." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deset odolaných pauz. Zvyk zapouští kořeny."
+          }
+        }
+      }
+    },
+    "Fifty small wins over the scroll." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Padesát malých vítězství nad scrollováním."
+          }
+        }
+      }
+    },
+    "One hundred times you chose to stay present." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sto rozhodnutí zůstat v přítomnosti."
+          }
+        }
+      }
+    },
+    "Seven shield encounters resisted in a row." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sedm odolání štítu za sebou."
+          }
+        }
+      }
+    },
+    "A whole day facing the shield without opening once." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Celý den u štítu bez jediného otevření."
+          }
+        }
+      }
+    },
+    "You resisted at least 80% of the time this week." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tenhle týden se ti podařilo odolat aspoň v 80 % případů."
+          }
+        }
+      }
+    },
+    "No pauses yet" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zatím žádné pauzy"
+          }
+        }
+      }
+    },
+    "When a guarded app asks you to pause, your choices show up here." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Až tě hlídaná appka vyzve k pauze, tvoje volby se objeví tady."
+          }
+        }
+      }
+    },
+    "Your pauses" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tvoje pauzy"
+          }
+        }
+      }
+    },
+    "Badges" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odznaky"
+          }
+        }
+      }
+    },
+    "Resisted today" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dnes jsi odolal"
+          }
+        }
+      }
+    },
+    "Opened today" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dnes jsi otevřel"
+          }
+        }
+      }
+    },
+    "Resist streak" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Série odolání"
+          }
+        }
+      }
+    },
+    "Resisted in total" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odoláno celkem"
+          }
+        }
+      }
+    },
+    "Unlock for" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odemknout na"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

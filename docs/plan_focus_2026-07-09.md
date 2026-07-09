@@ -107,6 +107,15 @@ Po každém zásahu do modelu/enginu: `xcodebuild test`.
 - **Build 3 (1.2) nahraný do TestFlightu 2026-07-09** — M1+M2, k ověření foundation na zařízení.
 - **M3 čeká** na výsledek testu foundation na zařízení (rozhodnutí: neověřovat naslepo).
 
+### Stav M3+ (2026-07-09, build/testy zelené na simulátoru, neověřeno na zařízení)
+- **ShieldAction extension** (BreathwaveShieldAction) — obsluha tlačítek: odolal → záznam, otevřel → sundá štít + záznam + naplánuje DeviceActivity návrat.
+- **DeviceActivityMonitor** (BreathwaveMonitor) — `intervalDidEnd` vrátí štít po grace okně.
+- **App Group** `group.cz.jakubzemlicka.breathwave` sdílí selekci, grace, mapping tlačítek a události mezi appkou a extensiony.
+- **Rotující prompty** (70×2 EN+CS, denní doba, střídání ikon), **tmavý štít**, **náhodné prohození tlačítek** (anti-svalová paměť).
+- **Nastavitelné grace okno** (1–30 min) v FocusView.
+- **Statistiky + odznaky** (FocusStats/FocusBadges + FocusStatsView): odolal/otevřel dnes, streak, celkem; 7 bloom odznaků.
+- **RIZIKO k ověření na zařízení:** DeviceActivity grace timing (krátká okna ~1 min můžou být nespolehlivá); mapping tlačítek přes App Group; zda shield config extension potřebuje family-controls entitlement.
+
 ### Gotchas (ať se neopakuje ladění)
 - **Export/upload:** distribuční profil s novým entitlementem se přegeneruje jen když má
   exportOptions.plist `signingStyle = automatic`. Bez toho export selže na „profile doesn't

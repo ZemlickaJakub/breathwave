@@ -1,0 +1,24 @@
+import DeviceActivity
+import FamilyControls
+import Foundation
+import ManagedSettings
+
+/// Runs when a grace window ends and puts the shield back on the guarded apps,
+/// as long as guarding is still switched on.
+final class FocusMonitor: DeviceActivityMonitor {
+    private let store = ManagedSettingsStore()
+
+    override func intervalDidEnd(for activity: DeviceActivityName) {
+        super.intervalDidEnd(for: activity)
+        guard activity == DeviceActivityName(FocusShared.graceActivityName) else { return }
+        guard FocusShared.defaults.bool(forKey: FocusShared.Keys.guarding) else { return }
+        guard let data = FocusShared.defaults.data(forKey: FocusShared.Keys.selection),
+              let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) else {
+            return
+        }
+        let apps = selection.applicationTokens
+        store.shield.applications = apps.isEmpty ? nil : apps
+        let categories = selection.categoryTokens
+        store.shield.applicationCategories = categories.isEmpty ? nil : .specific(categories)
+    }
+}

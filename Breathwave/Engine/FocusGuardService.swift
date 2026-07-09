@@ -21,19 +21,25 @@ final class FocusGuardService {
     }
     /// Whether the shield is currently applied.
     private(set) var isGuarding: Bool
+    /// How long a guarded app stays open after the user chooses to breathe past it.
+    var graceMinutes: Int {
+        didSet { defaults.set(graceMinutes, forKey: FocusShared.Keys.graceMinutes) }
+    }
 
     @ObservationIgnored private let store = ManagedSettingsStore()
     @ObservationIgnored private let defaults: UserDefaults
 
-    init(defaults: UserDefaults = .standard) {
+    init(defaults: UserDefaults = FocusShared.defaults) {
         self.defaults = defaults
-        if let data = defaults.data(forKey: Keys.selection),
+        if let data = defaults.data(forKey: FocusShared.Keys.selection),
            let decoded = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) {
             selection = decoded
         } else {
             selection = FamilyActivitySelection()
         }
-        isGuarding = defaults.bool(forKey: Keys.guarding)
+        isGuarding = defaults.bool(forKey: FocusShared.Keys.guarding)
+        graceMinutes = defaults.object(forKey: FocusShared.Keys.graceMinutes) as? Int
+            ?? FocusShared.defaultGraceMinutes
         refreshAuthorization()
         // Re-arm the shield after a relaunch so guarding survives restarts.
         if isGuarding { applyShield() }

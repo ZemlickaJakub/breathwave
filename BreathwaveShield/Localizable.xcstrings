@@ -30,6 +30,1406 @@
           }
         }
       }
+    },
+    "Good morning" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobré ráno"
+          }
+        }
+      }
+    },
+    "Let the day begin slowly." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ať den začne pomalu."
+          }
+        }
+      }
+    },
+    "One fresh breath" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeden svěží nádech"
+          }
+        }
+      }
+    },
+    "Start with air, not a screen." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Začni vzduchem, ne obrazovkou."
+          }
+        }
+      }
+    },
+    "Still waking up" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ještě se probouzíš"
+          }
+        }
+      }
+    },
+    "Give yourself a soft start." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dopřej si měkký začátek."
+          }
+        }
+      }
+    },
+    "Morning is yours" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ráno patří tobě"
+          }
+        }
+      }
+    },
+    "Meet it before the noise." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přivítej ho, než přijde ruch."
+          }
+        }
+      }
+    },
+    "Ease into it" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vklouzni do toho zlehka"
+          }
+        }
+      }
+    },
+    "There's no rush this early." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Takhle brzy nikam nespěcháš."
+          }
+        }
+      }
+    },
+    "First light" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "První světlo"
+          }
+        }
+      }
+    },
+    "Breathe before the scroll." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nadechni se, než začneš scrollovat."
+          }
+        }
+      }
+    },
+    "A calm beginning" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klidný začátek"
+          }
+        }
+      }
+    },
+    "Set the tone for today." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nalaď si dnešek."
+          }
+        }
+      }
+    },
+    "Not yet" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ještě ne"
+          }
+        }
+      }
+    },
+    "Let the morning stay quiet." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nech ráno zůstat tiché."
+          }
+        }
+      }
+    },
+    "Feel the morning" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vnímej ráno"
+          }
+        }
+      }
+    },
+    "Notice the light around you." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Všimni si světla kolem sebe."
+          }
+        }
+      }
+    },
+    "Slow start" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pomalý rozjezd"
+          }
+        }
+      }
+    },
+    "The day can wait a moment." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den chvilku počká."
+          }
+        }
+      }
+    },
+    "Wake gently" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Probuď se něžně"
+          }
+        }
+      }
+    },
+    "One breath before anything else." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeden nádech, než cokoli jiného."
+          }
+        }
+      }
+    },
+    "Fresh page" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Čistá stránka"
+          }
+        }
+      }
+    },
+    "Today hasn't been touched yet." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dneška se ještě nikdo nedotkl."
+          }
+        }
+      }
+    },
+    "Before the rush" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Než přijde shon"
+          }
+        }
+      }
+    },
+    "Take this quiet minute." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vezmi si tuhle tichou chvilku."
+          }
+        }
+      }
+    },
+    "Rise softly" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vstávej pomalu"
+          }
+        }
+      }
+    },
+    "Let your mind catch up." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dej hlavě čas dohnat tělo."
+          }
+        }
+      }
+    },
+    "A small pause" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Malá pauza"
+          }
+        }
+      }
+    },
+    "Step out of the busy for a breath." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vystup na nádech z toho shonu."
+          }
+        }
+      }
+    },
+    "Midday reset" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Polední reset"
+          }
+        }
+      }
+    },
+    "One breath to clear your head." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeden nádech, ať se ti v hlavě vyčistí."
+          }
+        }
+      }
+    },
+    "Still here?" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pořád tady?"
+          }
+        }
+      }
+    },
+    "Check in with yourself first." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nejdřív se zeptej sám sebe, jak na tom jsi."
+          }
+        }
+      }
+    },
+    "Is this what you need?" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tohle teď fakt potřebuješ?"
+          }
+        }
+      }
+    },
+    "Or just a quiet moment?" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nebo spíš chvilku klidu?"
+          }
+        }
+      }
+    },
+    "The tasks will still be there." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Úkoly nikam neutečou."
+          }
+        }
+      }
+    },
+    "Pause the day" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zastav den"
+          }
+        }
+      }
+    },
+    "Let your shoulders drop." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nech ramena klesnout."
+          }
+        }
+      }
+    },
+    "Come back" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vrať se"
+          }
+        }
+      }
+    },
+    "Notice where you are right now." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Všimni si, kde právě teď jsi."
+          }
+        }
+      }
+    },
+    "One clear breath" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeden čistý nádech"
+          }
+        }
+      }
+    },
+    "Reset before you continue." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nadechni se, než budeš pokračovat."
+          }
+        }
+      }
+    },
+    "Busy mind?" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rušno v hlavě?"
+          }
+        }
+      }
+    },
+    "Give it a moment of quiet." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dopřej jí chvilku ticha."
+          }
+        }
+      }
+    },
+    "Right now" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Právě teď"
+          }
+        }
+      }
+    },
+    "This moment is enough." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tenhle okamžik stačí."
+          }
+        }
+      }
+    },
+    "Step back" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Udělej krok zpět"
+          }
+        }
+      }
+    },
+    "See the day with soft eyes." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Podívej se na den měkkýma očima."
+          }
+        }
+      }
+    },
+    "A breath between" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nádech mezitím"
+          }
+        }
+      }
+    },
+    "Rest in the space you have." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odpočiň si v prostoru, který máš."
+          }
+        }
+      }
+    },
+    "Slow down here" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zpomal tady"
+          }
+        }
+      }
+    },
+    "The afternoon can wait." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odpoledne počká."
+          }
+        }
+      }
+    },
+    "Really, right now?" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fakt zrovna teď?"
+          }
+        }
+      }
+    },
+    "Maybe this can wait a beat." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Možná tohle chvilku počká."
+          }
+        }
+      }
+    },
+    "Winding down" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zvolňuješ"
+          }
+        }
+      }
+    },
+    "Let the day settle." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nech den usadit."
+          }
+        }
+      }
+    },
+    "Softer now" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teď jemněji"
+          }
+        }
+      }
+    },
+    "The evening asks for less." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Večer toho po tobě chce míň."
+          }
+        }
+      }
+    },
+    "Set it down" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odlož to"
+          }
+        }
+      }
+    },
+    "The day is done enough." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den je hotový až dost."
+          }
+        }
+      }
+    },
+    "Evening light" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Večerní světlo"
+          }
+        }
+      }
+    },
+    "Let it slow you down." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nech se jím zpomalit."
+          }
+        }
+      }
+    },
+    "Ease off" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Polev"
+          }
+        }
+      }
+    },
+    "Give the day a gentle end." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dopřej dni klidný konec."
+          }
+        }
+      }
+    },
+    "Time to slow" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Čas zpomalit"
+          }
+        }
+      }
+    },
+    "Nothing needs solving now." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teď se nic řešit nemusí."
+          }
+        }
+      }
+    },
+    "Let go of today" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pusť dnešek"
+          }
+        }
+      }
+    },
+    "Breathe out what you carried." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vydechni, co jsi nesl."
+          }
+        }
+      }
+    },
+    "Quiet evening" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tichý večer"
+          }
+        }
+      }
+    },
+    "Trade the scroll for stillness." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyměň scrollování za klid."
+          }
+        }
+      }
+    },
+    "Rest your eyes" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nech oči odpočinout"
+          }
+        }
+      }
+    },
+    "The screen can dim now." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obrazovka může teď pohasnout."
+          }
+        }
+      }
+    },
+    "Almost done" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skoro hotovo"
+          }
+        }
+      }
+    },
+    "Let the evening be soft." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nech večer být měkký."
+          }
+        }
+      }
+    },
+    "Loosen your grip" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Povol sevření"
+          }
+        }
+      }
+    },
+    "The day can end gently." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den může skončit v klidu."
+          }
+        }
+      }
+    },
+    "Coming home" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vracíš se domů"
+          }
+        }
+      }
+    },
+    "Return to yourself for a breath." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vrať se na nádech k sobě."
+          }
+        }
+      }
+    },
+    "Dusk is here" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přišel soumrak"
+          }
+        }
+      }
+    },
+    "Move a little slower now." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pohybuj se teď o něco pomaleji."
+          }
+        }
+      }
+    },
+    "Enough for today" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pro dnešek dost"
+          }
+        }
+      }
+    },
+    "You can rest into the evening." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Můžeš se ponořit do večerního klidu."
+          }
+        }
+      }
+    },
+    "It's late" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Je pozdě"
+          }
+        }
+      }
+    },
+    "Do you really want to scroll?" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fakt chceš teď scrollovat?"
+          }
+        }
+      }
+    },
+    "Still awake?" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ještě vzhůru?"
+          }
+        }
+      }
+    },
+    "Let your mind grow quiet." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nech hlavu ztišit."
+          }
+        }
+      }
+    },
+    "The night is quiet" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noc je tichá"
+          }
+        }
+      }
+    },
+    "You can be too." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ty můžeš být taky."
+          }
+        }
+      }
+    },
+    "Time to rest" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Čas odpočívat"
+          }
+        }
+      }
+    },
+    "The screen can wait for tomorrow." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obrazovka počká do zítřka."
+          }
+        }
+      }
+    },
+    "One last breath" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poslední nádech"
+          }
+        }
+      }
+    },
+    "Then let the day go." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A pak den pusť."
+          }
+        }
+      }
+    },
+    "Late, isn't it?" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pozdě, viď?"
+          }
+        }
+      }
+    },
+    "Maybe sleep is closer than this." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Možná je spánek blíž než tohle."
+          }
+        }
+      }
+    },
+    "Dim the noise" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ztlum ten ruch"
+          }
+        }
+      }
+    },
+    "Give your eyes the dark." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dopřej očím tmu."
+          }
+        }
+      }
+    },
+    "Nothing new tonight" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dneska už nic nového"
+          }
+        }
+      }
+    },
+    "The feed can wait until light." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feed počká do rána."
+          }
+        }
+      }
+    },
+    "Toward sleep" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blíž ke spánku"
+          }
+        }
+      }
+    },
+    "Let each breath grow slower." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nech každý nádech zpomalit."
+          }
+        }
+      }
+    },
+    "Put it down" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Polož to"
+          }
+        }
+      }
+    },
+    "Tomorrow will still be there." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zítřek nikam nezmizí."
+          }
+        }
+      }
+    },
+    "Wind into night" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vplyň do noci"
+          }
+        }
+      }
+    },
+    "Let the day close softly." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nech den zavřít se tiše."
+          }
+        }
+      }
+    },
+    "Rest is near" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odpočinek je blízko"
+          }
+        }
+      }
+    },
+    "Follow your breath toward it." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Následuj k němu svůj dech."
+          }
+        }
+      }
+    },
+    "The dark is kind" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tma je laskavá"
+          }
+        }
+      }
+    },
+    "Let it hold you for a while." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nech se jí chvíli držet."
+          }
+        }
+      }
+    },
+    "Sleep is calling" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spánek volá"
+          }
+        }
+      }
+    },
+    "Answer it instead." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Radši ho vyslyš."
+          }
+        }
+      }
+    },
+    "One slow breath" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeden pomalý nádech"
+          }
+        }
+      }
+    },
+    "That's all this moment asks." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Víc po tobě tahle chvíle nechce."
+          }
+        }
+      }
+    },
+    "You're here now" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teď jsi tady"
+          }
+        }
+      }
+    },
+    "Let that be enough." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ať to stačí."
+          }
+        }
+      }
+    },
+    "Just breathe" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jen dýchej"
+          }
+        }
+      }
+    },
+    "Nothing else to do right now." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teď není potřeba nic jiného."
+          }
+        }
+      }
+    },
+    "Pause" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pauza"
+          }
+        }
+      }
+    },
+    "Feel the breath you're taking." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vnímej nádech, který právě děláš."
+          }
+        }
+      }
+    },
+    "Notice this moment" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Všimni si téhle chvíle"
+          }
+        }
+      }
+    },
+    "It won't come again." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Už se nevrátí."
+          }
+        }
+      }
+    },
+    "Soften" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Změkni"
+          }
+        }
+      }
+    },
+    "Unclench your jaw and breathe." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Povol čelist a dýchej."
+          }
+        }
+      }
+    },
+    "Come back to now" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vrať se do teď"
+          }
+        }
+      }
+    },
+    "This breath is the only one." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tenhle nádech je ten jediný."
+          }
+        }
+      }
+    },
+    "Breathe first" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nejdřív se nadechni"
+          }
+        }
+      }
+    },
+    "The app will still be here." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ta appka tu pořád bude."
+          }
+        }
+      }
+    },
+    "A quiet moment" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tichá chvíle"
+          }
+        }
+      }
+    },
+    "Let it be simple." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nech to být prosté."
+          }
+        }
+      }
+    },
+    "Feel your breath" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vnímej svůj dech"
+          }
+        }
+      }
+    },
+    "In, then slowly out." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nádech a pomalu ven."
+          }
+        }
+      }
+    },
+    "Be where you are" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buď tam, kde jsi"
+          }
+        }
+      }
+    },
+    "Right here is enough." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přesně tady to stačí."
+          }
+        }
+      }
+    },
+    "Let it slow" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nech to zpomalit"
+          }
+        }
+      }
+    },
+    "There's no hurry in this breath." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "V tomhle nádechu není žádný spěch."
+          }
+        }
+      }
+    },
+    "Rest here" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zůstaň tady"
+          }
+        }
+      }
+    },
+    "You don't have to rush on." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nemusíš hned spěchat dál."
+          }
+        }
+      }
+    },
+    "Take your time" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nespěchej"
+          }
+        }
+      }
+    },
+    "One breath, then decide." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeden nádech a pak se rozhodni."
+          }
+        }
+      }
+    },
+    "Open for a while" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otevřít na chvíli"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
