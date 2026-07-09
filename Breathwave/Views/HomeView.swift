@@ -40,6 +40,15 @@ struct HomeView: View {
                         }
                         .buttonStyle(.plain)
                     }
+                    SectionHeader("Focus")
+                    VStack(spacing: 12) {
+                        NavigationLink {
+                            FocusView()
+                        } label: {
+                            MenuCard(titleKey: "Mindful Pause", icon: "hand.raised")
+                        }
+                        .buttonStyle(.plain)
+                    }
                     NavigationLink {
                         AboutView()
                     } label: {

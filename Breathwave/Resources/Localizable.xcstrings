@@ -1952,6 +1952,96 @@
           }
         }
       }
+    },
+    "A breath before the scroll" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nádech, než začneš scrollovat"
+          }
+        }
+      }
+    },
+    "Pick the apps that pull you in. When you open one, Breathwave asks you to pause and breathe first." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyber appky, které tě vtahují. Když některou otevřeš, Breathwave tě nejdřív vyzve, ať se zastavíš a nadechneš."
+          }
+        }
+      }
+    },
+    "Mindful Pause" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vědomá pauza"
+          }
+        }
+      }
+    },
+    "Screen Time access is off. Turn it on in Settings › Screen Time to use Mindful Pause." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přístup ke Screen Time je vypnutý. Zapni ho v Nastavení › Čas u obrazovky, ať můžeš Vědomou pauzu používat."
+          }
+        }
+      }
+    },
+    "Edit chosen apps" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upravit vybrané appky"
+          }
+        }
+      }
+    },
+    "Choose apps to pause" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyber appky k pauze"
+          }
+        }
+      }
+    },
+    "Pause is on — turn off" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pauza je zapnutá — vypnout"
+          }
+        }
+      }
+    },
+    "Turn on the pause" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zapnout pauzu"
+          }
+        }
+      }
+    },
+    "Focus" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Soustředění"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
