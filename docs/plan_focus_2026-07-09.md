@@ -95,7 +95,22 @@ Po každém zásahu do modelu/enginu: `xcodebuild test`.
 - v1 (text na štítu) vs. rovnou v2 (otevřít appku + vedený dech)? Doporučení: v1 ship, v2 iterace.
 - Grace okno: pevných 5 min vs. nastavitelné?
 
-## 10. Rozhodnutí
+## 10. Rozhodnutí a postup
 - **2026-07-09:** ŽÁDNÝ interim resubmit 1.1. Počkáme na entitlement, postavíme focus a
   pošleme vše najednou jako **1.2**. Build 2 v TestFlightu (obsahuje ještě Breath Sensor)
   se nikam neposílá; příští build do review bude až focus 1.2.
+- **Entitlement schválen 2026-07-09.**
+
+### Stav buildu
+- **M1 hotové** (commit): family-controls entitlement, FocusGuardService, FocusView, HomeView vstup.
+- **M2 hotové** (commit): BreathwaveShield extension (branded štít). Target přidán přes `xcodeproj` gem (user-install).
+- **Build 3 (1.2) nahraný do TestFlightu 2026-07-09** — M1+M2, k ověření foundation na zařízení.
+- **M3 čeká** na výsledek testu foundation na zařízení (rozhodnutí: neověřovat naslepo).
+
+### Gotchas (ať se neopakuje ladění)
+- **Export/upload:** distribuční profil s novým entitlementem se přegeneruje jen když má
+  exportOptions.plist `signingStyle = automatic`. Bez toho export selže na „profile doesn't
+  include com.apple.developer.family-controls".
+- **Extension Info.plist** (když GENERATE_INFOPLIST_FILE=NO): musí obsahovat `CFBundleExecutable
+  = $(EXECUTABLE_NAME)`, jinak install padá na „missing CFBundleExecutable".
+- Přidání targetu skriptem: soubory přidávat basename (cesta je na PBXGroup), ne s prefixem — jinak zdvojená cesta.
