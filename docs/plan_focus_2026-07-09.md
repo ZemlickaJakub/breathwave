@@ -94,4 +94,8 @@ Po každém zásahu do modelu/enginu: `xcodebuild test`.
 ## 9. Otevřené otázky
 - v1 (text na štítu) vs. rovnou v2 (otevřít appku + vedený dech)? Doporučení: v1 ship, v2 iterace.
 - Grace okno: pevných 5 min vs. nastavitelné?
-- Interim resubmit 1.1 (Garden + In the Dark) hned, a focus až v 1.2? Nebo počkat a poslat vše najednou?
+
+## 10. Rozhodnutí
+- **2026-07-09:** ŽÁDNÝ interim resubmit 1.1. Počkáme na entitlement, postavíme focus a
+  pošleme vše najednou jako **1.2**. Build 2 v TestFlightu (obsahuje ještě Breath Sensor)
+  se nikam neposílá; příští build do review bude až focus 1.2.
