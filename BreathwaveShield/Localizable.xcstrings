@@ -1,0 +1,36 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Not now" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teď ne"
+          }
+        }
+      }
+    },
+    "Pause here for a moment before you continue." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Na chvíli se tu zastav, než budeš pokračovat."
+          }
+        }
+      }
+    },
+    "Take a breath" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nadechni se"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

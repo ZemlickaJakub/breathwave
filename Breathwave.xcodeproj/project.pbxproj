@@ -6,7 +6,21 @@
 	objectVersion = 70;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		347542FC14EE0D896D6A0C34 /* BreathwaveShield.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7B27CBE2E023464C035A9245 /* BreathwaveShield.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		86D4235F028D20B93DD8BFED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA413517AA9EDB5FFBD6DD55 /* Foundation.framework */; };
+		BEB61A6FE27E930E6E3C8EB4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 95416D52E4FC78863EBBF035 /* Localizable.xcstrings */; };
+		DC9FF0A5C1B777A5D79DA7EA /* ShieldConfigurationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD71686E1069AFBF276F9381 /* ShieldConfigurationProvider.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
+		2939BFAF9E79C0FADC17C3C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B40000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 07658770452DC755CD871B5A;
+			remoteInfo = BreathwaveShield;
+		};
 		B4000000000000000000000F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B40000000000000000000001 /* Project object */;
@@ -23,14 +37,33 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		9BA31C7F6F65113196573FF8 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				347542FC14EE0D896D6A0C34 /* BreathwaveShield.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		7B27CBE2E023464C035A9245 /* BreathwaveShield.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BreathwaveShield.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		95416D52E4FC78863EBBF035 /* Localizable.xcstrings */ = {isa = PBXFileReference; includeInIndex = 1; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		AA413517AA9EDB5FFBD6DD55 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		AD71686E1069AFBF276F9381 /* ShieldConfigurationProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShieldConfigurationProvider.swift; sourceTree = "<group>"; };
 		B40000000000000000000004 /* Breathwave.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Breathwave.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B40000000000000000000005 /* BreathwaveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BreathwaveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B40000000000000000000020 /* BreathwaveUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BreathwaveUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C41818296580B67585B68C5B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		B40000000000000000000008 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		B40000000000000000000008 /* Exceptions for "Breathwave" folder in "Breathwave" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -40,12 +73,51 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		B40000000000000000000006 /* Breathwave */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (B40000000000000000000008 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Breathwave; sourceTree = "<group>"; };
-		B40000000000000000000007 /* BreathwaveTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BreathwaveTests; sourceTree = "<group>"; };
-		B40000000000000000000021 /* BreathwaveUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BreathwaveUITests; sourceTree = "<group>"; };
+		B40000000000000000000006 /* Breathwave */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				B40000000000000000000008 /* Exceptions for "Breathwave" folder in "Breathwave" target */,
+			);
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = Breathwave;
+			sourceTree = "<group>";
+		};
+		B40000000000000000000007 /* BreathwaveTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = BreathwaveTests;
+			sourceTree = "<group>";
+		};
+		B40000000000000000000021 /* BreathwaveUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = BreathwaveUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		875B737C9A1A22C7DA15FACF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86D4235F028D20B93DD8BFED /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B4000000000000000000000A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -70,12 +142,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A1FBE4FFC8FE0CEC3955650 /* BreathwaveShield */ = {
+			isa = PBXGroup;
+			children = (
+				AD71686E1069AFBF276F9381 /* ShieldConfigurationProvider.swift */,
+				95416D52E4FC78863EBBF035 /* Localizable.xcstrings */,
+				C41818296580B67585B68C5B /* Info.plist */,
+			);
+			name = BreathwaveShield;
+			path = BreathwaveShield;
+			sourceTree = "<group>";
+		};
+		681364D64BBFD57C47DAA2CF /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				AA413517AA9EDB5FFBD6DD55 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
 		B4000000000000000000001A /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				B40000000000000000000004 /* Breathwave.app */,
 				B40000000000000000000005 /* BreathwaveTests.xctest */,
 				B40000000000000000000020 /* BreathwaveUITests.xctest */,
+				7B27CBE2E023464C035A9245 /* BreathwaveShield.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,12 +179,39 @@
 				B40000000000000000000007 /* BreathwaveTests */,
 				B40000000000000000000021 /* BreathwaveUITests */,
 				B4000000000000000000001A /* Products */,
+				B646009001C005AACC71CB88 /* Frameworks */,
+				2A1FBE4FFC8FE0CEC3955650 /* BreathwaveShield */,
 			);
+			sourceTree = "<group>";
+		};
+		B646009001C005AACC71CB88 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				681364D64BBFD57C47DAA2CF /* iOS */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		07658770452DC755CD871B5A /* BreathwaveShield */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 318C952DEC42BC2D5CDA50EC /* Build configuration list for PBXNativeTarget "BreathwaveShield" */;
+			buildPhases = (
+				6C4B1E36E5DD71A820917BED /* Sources */,
+				875B737C9A1A22C7DA15FACF /* Frameworks */,
+				9C448745D512FC29B134AA59 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BreathwaveShield;
+			productName = BreathwaveShield;
+			productReference = 7B27CBE2E023464C035A9245 /* BreathwaveShield.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		B40000000000000000000002 /* Breathwave */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B40000000000000000000014 /* Build configuration list for PBXNativeTarget "Breathwave" */;
@@ -100,17 +219,17 @@
 				B40000000000000000000009 /* Sources */,
 				B4000000000000000000000A /* Frameworks */,
 				B4000000000000000000000B /* Resources */,
+				9BA31C7F6F65113196573FF8 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4187E72373E5B2F7C5CCB1E9 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				B40000000000000000000006 /* Breathwave */,
 			);
 			name = Breathwave;
-			packageProductDependencies = (
-			);
 			productName = Breathwave;
 			productReference = B40000000000000000000004 /* Breathwave.app */;
 			productType = "com.apple.product-type.application";
@@ -132,8 +251,6 @@
 				B40000000000000000000007 /* BreathwaveTests */,
 			);
 			name = BreathwaveTests;
-			packageProductDependencies = (
-			);
 			productName = BreathwaveTests;
 			productReference = B40000000000000000000005 /* BreathwaveTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -155,8 +272,6 @@
 				B40000000000000000000021 /* BreathwaveUITests */,
 			);
 			name = BreathwaveUITests;
-			packageProductDependencies = (
-			);
 			productName = BreathwaveUITests;
 			productReference = B40000000000000000000020 /* BreathwaveUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -202,11 +317,20 @@
 				B40000000000000000000002 /* Breathwave */,
 				B40000000000000000000003 /* BreathwaveTests */,
 				B40000000000000000000022 /* BreathwaveUITests */,
+				07658770452DC755CD871B5A /* BreathwaveShield */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		9C448745D512FC29B134AA59 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEB61A6FE27E930E6E3C8EB4 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B4000000000000000000000B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -231,6 +355,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6C4B1E36E5DD71A820917BED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC9FF0A5C1B777A5D79DA7EA /* ShieldConfigurationProvider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B40000000000000000000009 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -255,6 +387,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4187E72373E5B2F7C5CCB1E9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BreathwaveShield;
+			target = 07658770452DC755CD871B5A /* BreathwaveShield */;
+			targetProxy = 2939BFAF9E79C0FADC17C3C6 /* PBXContainerItemProxy */;
+		};
 		B40000000000000000000010 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B40000000000000000000002 /* Breathwave */;
@@ -268,6 +406,52 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		9467B5A31B6D6EF7CEF2CADA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = 5A27589J9T;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = BreathwaveShield/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = cz.jakubzemlicka.breathwave.shield;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		969ABD373EB29B0DCE3BE4DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = 5A27589J9T;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = BreathwaveShield/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = cz.jakubzemlicka.breathwave.shield;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		B40000000000000000000012 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -512,6 +696,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		318C952DEC42BC2D5CDA50EC /* Build configuration list for PBXNativeTarget "BreathwaveShield" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				969ABD373EB29B0DCE3BE4DA /* Release */,
+				9467B5A31B6D6EF7CEF2CADA /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B40000000000000000000011 /* Build configuration list for PBXProject "Breathwave" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
