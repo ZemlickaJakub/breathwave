@@ -16,7 +16,6 @@ enum FocusShared {
         static let selection = "focus.selection"
         static let guarding = "focus.guarding"
         static let graceMinutes = "focus.graceMinutes"
-        static let events = "focus.events"
     }
 
     /// Grace is measured as minutes the guarded app is actually used (a usage
