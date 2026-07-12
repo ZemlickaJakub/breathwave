@@ -1,4 +1,5 @@
 import DeviceActivity
+import FamilyControls
 import Foundation
 import ManagedSettings
 
@@ -66,21 +67,43 @@ final class ShieldActionProvider: ShieldActionDelegate {
         scheduleGraceEnd(minutes: minutes)
     }
 
-    /// Ask DeviceActivity to notify the monitor extension when the window ends,
-    /// so the shield returns even though this extension is no longer running.
+    /// Re-shield after the grace window. The window is primarily *usage* based —
+    /// a DeviceActivity event fires once the guarded apps have been used for the
+    /// chosen number of minutes — with a 15-minute wall-clock interval as a
+    /// backstop (the shortest a plain interval can reliably run) in case the
+    /// usage event misbehaves. The monitor extension re-applies the shield.
     private func scheduleGraceEnd(minutes: Int) {
         let center = DeviceActivityCenter()
         let calendar = Calendar.current
         let now = Date()
-        let end = calendar.date(byAdding: .minute, value: max(1, minutes), to: now)
-            ?? now.addingTimeInterval(TimeInterval(max(1, minutes) * 60))
+        let backstopEnd = calendar.date(byAdding: .minute, value: 15, to: now)
+            ?? now.addingTimeInterval(15 * 60)
         let schedule = DeviceActivitySchedule(
             intervalStart: calendar.dateComponents([.hour, .minute, .second], from: now),
-            intervalEnd: calendar.dateComponents([.hour, .minute, .second], from: end),
+            intervalEnd: calendar.dateComponents([.hour, .minute, .second], from: backstopEnd),
             repeats: false
         )
+
+        var events: [DeviceActivityEvent.Name: DeviceActivityEvent] = [:]
+        if let selection = loadSelection() {
+            events[DeviceActivityEvent.Name(FocusShared.graceEventName)] = DeviceActivityEvent(
+                applications: selection.applicationTokens,
+                categories: selection.categoryTokens,
+                webDomains: selection.webDomainTokens,
+                threshold: DateComponents(minute: max(1, minutes))
+            )
+        }
+
         let name = DeviceActivityName(FocusShared.graceActivityName)
         center.stopMonitoring([name])
-        try? center.startMonitoring(name, during: schedule)
+        try? center.startMonitoring(name, during: schedule, events: events)
+    }
+
+    private func loadSelection() -> FamilyActivitySelection? {
+        guard let data = FocusShared.defaults.data(forKey: FocusShared.Keys.selection),
+              let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) else {
+            return nil
+        }
+        return selection
     }
 }
