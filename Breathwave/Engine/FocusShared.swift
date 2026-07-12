@@ -16,15 +16,43 @@ enum FocusShared {
         static let selection = "focus.selection"
         static let guarding = "focus.guarding"
         static let graceMinutes = "focus.graceMinutes"
-        /// Which physical shield button is "open" this presentation, so the
-        /// action extension knows what the user actually tapped.
-        static let openIsPrimary = "focus.openIsPrimary"
         static let events = "focus.events"
     }
 
-    static let defaultGraceMinutes = 5
-    static let graceChoices = [1, 3, 5, 10, 15, 30]
+    // DeviceActivity refuses to fire an interval shorter than 15 minutes and
+    // grows unreliable past ~44, so every choice lives inside that window.
+    static let defaultGraceMinutes = 15
+    static let graceChoices = [15, 20, 30]
 
     /// DeviceActivity schedule that re-applies the shield when a grace window ends.
     static let graceActivityName = "focus.grace"
+}
+
+/// Decides which physical shield button ("primary" / "secondary") opens the app.
+///
+/// The layout must swap so the "open" button can't be tapped on reflex, but the
+/// configuration extension (which draws the shield) and the action extension
+/// (which handles the tap) are separate processes. Rather than hand a value
+/// between them — which races and caches badly — both derive the same answer
+/// from the guarded app's token and the current hour. Same inputs, same result,
+/// no shared state.
+enum ShieldButtons {
+    static func openIsPrimary(tokenData: Data?, at date: Date = Date()) -> Bool {
+        var hash: UInt64 = 0xcbf2_9ce4_8422_2325
+        if let tokenData {
+            for byte in tokenData {
+                hash = (hash ^ UInt64(byte)) &* 0x1_0000_0000_01b3
+            }
+        }
+        let hourBucket = UInt64(max(0, date.timeIntervalSince1970) / 3600)
+        hash ^= hourBucket &* 0x9e37_79b9_7f4a_7c15
+        return hash & 1 == 0
+    }
+
+    /// Stable byte encoding of an opaque Screen Time token, identical across
+    /// processes (unlike `Hashable`, whose seed is randomized per launch).
+    static func tokenData<Token: Encodable>(_ token: Token?) -> Data? {
+        guard let token else { return nil }
+        return try? PropertyListEncoder().encode(token)
+    }
 }

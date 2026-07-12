@@ -4,39 +4,37 @@ import UIKit
 
 /// Renders the calm "take a breath" screen shown in place of the system's
 /// generic restriction screen when a guarded app is opened. The prompt rotates
-/// with the time of day, the icon varies, and the two buttons swap sides at
-/// random so tapping "open" never becomes a reflex.
+/// with the time of day, the icon varies, and the two buttons swap sides so
+/// tapping "open" never becomes a reflex.
 final class ShieldConfigurationProvider: ShieldConfigurationDataSource {
     override func configuration(shielding application: Application) -> ShieldConfiguration {
-        breatheShield()
+        breatheShield(tokenData: ShieldButtons.tokenData(application.token))
     }
 
     override func configuration(
         shielding application: Application,
         in category: ActivityCategory
     ) -> ShieldConfiguration {
-        breatheShield()
+        breatheShield(tokenData: ShieldButtons.tokenData(application.token))
     }
 
     override func configuration(shielding webDomain: WebDomain) -> ShieldConfiguration {
-        breatheShield()
+        breatheShield(tokenData: ShieldButtons.tokenData(webDomain.token))
     }
 
     override func configuration(
         shielding webDomain: WebDomain,
         in category: ActivityCategory
     ) -> ShieldConfiguration {
-        breatheShield()
+        breatheShield(tokenData: ShieldButtons.tokenData(webDomain.token))
     }
 
-    private func breatheShield() -> ShieldConfiguration {
+    private func breatheShield(tokenData: Data?) -> ShieldConfiguration {
         let picked = ShieldPrompts.pick(for: Date())
 
-        // Swap which physical button opens the app so it can't be tapped on
-        // autopilot; record the choice so the action extension knows which
-        // button the user actually pressed.
-        let openIsPrimary = Bool.random()
-        FocusShared.defaults.set(openIsPrimary, forKey: FocusShared.Keys.openIsPrimary)
+        // Which button opens the app is derived from the token + hour, the same
+        // way the action extension derives it — no shared value to fall out of sync.
+        let openIsPrimary = ShieldButtons.openIsPrimary(tokenData: tokenData)
 
         let open = ShieldConfiguration.Label(
             text: NSLocalizedString("Open for a while", comment: ""),

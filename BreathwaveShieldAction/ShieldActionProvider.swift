@@ -4,8 +4,8 @@ import ManagedSettings
 
 /// Handles taps on the mindful-pause shield. One button closes the app; the
 /// other opens every guarded app for a short grace window and schedules the
-/// shield to return. Which physical button is which was randomised by the
-/// configuration extension and recorded in the shared App Group.
+/// shield to return. Which physical button opens is derived from the app token,
+/// identically to the configuration extension that drew the shield.
 final class ShieldActionProvider: ShieldActionDelegate {
     private let store = ManagedSettingsStore()
 
@@ -14,7 +14,7 @@ final class ShieldActionProvider: ShieldActionDelegate {
         for application: ApplicationToken,
         completionHandler: @escaping (ShieldActionResponse) -> Void
     ) {
-        respond(to: action, completionHandler: completionHandler)
+        respond(to: action, tokenData: ShieldButtons.tokenData(application), completionHandler: completionHandler)
     }
 
     override func handle(
@@ -22,7 +22,7 @@ final class ShieldActionProvider: ShieldActionDelegate {
         for webDomain: WebDomainToken,
         completionHandler: @escaping (ShieldActionResponse) -> Void
     ) {
-        respond(to: action, completionHandler: completionHandler)
+        respond(to: action, tokenData: ShieldButtons.tokenData(webDomain), completionHandler: completionHandler)
     }
 
     override func handle(
@@ -30,11 +30,12 @@ final class ShieldActionProvider: ShieldActionDelegate {
         for category: ActivityCategoryToken,
         completionHandler: @escaping (ShieldActionResponse) -> Void
     ) {
-        respond(to: action, completionHandler: completionHandler)
+        respond(to: action, tokenData: ShieldButtons.tokenData(category), completionHandler: completionHandler)
     }
 
     private func respond(
         to action: ShieldAction,
+        tokenData: Data?,
         completionHandler: @escaping (ShieldActionResponse) -> Void
     ) {
         let pressedPrimary: Bool
@@ -43,7 +44,7 @@ final class ShieldActionProvider: ShieldActionDelegate {
         case .secondaryButtonPressed: pressedPrimary = false
         @unknown default: pressedPrimary = false
         }
-        let openIsPrimary = FocusShared.defaults.bool(forKey: FocusShared.Keys.openIsPrimary)
+        let openIsPrimary = ShieldButtons.openIsPrimary(tokenData: tokenData)
 
         if pressedPrimary == openIsPrimary {
             openForGraceWindow()
