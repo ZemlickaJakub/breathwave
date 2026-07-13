@@ -1,5 +1,4 @@
 import DeviceActivity
-import FamilyControls
 import Foundation
 import ManagedSettings
 
@@ -67,43 +66,26 @@ final class ShieldActionProvider: ShieldActionDelegate {
         scheduleGraceEnd(minutes: minutes)
     }
 
-    /// Re-shield after the grace window. The window is primarily *usage* based —
-    /// a DeviceActivity event fires once the guarded apps have been used for the
-    /// chosen number of minutes — with a 15-minute wall-clock interval as a
-    /// backstop (the shortest a plain interval can reliably run) in case the
-    /// usage event misbehaves. The monitor extension re-applies the shield.
+    /// Re-shield exactly `minutes` from now, on the wall clock. DeviceActivity
+    /// won't fire an interval shorter than 15 minutes, but that limit is on the
+    /// interval's *length* — its start can be any time. So the interval starts
+    /// at the re-lock moment (now + minutes) and runs a full 15 minutes past it;
+    /// the monitor re-applies the shield on `intervalDidStart`.
     private func scheduleGraceEnd(minutes: Int) {
         let center = DeviceActivityCenter()
         let calendar = Calendar.current
         let now = Date()
-        let backstopEnd = calendar.date(byAdding: .minute, value: 15, to: now)
-            ?? now.addingTimeInterval(15 * 60)
+        let relock = calendar.date(byAdding: .minute, value: max(1, minutes), to: now)
+            ?? now.addingTimeInterval(TimeInterval(max(1, minutes) * 60))
+        let end = calendar.date(byAdding: .minute, value: 15, to: relock)
+            ?? relock.addingTimeInterval(15 * 60)
         let schedule = DeviceActivitySchedule(
-            intervalStart: calendar.dateComponents([.hour, .minute, .second], from: now),
-            intervalEnd: calendar.dateComponents([.hour, .minute, .second], from: backstopEnd),
+            intervalStart: calendar.dateComponents([.hour, .minute, .second], from: relock),
+            intervalEnd: calendar.dateComponents([.hour, .minute, .second], from: end),
             repeats: false
         )
-
-        var events: [DeviceActivityEvent.Name: DeviceActivityEvent] = [:]
-        if let selection = loadSelection() {
-            events[DeviceActivityEvent.Name(FocusShared.graceEventName)] = DeviceActivityEvent(
-                applications: selection.applicationTokens,
-                categories: selection.categoryTokens,
-                webDomains: selection.webDomainTokens,
-                threshold: DateComponents(minute: max(1, minutes))
-            )
-        }
-
         let name = DeviceActivityName(FocusShared.graceActivityName)
         center.stopMonitoring([name])
-        try? center.startMonitoring(name, during: schedule, events: events)
-    }
-
-    private func loadSelection() -> FamilyActivitySelection? {
-        guard let data = FocusShared.defaults.data(forKey: FocusShared.Keys.selection),
-              let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) else {
-            return nil
-        }
-        return selection
+        try? center.startMonitoring(name, during: schedule)
     }
 }

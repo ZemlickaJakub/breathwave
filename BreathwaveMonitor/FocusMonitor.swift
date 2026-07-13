@@ -3,18 +3,15 @@ import FamilyControls
 import Foundation
 import ManagedSettings
 
-/// Puts the shield back on the guarded apps once a grace window ends — either
-/// when the guarded apps have been used for the chosen number of minutes (the
-/// usage event) or when the wall-clock backstop interval ends — as long as
-/// guarding is still switched on.
+/// Puts the shield back on the guarded apps when the grace window ends. The
+/// window's re-lock moment is the *start* of the scheduled interval, so the
+/// shield returns on `intervalDidStart`; `intervalDidEnd` re-applies too as a
+/// harmless safety net. Only acts while guarding is still switched on.
 final class FocusMonitor: DeviceActivityMonitor {
     private let store = ManagedSettingsStore()
 
-    override func eventDidReachThreshold(
-        _ event: DeviceActivityEvent.Name,
-        activity: DeviceActivityName
-    ) {
-        super.eventDidReachThreshold(event, activity: activity)
+    override func intervalDidStart(for activity: DeviceActivityName) {
+        super.intervalDidStart(for: activity)
         guard activity == DeviceActivityName(FocusShared.graceActivityName) else { return }
         reapplyShield()
     }

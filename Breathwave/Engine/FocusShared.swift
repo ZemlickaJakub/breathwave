@@ -18,14 +18,12 @@ enum FocusShared {
         static let graceMinutes = "focus.graceMinutes"
     }
 
-    /// Grace is measured as minutes the guarded app is actually used (a usage
-    /// threshold), which — unlike a wall-clock interval — can be short.
+    /// Minutes a guarded app stays open after the user breathes past the shield.
     static let defaultGraceMinutes = 5
     static let graceChoices = [1, 3, 5, 10, 15]
 
-    /// DeviceActivity schedule + usage event that re-apply the shield after grace.
+    /// DeviceActivity schedule whose start marks the re-lock moment.
     static let graceActivityName = "focus.grace"
-    static let graceEventName = "focus.graceUsage"
 }
 
 /// Decides which physical shield button ("primary" / "secondary") opens the app.
