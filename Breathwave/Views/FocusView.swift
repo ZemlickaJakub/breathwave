@@ -93,14 +93,6 @@ struct FocusView: View {
                 .controlSize(.large)
                 .tint(focus.isGuarding ? .secondary : .accentColor)
             }
-
-            NavigationLink {
-                FocusStatsView()
-            } label: {
-                Label("Your pauses", systemImage: "chart.bar")
-                    .font(.subheadline)
-            }
-            .padding(.top, 4)
         }
         .padding(.horizontal, 40)
     }
