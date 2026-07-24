@@ -32,5 +32,9 @@ final class FocusMonitor: DeviceActivityMonitor {
         store.shield.applications = apps.isEmpty ? nil : apps
         let categories = selection.categoryTokens
         store.shield.applicationCategories = categories.isEmpty ? nil : .specific(categories)
+        // Re-arm the website shield too, matching how the app applies it.
+        let webDomains = selection.webDomainTokens
+        store.shield.webDomains = webDomains.isEmpty ? nil : webDomains
+        store.shield.webDomainCategories = categories.isEmpty ? nil : .specific(categories)
     }
 }

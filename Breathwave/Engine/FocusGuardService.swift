@@ -75,8 +75,7 @@ final class FocusGuardService {
     }
 
     func stopGuarding() {
-        store.shield.applications = nil
-        store.shield.applicationCategories = nil
+        clearShield()
         isGuarding = false
         defaults.set(false, forKey: Keys.guarding)
     }
@@ -86,6 +85,19 @@ final class FocusGuardService {
         store.shield.applications = apps.isEmpty ? nil : apps
         let categories = selection.categoryTokens
         store.shield.applicationCategories = categories.isEmpty ? nil : .specific(categories)
+        // Also shield the matching websites in Safari. Without this, opening a
+        // guarded app's site (e.g. instagram.com) falls back to the system's
+        // plain "restricted" page instead of our breathe screen.
+        let webDomains = selection.webDomainTokens
+        store.shield.webDomains = webDomains.isEmpty ? nil : webDomains
+        store.shield.webDomainCategories = categories.isEmpty ? nil : .specific(categories)
+    }
+
+    private func clearShield() {
+        store.shield.applications = nil
+        store.shield.applicationCategories = nil
+        store.shield.webDomains = nil
+        store.shield.webDomainCategories = nil
     }
 
     private func persistSelection() {

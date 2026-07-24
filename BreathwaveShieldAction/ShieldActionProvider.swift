@@ -58,9 +58,11 @@ final class ShieldActionProvider: ShieldActionDelegate {
         let minutes = FocusShared.defaults.object(forKey: FocusShared.Keys.graceMinutes) as? Int
             ?? FocusShared.defaultGraceMinutes
 
-        // Lift the shield so the apps open, and record the choice.
+        // Lift the shield so the apps (and their sites) open, and record the choice.
         store.shield.applications = nil
         store.shield.applicationCategories = nil
+        store.shield.webDomains = nil
+        store.shield.webDomainCategories = nil
         FocusEventLog.append(FocusEvent(date: Date(), kind: .opened, grantedMinutes: minutes))
 
         scheduleGraceEnd(minutes: minutes)
