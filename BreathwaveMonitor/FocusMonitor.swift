@@ -24,6 +24,14 @@ final class FocusMonitor: DeviceActivityMonitor {
 
     private func reapplyShield() {
         guard FocusShared.defaults.bool(forKey: FocusShared.Keys.guarding) else { return }
+        // If the user is still inside a live grace window — they just chose to
+        // open past the shield — a stray monitor callback (e.g. the previous
+        // interval ending as we reschedule) must NOT slam the shield back on;
+        // that cancels the fresh unlock and forces a pointless second pass.
+        // Only re-lock once we've actually reached the scheduled re-lock moment
+        // (small tolerance for scheduling jitter).
+        let relockAt = FocusShared.defaults.double(forKey: FocusShared.Keys.relockAt)
+        if relockAt > 0, Date().timeIntervalSince1970 < relockAt - 30 { return }
         guard let data = FocusShared.defaults.data(forKey: FocusShared.Keys.selection),
               let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) else {
             return

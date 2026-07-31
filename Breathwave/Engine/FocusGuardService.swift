@@ -2,6 +2,7 @@ import Foundation
 import Observation
 import FamilyControls
 import ManagedSettings
+import UserNotifications
 
 /// Guards user-chosen apps behind a mindful pause. Wraps Screen Time
 /// authorization, the app picker's selection, and the shield that is applied
@@ -41,6 +42,9 @@ final class FocusGuardService {
         graceMinutes = defaults.object(forKey: FocusShared.Keys.graceMinutes) as? Int
             ?? FocusShared.defaultGraceMinutes
         refreshAuthorization()
+        // Keep the shared warning copy fresh (e.g. after a language change) so
+        // the action extension always posts it in the current locale.
+        storeRelockWarningCopy()
         // Re-arm the shield after a relaunch so guarding survives restarts.
         if isGuarding { applyShield() }
     }
@@ -72,6 +76,9 @@ final class FocusGuardService {
         applyShield()
         isGuarding = true
         defaults.set(true, forKey: Keys.guarding)
+        // The re-lock warning needs notification permission; ask the first time
+        // the pause is switched on so it's granted before any shield appears.
+        requestNotificationAuthorization()
     }
 
     func stopGuarding() {
@@ -98,6 +105,30 @@ final class FocusGuardService {
         store.shield.applicationCategories = nil
         store.shield.webDomains = nil
         store.shield.webDomainCategories = nil
+        // No live grace window any more; drop the marker and any pending warning.
+        defaults.set(0, forKey: FocusShared.Keys.relockAt)
+        UNUserNotificationCenter.current()
+            .removePendingNotificationRequests(withIdentifiers: [FocusShared.relockWarningNotificationID])
+    }
+
+    private func requestNotificationAuthorization() {
+        Task {
+            // Alerts only — the warning is a brief banner, no sound or badge.
+            _ = try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert])
+        }
+    }
+
+    /// Publish the warning copy to the App Group so the action extension — which
+    /// has no String Catalog — can post a localized notification.
+    private func storeRelockWarningCopy() {
+        defaults.set(
+            String(localized: "Take a breath"),
+            forKey: FocusShared.Keys.relockWarningTitle
+        )
+        defaults.set(
+            String(localized: "This app locks in 2 minutes."),
+            forKey: FocusShared.Keys.relockWarningBody
+        )
     }
 
     private func persistSelection() {

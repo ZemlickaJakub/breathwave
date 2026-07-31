@@ -2273,12 +2273,32 @@
         }
       }
     },
+    "Take a breath": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nadechni se"
+          }
+        }
+      }
+    },
     "Tap a preset to start it.": {
       "localizations": {
         "cs": {
           "stringUnit": {
             "state": "translated",
             "value": "Klepni na preset a rovnou se spustí."
+          }
+        }
+      }
+    },
+    "This app locks in 2 minutes.": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aplikace se za 2 min uzamkne."
           }
         }
       }

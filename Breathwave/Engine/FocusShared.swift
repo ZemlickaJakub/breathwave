@@ -16,7 +16,20 @@ enum FocusShared {
         static let selection = "focus.selection"
         static let guarding = "focus.guarding"
         static let graceMinutes = "focus.graceMinutes"
+        /// Wall-clock instant (timeIntervalSince1970) when the shield should snap
+        /// back on. While `now` is still before it, the monitor must not re-lock —
+        /// that guards against a stray callback cancelling a fresh unlock.
+        static let relockAt = "focus.relockAt"
+        /// Localized warning copy, written by the app (which owns the String
+        /// Catalog) so the action extension can post it without its own catalog.
+        static let relockWarningTitle = "focus.relockWarningTitle"
+        static let relockWarningBody = "focus.relockWarningBody"
     }
+
+    /// Identifier for the single "apps lock again soon" warning notification.
+    static let relockWarningNotificationID = "focus.relock.warning"
+    /// How many minutes before the re-lock the warning fires.
+    static let relockWarningLeadMinutes = 2
 
     /// Minutes a guarded app stays open after the user breathes past the shield.
     static let defaultGraceMinutes = 5
