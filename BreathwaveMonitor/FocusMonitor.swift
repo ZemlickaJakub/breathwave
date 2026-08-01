@@ -36,12 +36,18 @@ final class FocusMonitor: DeviceActivityMonitor {
               let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) else {
             return
         }
-        let apps = selection.applicationTokens
+        // Add the tokens back INTO the existing shield set rather than replacing
+        // it wholesale. The grace unlock removed just the opened token; re-adding
+        // it (instead of nil-then-set) keeps iOS's cached custom shield alive, so
+        // the re-lock draws our breathe screen, not the generic system one.
+        var apps = store.shield.applications ?? []
+        apps.formUnion(selection.applicationTokens)
         store.shield.applications = apps.isEmpty ? nil : apps
         let categories = selection.categoryTokens
         store.shield.applicationCategories = categories.isEmpty ? nil : .specific(categories)
         // Re-arm the website shield too, matching how the app applies it.
-        let webDomains = selection.webDomainTokens
+        var webDomains = store.shield.webDomains ?? []
+        webDomains.formUnion(selection.webDomainTokens)
         store.shield.webDomains = webDomains.isEmpty ? nil : webDomains
         store.shield.webDomainCategories = categories.isEmpty ? nil : .specific(categories)
     }

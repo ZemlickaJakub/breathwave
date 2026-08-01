@@ -4,7 +4,7 @@ import ManagedSettings
 import UserNotifications
 
 /// Handles taps on the mindful-pause shield. One button closes the app; the
-/// other opens every guarded app for a short grace window and schedules the
+/// other opens the tapped item for a short grace window and schedules the
 /// shield to return. Which physical button opens is derived from the app token,
 /// identically to the configuration extension that drew the shield.
 final class ShieldActionProvider: ShieldActionDelegate {
@@ -15,7 +15,16 @@ final class ShieldActionProvider: ShieldActionDelegate {
         for application: ApplicationToken,
         completionHandler: @escaping (ShieldActionResponse) -> Void
     ) {
-        respond(to: action, tokenData: ShieldButtons.tokenData(application), completionHandler: completionHandler)
+        respond(to: action, tokenData: ShieldButtons.tokenData(application), lift: {
+            // Remove ONLY this app, keeping the rest of the shield set alive.
+            // Never nil the whole shield — that evicts iOS's cached custom
+            // configuration for the token, so the re-lock (mid-foreground)
+            // falls back to the generic "Restricted" system screen instead of
+            // our breathe screen.
+            var apps = self.store.shield.applications ?? []
+            apps.remove(application)
+            self.store.shield.applications = apps
+        }, completionHandler: completionHandler)
     }
 
     override func handle(
@@ -23,7 +32,11 @@ final class ShieldActionProvider: ShieldActionDelegate {
         for webDomain: WebDomainToken,
         completionHandler: @escaping (ShieldActionResponse) -> Void
     ) {
-        respond(to: action, tokenData: ShieldButtons.tokenData(webDomain), completionHandler: completionHandler)
+        respond(to: action, tokenData: ShieldButtons.tokenData(webDomain), lift: {
+            var domains = self.store.shield.webDomains ?? []
+            domains.remove(webDomain)
+            self.store.shield.webDomains = domains
+        }, completionHandler: completionHandler)
     }
 
     override func handle(
@@ -31,12 +44,21 @@ final class ShieldActionProvider: ShieldActionDelegate {
         for category: ActivityCategoryToken,
         completionHandler: @escaping (ShieldActionResponse) -> Void
     ) {
-        respond(to: action, tokenData: ShieldButtons.tokenData(category), completionHandler: completionHandler)
+        respond(to: action, tokenData: ShieldButtons.tokenData(category), lift: {
+            if case .specific(var categories, except: let except)? = self.store.shield.applicationCategories {
+                categories.remove(category)
+                self.store.shield.applicationCategories = .specific(categories, except: except)
+            } else {
+                // `.all()` / unknown policy: can't drop a single token, so clear it.
+                self.store.shield.applicationCategories = nil
+            }
+        }, completionHandler: completionHandler)
     }
 
     private func respond(
         to action: ShieldAction,
         tokenData: Data?,
+        lift: () -> Void,
         completionHandler: @escaping (ShieldActionResponse) -> Void
     ) {
         let pressedPrimary: Bool
@@ -48,7 +70,7 @@ final class ShieldActionProvider: ShieldActionDelegate {
         let openIsPrimary = ShieldButtons.openIsPrimary(tokenData: tokenData)
 
         if pressedPrimary == openIsPrimary {
-            openForGraceWindow()
+            openForGraceWindow(lift: lift)
             // NOT .close: that bounces to the Home screen, forcing the user to
             // tap the app icon again. openForGraceWindow just lifted the shield,
             // so deferring lets iOS reveal the app already launching underneath —
@@ -62,7 +84,7 @@ final class ShieldActionProvider: ShieldActionDelegate {
         }
     }
 
-    private func openForGraceWindow() {
+    private func openForGraceWindow(lift: () -> Void) {
         let minutes = FocusShared.defaults.object(forKey: FocusShared.Keys.graceMinutes) as? Int
             ?? FocusShared.defaultGraceMinutes
 
@@ -74,11 +96,10 @@ final class ShieldActionProvider: ShieldActionDelegate {
             forKey: FocusShared.Keys.relockAt
         )
 
-        // Lift the shield so the apps (and their sites) open, and record the choice.
-        store.shield.applications = nil
-        store.shield.applicationCategories = nil
-        store.shield.webDomains = nil
-        store.shield.webDomainCategories = nil
+        // Lift the shield from JUST the tapped item (see the handlers) so the app
+        // opens, while keeping the rest of the shield set alive so iOS keeps the
+        // cached custom configuration for the re-lock.
+        lift()
         FocusEventLog.append(FocusEvent(date: Date(), kind: .opened, grantedMinutes: minutes))
 
         scheduleRelockWarning(minutes: minutes)
