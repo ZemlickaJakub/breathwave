@@ -25,6 +25,13 @@ struct FocusView: View {
 
             content(focus: focus)
             Spacer()
+            NavigationLink {
+                FocusDiagnosticsView()
+            } label: {
+                Label("Diagnostics", systemImage: "stethoscope")
+                    .font(.footnote)
+                    .foregroundStyle(.tertiary)
+            }
         }
         .padding()
         .calmBackground()

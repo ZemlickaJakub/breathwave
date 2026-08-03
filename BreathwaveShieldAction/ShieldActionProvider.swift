@@ -69,6 +69,7 @@ final class ShieldActionProvider: ShieldActionDelegate {
         }
         let openIsPrimary = ShieldButtons.openIsPrimary(tokenData: tokenData)
 
+        FocusShared.debugLog("shieldAction", "tap primary:\(pressedPrimary) openIsPrimary:\(openIsPrimary) → \(pressedPrimary == openIsPrimary ? "open" : "notNow")")
         if pressedPrimary == openIsPrimary {
             openForGraceWindow(lift: lift)
             // NOT .close: that bounces to the Home screen, forcing the user to

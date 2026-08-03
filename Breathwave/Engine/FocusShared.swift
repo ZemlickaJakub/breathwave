@@ -37,6 +37,46 @@ enum FocusShared {
 
     /// DeviceActivity schedule whose start marks the re-lock moment.
     static let graceActivityName = "focus.grace"
+
+    // MARK: Diagnostics
+
+    /// Append-only trace shared by the app and all three extensions, used to see
+    /// which process did what (and when) around shield events. Extensions are
+    /// killed right after running, so this must hit disk immediately.
+    private static var debugLogURL: URL? {
+        FileManager.default
+            .containerURL(forSecurityApplicationGroupIdentifier: appGroup)?
+            .appendingPathComponent("focus-debug.log")
+    }
+
+    static func debugLog(_ source: String, _ event: String) {
+        guard let url = debugLogURL else { return }
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        let line = "\(formatter.string(from: Date())) [\(source)] \(event)\n"
+        if let handle = try? FileHandle(forWritingTo: url) {
+            defer { try? handle.close() }
+            _ = try? handle.seekToEnd()
+            try? handle.write(contentsOf: Data(line.utf8))
+        } else {
+            try? Data(line.utf8).write(to: url, options: .atomic)
+        }
+    }
+
+    static func readDebugLog() -> String {
+        guard let url = debugLogURL,
+              let data = try? Data(contentsOf: url),
+              let text = String(data: data, encoding: .utf8) else {
+            return ""
+        }
+        // Show the tail; the interesting events are always the latest ones.
+        return String(text.suffix(20_000))
+    }
+
+    static func clearDebugLog() {
+        guard let url = debugLogURL else { return }
+        try? FileManager.default.removeItem(at: url)
+    }
 }
 
 /// Decides which physical shield button ("primary" / "secondary") opens the app.

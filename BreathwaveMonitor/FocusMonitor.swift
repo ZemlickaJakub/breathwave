@@ -13,12 +13,14 @@ final class FocusMonitor: DeviceActivityMonitor {
     override func intervalDidStart(for activity: DeviceActivityName) {
         super.intervalDidStart(for: activity)
         guard activity == DeviceActivityName(FocusShared.graceActivityName) else { return }
+        FocusShared.debugLog("monitor", "intervalDidStart")
         reapplyShield()
     }
 
     override func intervalDidEnd(for activity: DeviceActivityName) {
         super.intervalDidEnd(for: activity)
         guard activity == DeviceActivityName(FocusShared.graceActivityName) else { return }
+        FocusShared.debugLog("monitor", "intervalDidEnd")
         reapplyShield()
     }
 
@@ -31,24 +33,30 @@ final class FocusMonitor: DeviceActivityMonitor {
         // Only re-lock once we've actually reached the scheduled re-lock moment
         // (small tolerance for scheduling jitter).
         let relockAt = FocusShared.defaults.double(forKey: FocusShared.Keys.relockAt)
-        if relockAt > 0, Date().timeIntervalSince1970 < relockAt - 30 { return }
+        if relockAt > 0, Date().timeIntervalSince1970 < relockAt - 30 {
+            FocusShared.debugLog("monitor", "reapply skipped — mid grace window")
+            return
+        }
         guard let data = FocusShared.defaults.data(forKey: FocusShared.Keys.selection),
               let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) else {
+            FocusShared.debugLog("monitor", "reapply aborted — no selection")
             return
         }
         // Add the tokens back INTO the existing shield set rather than replacing
-        // it wholesale. The grace unlock removed just the opened token; re-adding
-        // it (instead of nil-then-set) keeps iOS's cached custom shield alive, so
-        // the re-lock draws our breathe screen, not the generic system one.
+        // it wholesale, and NEVER write nil to any shield property here: nil
+        // writes are suspected of evicting iOS's cached custom shield, which
+        // makes a mid-foreground re-lock fall back to the generic system screen.
+        // Only touch properties that actually gain content.
         var apps = store.shield.applications ?? []
         apps.formUnion(selection.applicationTokens)
-        store.shield.applications = apps.isEmpty ? nil : apps
+        if !apps.isEmpty { store.shield.applications = apps }
         let categories = selection.categoryTokens
-        store.shield.applicationCategories = categories.isEmpty ? nil : .specific(categories)
+        if !categories.isEmpty { store.shield.applicationCategories = .specific(categories) }
         // Re-arm the website shield too, matching how the app applies it.
         var webDomains = store.shield.webDomains ?? []
         webDomains.formUnion(selection.webDomainTokens)
-        store.shield.webDomains = webDomains.isEmpty ? nil : webDomains
-        store.shield.webDomainCategories = categories.isEmpty ? nil : .specific(categories)
+        if !webDomains.isEmpty { store.shield.webDomains = webDomains }
+        if !categories.isEmpty { store.shield.webDomainCategories = .specific(categories) }
+        FocusShared.debugLog("monitor", "reapplied shield — apps:\(apps.count) web:\(webDomains.count)")
     }
 }

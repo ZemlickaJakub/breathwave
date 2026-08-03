@@ -88,6 +88,15 @@ final class FocusGuardService {
     }
 
     private func applyShield() {
+        // Mid grace window (user just breathed past the shield), re-shielding
+        // now would cut the unlock short — e.g. merely opening Breathwave from
+        // the re-lock warning notification would slam the app shut early. Let
+        // the monitor's scheduled re-lock handle it instead.
+        let relockAt = defaults.double(forKey: FocusShared.Keys.relockAt)
+        if relockAt > 0, Date().timeIntervalSince1970 < relockAt - 30 {
+            FocusShared.debugLog("app", "applyShield skipped — mid grace window")
+            return
+        }
         let apps = selection.applicationTokens
         store.shield.applications = apps.isEmpty ? nil : apps
         let categories = selection.categoryTokens
@@ -98,6 +107,7 @@ final class FocusGuardService {
         let webDomains = selection.webDomainTokens
         store.shield.webDomains = webDomains.isEmpty ? nil : webDomains
         store.shield.webDomainCategories = categories.isEmpty ? nil : .specific(categories)
+        FocusShared.debugLog("app", "applyShield — apps:\(apps.count) web:\(webDomains.count)")
     }
 
     private func clearShield() {

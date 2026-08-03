@@ -8,25 +8,29 @@ import UIKit
 /// tapping "open" never becomes a reflex.
 final class ShieldConfigurationProvider: ShieldConfigurationDataSource {
     override func configuration(shielding application: Application) -> ShieldConfiguration {
-        breatheShield(tokenData: ShieldButtons.tokenData(application.token))
+        FocusShared.debugLog("shieldConfig", "configuration(app)")
+        return breatheShield(tokenData: ShieldButtons.tokenData(application.token))
     }
 
     override func configuration(
         shielding application: Application,
         in category: ActivityCategory
     ) -> ShieldConfiguration {
-        breatheShield(tokenData: ShieldButtons.tokenData(application.token))
+        FocusShared.debugLog("shieldConfig", "configuration(app in category)")
+        return breatheShield(tokenData: ShieldButtons.tokenData(application.token))
     }
 
     override func configuration(shielding webDomain: WebDomain) -> ShieldConfiguration {
-        breatheShield(tokenData: ShieldButtons.tokenData(webDomain.token))
+        FocusShared.debugLog("shieldConfig", "configuration(web)")
+        return breatheShield(tokenData: ShieldButtons.tokenData(webDomain.token))
     }
 
     override func configuration(
         shielding webDomain: WebDomain,
         in category: ActivityCategory
     ) -> ShieldConfiguration {
-        breatheShield(tokenData: ShieldButtons.tokenData(webDomain.token))
+        FocusShared.debugLog("shieldConfig", "configuration(web in category)")
+        return breatheShield(tokenData: ShieldButtons.tokenData(webDomain.token))
     }
 
     private func breatheShield(tokenData: Data?) -> ShieldConfiguration {
