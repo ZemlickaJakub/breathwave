@@ -28,11 +28,6 @@ enum FocusShared {
         /// after this are the "OK" on the system's generic Restricted screen,
         /// not a mindful choice on our two-button shield.
         static let lastRelockAt = "focus.lastRelockAt"
-        /// Diagnostics: shield-config extension invocation markers, written to
-        /// defaults as a second channel in case its file writes fail silently.
-        static let diagConfigInvokeCount = "diag.configInvokeCount"
-        static let diagConfigLastInvoked = "diag.configLastInvoked"
-        static let diagConfigInitAt = "diag.configInitAt"
     }
 
     /// Taps this soon after a re-lock are treated as "close": the generic
