@@ -57,6 +57,9 @@ final class FocusMonitor: DeviceActivityMonitor {
         webDomains.formUnion(selection.webDomainTokens)
         if !webDomains.isEmpty { store.shield.webDomains = webDomains }
         if !categories.isEmpty { store.shield.webDomainCategories = .specific(categories) }
+        // Stamp the re-lock so the action extension can tell the generic
+        // shield's OK (arrives within seconds) from a genuine later tap.
+        FocusShared.defaults.set(Date().timeIntervalSince1970, forKey: FocusShared.Keys.lastRelockAt)
         FocusShared.debugLog("monitor", "reapplied shield — apps:\(apps.count) web:\(webDomains.count)")
     }
 }

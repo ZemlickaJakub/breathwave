@@ -61,6 +61,20 @@ final class ShieldActionProvider: ShieldActionDelegate {
         lift: () -> Void,
         completionHandler: @escaping (ShieldActionResponse) -> Void
     ) {
+        // Right after a re-lock the only shield on screen is the system's
+        // generic one (single OK button). Its OK must never fall into the
+        // "open" branch — that would re-unlock the app and loop forever
+        // (confirmed on device: reapply at T, tap → open at T+1s, repeatedly).
+        // A genuine re-open of our two-button shield takes longer than this.
+        let lastRelockAt = FocusShared.defaults.double(forKey: FocusShared.Keys.lastRelockAt)
+        if lastRelockAt > 0,
+           Date().timeIntervalSince1970 - lastRelockAt < FocusShared.relockTapWindowSeconds {
+            // Not a mindful choice — no FocusEvent recorded.
+            FocusShared.debugLog("shieldAction", "tap within relock window → forced close")
+            completionHandler(.close)
+            return
+        }
+
         let pressedPrimary: Bool
         switch action {
         case .primaryButtonPressed: pressedPrimary = true

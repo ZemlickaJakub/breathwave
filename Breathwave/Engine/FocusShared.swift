@@ -24,7 +24,23 @@ enum FocusShared {
         /// Catalog) so the action extension can post it without its own catalog.
         static let relockWarningTitle = "focus.relockWarningTitle"
         static let relockWarningBody = "focus.relockWarningBody"
+        /// When the monitor last re-applied the shield. Taps arriving moments
+        /// after this are the "OK" on the system's generic Restricted screen,
+        /// not a mindful choice on our two-button shield.
+        static let lastRelockAt = "focus.lastRelockAt"
+        /// Diagnostics: shield-config extension invocation markers, written to
+        /// defaults as a second channel in case its file writes fail silently.
+        static let diagConfigInvokeCount = "diag.configInvokeCount"
+        static let diagConfigLastInvoked = "diag.configLastInvoked"
+        static let diagConfigInitAt = "diag.configInitAt"
     }
+
+    /// Taps this soon after a re-lock are treated as "close": the generic
+    /// system shield (single OK button) is the only thing on screen right
+    /// after a mid-use re-lock, and its OK must never map to "open" — that
+    /// re-unlocks the app and loops. A real re-open of our two-button shield
+    /// takes longer than this.
+    static let relockTapWindowSeconds: Double = 10
 
     /// Identifier for the single "apps lock again soon" warning notification.
     static let relockWarningNotificationID = "focus.relock.warning"

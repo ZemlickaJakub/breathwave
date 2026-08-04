@@ -7,8 +7,27 @@ import UIKit
 /// with the time of day, the icon varies, and the two buttons swap sides so
 /// tapping "open" never becomes a reflex.
 final class ShieldConfigurationProvider: ShieldConfigurationDataSource {
+    override init() {
+        super.init()
+        // Diagnostics: prove the extension process launches at all. Written to
+        // shared defaults — a separate channel from the file-based debug log,
+        // in case file writes from this sandbox fail silently.
+        FocusShared.defaults.set(Date().timeIntervalSince1970, forKey: FocusShared.Keys.diagConfigInitAt)
+    }
+
+    /// Diagnostics: count every invocation in shared defaults. If the custom
+    /// shield renders but this count does not move, iOS drew it from its own
+    /// cache without asking us — the key unknown behind the re-lock fallback.
+    private func markInvoked(_ what: String) {
+        let defaults = FocusShared.defaults
+        defaults.set(defaults.integer(forKey: FocusShared.Keys.diagConfigInvokeCount) + 1,
+                     forKey: FocusShared.Keys.diagConfigInvokeCount)
+        defaults.set(Date().timeIntervalSince1970, forKey: FocusShared.Keys.diagConfigLastInvoked)
+        FocusShared.debugLog("shieldConfig", what)
+    }
+
     override func configuration(shielding application: Application) -> ShieldConfiguration {
-        FocusShared.debugLog("shieldConfig", "configuration(app)")
+        markInvoked("configuration(app)")
         return breatheShield(tokenData: ShieldButtons.tokenData(application.token))
     }
 
@@ -16,12 +35,12 @@ final class ShieldConfigurationProvider: ShieldConfigurationDataSource {
         shielding application: Application,
         in category: ActivityCategory
     ) -> ShieldConfiguration {
-        FocusShared.debugLog("shieldConfig", "configuration(app in category)")
+        markInvoked("configuration(app in category)")
         return breatheShield(tokenData: ShieldButtons.tokenData(application.token))
     }
 
     override func configuration(shielding webDomain: WebDomain) -> ShieldConfiguration {
-        FocusShared.debugLog("shieldConfig", "configuration(web)")
+        markInvoked("configuration(web)")
         return breatheShield(tokenData: ShieldButtons.tokenData(webDomain.token))
     }
 
@@ -29,7 +48,7 @@ final class ShieldConfigurationProvider: ShieldConfigurationDataSource {
         shielding webDomain: WebDomain,
         in category: ActivityCategory
     ) -> ShieldConfiguration {
-        FocusShared.debugLog("shieldConfig", "configuration(web in category)")
+        markInvoked("configuration(web in category)")
         return breatheShield(tokenData: ShieldButtons.tokenData(webDomain.token))
     }
 
