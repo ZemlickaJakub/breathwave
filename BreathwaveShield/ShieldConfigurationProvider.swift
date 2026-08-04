@@ -50,10 +50,13 @@ final class ShieldConfigurationProvider: ShieldConfigurationDataSource {
             color: UIColor(white: 1, alpha: 0.9)
         )
 
+        // Minimal payload on purpose: no icon, no blur. The system silently
+        // falls back to the complete default shield when it dislikes any part
+        // of the configuration (documented for icons), and a bigger payload
+        // gives the cached-config path more reasons to drop to generic on a
+        // mid-use re-lock. Colors and text only.
         return ShieldConfiguration(
-            backgroundBlurStyle: .systemThinMaterialDark,
-            backgroundColor: UIColor.black.withAlphaComponent(0.4),
-            icon: UIImage(systemName: picked.icon),
+            backgroundColor: UIColor.black.withAlphaComponent(0.8),
             title: ShieldConfiguration.Label(
                 text: NSLocalizedString(picked.prompt.title, comment: ""),
                 color: .white

@@ -59,6 +59,10 @@ enum FocusShared {
 
     /// DeviceActivity schedule whose start marks the re-lock moment.
     static let graceActivityName = "focus.grace"
+    /// Diagnostics-only schedule ARMED BY THE MAIN APP: applies the shield 30 s
+    /// later to test whether who registered the monitoring decides custom vs.
+    /// generic rendering on a mid-use apply (kingstinct#82 datapoint).
+    static let testActivityName = "focus.test"
 
     // MARK: Diagnostics
 

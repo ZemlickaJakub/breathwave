@@ -17,9 +17,13 @@ final class FocusMonitor: DeviceActivityMonitor {
 
     override func intervalDidStart(for activity: DeviceActivityName) {
         super.intervalDidStart(for: activity)
-        guard activity == DeviceActivityName(FocusShared.graceActivityName) else { return }
-        FocusShared.debugLog("monitor", "intervalDidStart")
-        reapplyShield()
+        let known = [FocusShared.graceActivityName, FocusShared.testActivityName]
+            .map { DeviceActivityName($0) }
+        guard known.contains(activity) else { return }
+        FocusShared.debugLog("monitor", "intervalDidStart (\(activity.rawValue))")
+        // The diagnostics test lock must fire even with guarding off and
+        // ignores the grace guard — it exists to test rendering, not policy.
+        reapplyShield(force: activity == DeviceActivityName(FocusShared.testActivityName))
     }
 
     override func intervalDidEnd(for activity: DeviceActivityName) {
@@ -29,18 +33,20 @@ final class FocusMonitor: DeviceActivityMonitor {
         reapplyShield()
     }
 
-    private func reapplyShield() {
-        guard FocusShared.defaults.bool(forKey: FocusShared.Keys.guarding) else { return }
-        // If the user is still inside a live grace window — they just chose to
-        // open past the shield — a stray monitor callback (e.g. the previous
-        // interval ending as we reschedule) must NOT slam the shield back on;
-        // that cancels the fresh unlock and forces a pointless second pass.
-        // Only re-lock once we've actually reached the scheduled re-lock moment
-        // (small tolerance for scheduling jitter).
-        let relockAt = FocusShared.defaults.double(forKey: FocusShared.Keys.relockAt)
-        if relockAt > 0, Date().timeIntervalSince1970 < relockAt - 30 {
-            FocusShared.debugLog("monitor", "reapply skipped — mid grace window")
-            return
+    private func reapplyShield(force: Bool = false) {
+        if !force {
+            guard FocusShared.defaults.bool(forKey: FocusShared.Keys.guarding) else { return }
+            // If the user is still inside a live grace window — they just chose
+            // to open past the shield — a stray monitor callback (e.g. the
+            // previous interval ending as we reschedule) must NOT slam the
+            // shield back on; that cancels the fresh unlock and forces a
+            // pointless second pass. Only re-lock once we've actually reached
+            // the scheduled re-lock moment (small tolerance for jitter).
+            let relockAt = FocusShared.defaults.double(forKey: FocusShared.Keys.relockAt)
+            if relockAt > 0, Date().timeIntervalSince1970 < relockAt - 30 {
+                FocusShared.debugLog("monitor", "reapply skipped — mid grace window")
+                return
+            }
         }
         guard let data = FocusShared.defaults.data(forKey: FocusShared.Keys.selection),
               let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) else {
@@ -67,5 +73,10 @@ final class FocusMonitor: DeviceActivityMonitor {
         // shield's OK (arrives within seconds) from a genuine later tap.
         FocusShared.defaults.set(Date().timeIntervalSince1970, forKey: FocusShared.Keys.lastRelockAt)
         FocusShared.debugLog("monitor", "reapplied shield (relock store) — apps:\(apps.count) web:\(webDomains.count)")
+        // Keep this process alive briefly so the settings write finishes
+        // propagating (XPC) before the system reaps the extension — production
+        // blockers do the same; dying too early is suspected of leaving the
+        // shield to render without our configuration.
+        Thread.sleep(forTimeInterval: 2.5)
     }
 }
