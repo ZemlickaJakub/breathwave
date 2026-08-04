@@ -28,6 +28,9 @@ final class FocusGuardService {
     }
 
     @ObservationIgnored private let store = ManagedSettingsStore()
+    /// Secondary store the monitor re-locks through; must be cleared whenever
+    /// guarding stops so nothing stays shielded behind the user's back.
+    @ObservationIgnored private let relockStore = ManagedSettingsStore(named: .init(FocusShared.relockStoreName))
     @ObservationIgnored private let defaults: UserDefaults
 
     init(defaults: UserDefaults = FocusShared.defaults) {
@@ -111,10 +114,12 @@ final class FocusGuardService {
     }
 
     private func clearShield() {
-        store.shield.applications = nil
-        store.shield.applicationCategories = nil
-        store.shield.webDomains = nil
-        store.shield.webDomainCategories = nil
+        for store in [store, relockStore] {
+            store.shield.applications = nil
+            store.shield.applicationCategories = nil
+            store.shield.webDomains = nil
+            store.shield.webDomainCategories = nil
+        }
         // No live grace window any more; drop the marker and any pending warning.
         defaults.set(0, forKey: FocusShared.Keys.relockAt)
         UNUserNotificationCenter.current()

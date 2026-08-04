@@ -37,6 +37,17 @@ enum FocusShared {
     /// takes longer than this.
     static let relockTapWindowSeconds: Double = 10
 
+    /// How long the shield stays up after "Open" before the app is revealed —
+    /// the pause IS the breath. Mirrors ScreenZen's "Open (in 5s)" flow, where
+    /// the action extension holds its response open during the wait.
+    static let openDelaySeconds: Double = 5
+
+    /// Secondary store used ONLY by the monitor's re-lock. Re-shielding via a
+    /// different store than the one the token was lifted from makes iOS reuse
+    /// the last rendered custom shield for a mid-use re-lock (documented store
+    /// -move recycling) instead of falling back to the generic system screen.
+    static let relockStoreName = "focus.relock"
+
     /// Identifier for the single "apps lock again soon" warning notification.
     static let relockWarningNotificationID = "focus.relock.warning"
     /// How many minutes before the re-lock the warning fires.

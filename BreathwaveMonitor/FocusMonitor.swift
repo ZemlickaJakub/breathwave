@@ -9,6 +9,11 @@ import ManagedSettings
 /// harmless safety net. Only acts while guarding is still switched on.
 final class FocusMonitor: DeviceActivityMonitor {
     private let store = ManagedSettingsStore()
+    /// Re-locks go through this secondary store, NOT the main one the token
+    /// was lifted from. Re-shielding via a different store makes iOS reuse the
+    /// last rendered custom shield for a mid-use re-lock (store-move config
+    /// recycling) instead of falling back to the generic system screen.
+    private let relockStore = ManagedSettingsStore(named: .init(FocusShared.relockStoreName))
 
     override func intervalDidStart(for activity: DeviceActivityName) {
         super.intervalDidStart(for: activity)
@@ -42,24 +47,25 @@ final class FocusMonitor: DeviceActivityMonitor {
             FocusShared.debugLog("monitor", "reapply aborted — no selection")
             return
         }
-        // Add the tokens back INTO the existing shield set rather than replacing
-        // it wholesale, and NEVER write nil to any shield property here: nil
-        // writes are suspected of evicting iOS's cached custom shield, which
-        // makes a mid-foreground re-lock fall back to the generic system screen.
-        // Only touch properties that actually gain content.
-        var apps = store.shield.applications ?? []
+        // Re-lock via the SECONDARY store — the token was lifted from the main
+        // one, and re-shielding through a different store makes iOS recycle the
+        // last rendered custom shield instead of the generic system screen.
+        // Union into the existing set and NEVER write nil to any property:
+        // both wholesale replacement and nil writes are suspected of evicting
+        // the cached custom shield.
+        var apps = relockStore.shield.applications ?? []
         apps.formUnion(selection.applicationTokens)
-        if !apps.isEmpty { store.shield.applications = apps }
+        if !apps.isEmpty { relockStore.shield.applications = apps }
         let categories = selection.categoryTokens
-        if !categories.isEmpty { store.shield.applicationCategories = .specific(categories) }
+        if !categories.isEmpty { relockStore.shield.applicationCategories = .specific(categories) }
         // Re-arm the website shield too, matching how the app applies it.
-        var webDomains = store.shield.webDomains ?? []
+        var webDomains = relockStore.shield.webDomains ?? []
         webDomains.formUnion(selection.webDomainTokens)
-        if !webDomains.isEmpty { store.shield.webDomains = webDomains }
-        if !categories.isEmpty { store.shield.webDomainCategories = .specific(categories) }
+        if !webDomains.isEmpty { relockStore.shield.webDomains = webDomains }
+        if !categories.isEmpty { relockStore.shield.webDomainCategories = .specific(categories) }
         // Stamp the re-lock so the action extension can tell the generic
         // shield's OK (arrives within seconds) from a genuine later tap.
         FocusShared.defaults.set(Date().timeIntervalSince1970, forKey: FocusShared.Keys.lastRelockAt)
-        FocusShared.debugLog("monitor", "reapplied shield — apps:\(apps.count) web:\(webDomains.count)")
+        FocusShared.debugLog("monitor", "reapplied shield (relock store) — apps:\(apps.count) web:\(webDomains.count)")
     }
 }

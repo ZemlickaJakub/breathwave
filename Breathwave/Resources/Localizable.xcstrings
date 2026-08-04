@@ -2303,6 +2303,16 @@
         }
       }
     },
+    "Open (in 5 s)": {
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otevřít (za 5 s)"
+          }
+        }
+      }
+    },
     "Take a breath": {
       "localizations": {
         "cs": {

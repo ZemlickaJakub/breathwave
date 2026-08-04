@@ -9,6 +9,9 @@ import UserNotifications
 /// identically to the configuration extension that drew the shield.
 final class ShieldActionProvider: ShieldActionDelegate {
     private let store = ManagedSettingsStore()
+    /// The monitor re-locks via this secondary store, so lifting must clear
+    /// the token from both — a token shielded in ANY store stays blocked.
+    private let relockStore = ManagedSettingsStore(named: .init(FocusShared.relockStoreName))
 
     override func handle(
         action: ShieldAction,
@@ -21,9 +24,11 @@ final class ShieldActionProvider: ShieldActionDelegate {
             // configuration for the token, so the re-lock (mid-foreground)
             // falls back to the generic "Restricted" system screen instead of
             // our breathe screen.
-            var apps = self.store.shield.applications ?? []
-            apps.remove(application)
-            self.store.shield.applications = apps
+            for store in [self.store, self.relockStore] {
+                var apps = store.shield.applications ?? []
+                apps.remove(application)
+                store.shield.applications = apps
+            }
         }, completionHandler: completionHandler)
     }
 
@@ -33,9 +38,11 @@ final class ShieldActionProvider: ShieldActionDelegate {
         completionHandler: @escaping (ShieldActionResponse) -> Void
     ) {
         respond(to: action, tokenData: ShieldButtons.tokenData(webDomain), lift: {
-            var domains = self.store.shield.webDomains ?? []
-            domains.remove(webDomain)
-            self.store.shield.webDomains = domains
+            for store in [self.store, self.relockStore] {
+                var domains = store.shield.webDomains ?? []
+                domains.remove(webDomain)
+                store.shield.webDomains = domains
+            }
         }, completionHandler: completionHandler)
     }
 
@@ -45,12 +52,14 @@ final class ShieldActionProvider: ShieldActionDelegate {
         completionHandler: @escaping (ShieldActionResponse) -> Void
     ) {
         respond(to: action, tokenData: ShieldButtons.tokenData(category), lift: {
-            if case .specific(var categories, except: let except)? = self.store.shield.applicationCategories {
-                categories.remove(category)
-                self.store.shield.applicationCategories = .specific(categories, except: except)
-            } else {
-                // `.all()` / unknown policy: can't drop a single token, so clear it.
-                self.store.shield.applicationCategories = nil
+            for store in [self.store, self.relockStore] {
+                if case .specific(var categories, except: let except)? = store.shield.applicationCategories {
+                    categories.remove(category)
+                    store.shield.applicationCategories = .specific(categories, except: except)
+                } else if store.shield.applicationCategories != nil {
+                    // `.all()` / unknown policy: can't drop a single token, so clear it.
+                    store.shield.applicationCategories = nil
+                }
             }
         }, completionHandler: completionHandler)
     }
@@ -58,7 +67,7 @@ final class ShieldActionProvider: ShieldActionDelegate {
     private func respond(
         to action: ShieldAction,
         tokenData: Data?,
-        lift: () -> Void,
+        lift: @escaping () -> Void,
         completionHandler: @escaping (ShieldActionResponse) -> Void
     ) {
         // Right after a re-lock the only shield on screen is the system's
@@ -85,13 +94,7 @@ final class ShieldActionProvider: ShieldActionDelegate {
 
         FocusShared.debugLog("shieldAction", "tap primary:\(pressedPrimary) openIsPrimary:\(openIsPrimary) → \(pressedPrimary == openIsPrimary ? "open" : "notNow")")
         if pressedPrimary == openIsPrimary {
-            openForGraceWindow(lift: lift)
-            // NOT .close: that bounces to the Home screen, forcing the user to
-            // tap the app icon again. openForGraceWindow just lifted the shield,
-            // so deferring lets iOS reveal the app already launching underneath —
-            // the user lands *in* it, the way ScreenZen and friends behave.
-            // completionHandler must be the last thing we call.
-            completionHandler(.defer)
+            openForGraceWindow(lift: lift, completionHandler: completionHandler)
         } else {
             FocusEventLog.append(FocusEvent(date: Date(), kind: .resisted))
             // "Not now" — send them back Home, don't reveal the app.
@@ -99,26 +102,38 @@ final class ShieldActionProvider: ShieldActionDelegate {
         }
     }
 
-    private func openForGraceWindow(lift: () -> Void) {
+    private func openForGraceWindow(
+        lift: @escaping () -> Void,
+        completionHandler: @escaping (ShieldActionResponse) -> Void
+    ) {
         let minutes = FocusShared.defaults.object(forKey: FocusShared.Keys.graceMinutes) as? Int
             ?? FocusShared.defaultGraceMinutes
+        let delay = FocusShared.openDelaySeconds
 
         // Mark when the shield should return *before* touching the schedule:
         // rescheduling can fire a stray monitor callback, and the monitor reads
         // this to know we're mid-grace and must not re-lock yet.
         FocusShared.defaults.set(
-            Date().timeIntervalSince1970 + Double(minutes * 60),
+            Date().timeIntervalSince1970 + delay + Double(minutes * 60),
             forKey: FocusShared.Keys.relockAt
         )
-
-        // Lift the shield from JUST the tapped item (see the handlers) so the app
-        // opens, while keeping the rest of the shield set alive so iOS keeps the
-        // cached custom configuration for the re-lock.
-        lift()
         FocusEventLog.append(FocusEvent(date: Date(), kind: .opened, grantedMinutes: minutes))
 
         scheduleRelockWarning(minutes: minutes)
         scheduleGraceEnd(minutes: minutes)
+
+        // Hold the shield up for a few breaths, THEN lift and defer — the
+        // response stays pending the whole wait, the way ScreenZen's
+        // "Open (in 5s)" behaves. The pause is the point; it also keeps the
+        // shield pipeline alive while the unshield lands. Blocking this
+        // handler's thread is fine: the extension exists only to answer taps.
+        // NOT .close: that bounces to the Home screen. Deferring after the lift
+        // lets iOS reveal the app already sitting underneath the shield.
+        // completionHandler must be the last thing we call.
+        Thread.sleep(forTimeInterval: delay)
+        lift()
+        FocusShared.debugLog("shieldAction", "deferred open after \(Int(delay))s")
+        completionHandler(.defer)
     }
 
     /// Post a gentle heads-up a couple of minutes before the apps re-lock, so the
@@ -126,8 +141,10 @@ final class ShieldActionProvider: ShieldActionDelegate {
     /// the App Group (this extension has no String Catalog of its own). Skipped
     /// when the grace window is too short for a lead time to make sense.
     private func scheduleRelockWarning(minutes: Int) {
-        let lead = TimeInterval((minutes - FocusShared.relockWarningLeadMinutes) * 60)
-        guard lead > 0 else { return }
+        // The grace window starts after the in-shield pause, so shift by it.
+        let lead = FocusShared.openDelaySeconds
+            + TimeInterval((minutes - FocusShared.relockWarningLeadMinutes) * 60)
+        guard lead > FocusShared.openDelaySeconds else { return }
 
         let content = UNMutableNotificationContent()
         content.title = FocusShared.defaults.string(forKey: FocusShared.Keys.relockWarningTitle)
@@ -154,7 +171,8 @@ final class ShieldActionProvider: ShieldActionDelegate {
     private func scheduleGraceEnd(minutes: Int) {
         let center = DeviceActivityCenter()
         let calendar = Calendar.current
-        let now = Date()
+        // The grace window starts after the in-shield pause.
+        let now = Date().addingTimeInterval(FocusShared.openDelaySeconds)
         let relock = calendar.date(byAdding: .minute, value: max(1, minutes), to: now)
             ?? now.addingTimeInterval(TimeInterval(max(1, minutes) * 60))
         let end = calendar.date(byAdding: .minute, value: 15, to: relock)

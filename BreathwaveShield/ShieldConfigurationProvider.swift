@@ -42,7 +42,7 @@ final class ShieldConfigurationProvider: ShieldConfigurationDataSource {
         let openIsPrimary = ShieldButtons.openIsPrimary(tokenData: tokenData)
 
         let open = ShieldConfiguration.Label(
-            text: NSLocalizedString("Open for a while", comment: ""),
+            text: NSLocalizedString("Open (in 5 s)", comment: ""),
             color: UIColor(white: 1, alpha: 0.9)
         )
         let notNow = ShieldConfiguration.Label(
