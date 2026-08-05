@@ -1,7 +1,6 @@
 import DeviceActivity
 import Foundation
 import ManagedSettings
-import UserNotifications
 
 /// Handles taps on the mindful-pause shield. One button closes the app; the
 /// other opens the tapped item for a short grace window and schedules the
@@ -119,8 +118,12 @@ final class ShieldActionProvider: ShieldActionDelegate {
         )
         FocusEventLog.append(FocusEvent(date: Date(), kind: .opened, grantedMinutes: minutes))
 
-        scheduleRelockWarning(minutes: minutes)
-        scheduleGraceEnd(minutes: minutes)
+        // No re-lock scheduling here beyond the backstop: the authoritative
+        // re-lock is a usage threshold on the daily schedule the MAIN APP
+        // armed — monitoring registered by an extension renders the generic
+        // system shield on a mid-use re-lock (proven on device, 2026-08-05).
+        // The "locks soon" warning rides those thresholds too.
+        scheduleBackstop(minutes: minutes)
 
         // Hold the shield up for a few breaths, THEN lift and defer — the
         // response stays pending the whole wait, the way ScreenZen's
@@ -136,45 +139,23 @@ final class ShieldActionProvider: ShieldActionDelegate {
         completionHandler(.defer)
     }
 
-    /// Post a gentle heads-up a couple of minutes before the apps re-lock, so the
-    /// re-lock isn't a hard surprise. Copy is localized by the app and shared via
-    /// the App Group (this extension has no String Catalog of its own). Skipped
-    /// when the grace window is too short for a lead time to make sense.
-    private func scheduleRelockWarning(minutes: Int) {
-        // The grace window starts after the in-shield pause, so shift by it.
-        let lead = FocusShared.openDelaySeconds
-            + TimeInterval((minutes - FocusShared.relockWarningLeadMinutes) * 60)
-        guard lead > FocusShared.openDelaySeconds else { return }
-
-        let content = UNMutableNotificationContent()
-        content.title = FocusShared.defaults.string(forKey: FocusShared.Keys.relockWarningTitle)
-            ?? "Take a breath"
-        content.body = FocusShared.defaults.string(forKey: FocusShared.Keys.relockWarningBody)
-            ?? "This app locks in 2 minutes."
-
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: lead, repeats: false)
-        let request = UNNotificationRequest(
-            identifier: FocusShared.relockWarningNotificationID,
-            content: content,
-            trigger: trigger
-        )
-        let center = UNUserNotificationCenter.current()
-        center.removePendingNotificationRequests(withIdentifiers: [FocusShared.relockWarningNotificationID])
-        center.add(request)
-    }
-
-    /// Re-shield exactly `minutes` from now, on the wall clock. DeviceActivity
-    /// won't fire an interval shorter than 15 minutes, but that limit is on the
-    /// interval's *length* — its start can be any time. So the interval starts
-    /// at the re-lock moment (now + minutes) and runs a full 15 minutes past it;
-    /// the monitor re-applies the shield on `intervalDidStart`.
-    private func scheduleGraceEnd(minutes: Int) {
+    /// Wall-clock BACKSTOP: re-shield well past the grace window, for unlocks
+    /// the usage thresholds never see because the user left the app early. It
+    /// deliberately trails the grace minutes by a wide margin — this schedule
+    /// is extension-armed, so a mid-use fire would render the generic system
+    /// shield; trailing guarantees any mid-use re-lock is won by the usage
+    /// threshold first. DeviceActivity won't fire an interval shorter than 15
+    /// minutes, but that limit is on the interval's *length* — its start can
+    /// be any time. So the interval starts at the backstop moment and runs a
+    /// full 15 minutes past it; the monitor re-applies on `intervalDidStart`.
+    private func scheduleBackstop(minutes: Int) {
         let center = DeviceActivityCenter()
         let calendar = Calendar.current
         // The grace window starts after the in-shield pause.
         let now = Date().addingTimeInterval(FocusShared.openDelaySeconds)
-        let relock = calendar.date(byAdding: .minute, value: max(1, minutes), to: now)
-            ?? now.addingTimeInterval(TimeInterval(max(1, minutes) * 60))
+        let backstopMinutes = max(1, minutes) + FocusShared.backstopExtraMinutes
+        let relock = calendar.date(byAdding: .minute, value: backstopMinutes, to: now)
+            ?? now.addingTimeInterval(TimeInterval(backstopMinutes * 60))
         let end = calendar.date(byAdding: .minute, value: 15, to: relock)
             ?? relock.addingTimeInterval(15 * 60)
         let schedule = DeviceActivitySchedule(

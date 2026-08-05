@@ -57,8 +57,37 @@ enum FocusShared {
     static let defaultGraceMinutes = 5
     static let graceChoices = [1, 3, 5, 10, 15]
 
-    /// DeviceActivity schedule whose start marks the re-lock moment.
+    /// Daily repeating schedule ARMED BY THE MAIN APP carrying the usage
+    /// threshold events that re-lock a breathed-past app. Who registers the
+    /// monitoring decides how a mid-use shield renders (proven on device,
+    /// 2026-08-05): app-armed → our custom shield, extension-armed → the
+    /// system's generic "Restricted". The app can't know when the user will
+    /// tap "Open", so the re-locks it arms in advance are cumulative usage
+    /// thresholds — lock after 1×grace, 2×grace, … minutes of guarded-app use.
+    static let dayActivityName = "focus.day"
+
+    /// Cumulative usage-threshold event names on the daily schedule.
+    /// `step` is 1-based: opened budget slice number within the day.
+    static func openEventName(_ step: Int) -> String { "focus.open.\(step)" }
+    static func warnEventName(_ step: Int) -> String { "focus.warn.\(step)" }
+    static let openEventPrefix = "focus.open."
+    static let warnEventPrefix = "focus.warn."
+
+    /// How many budget slices the app arms per day. Multiplied by the grace
+    /// minutes this bounds total daily guarded-app use before slices run out;
+    /// the wall-clock backstop still re-locks past the last slice.
+    static let dailyBudgetSlices = 24
+
+    /// Wall-clock BACKSTOP schedule, still armed by the shield-action
+    /// extension (it renders generic, but only ever fires when the user has
+    /// already left the app — mid-use re-locks are won by the usage
+    /// thresholds, which trail wall clock by definition). Cleans up unlocks
+    /// the thresholds never see: user opens the app, stops using it early.
     static let graceActivityName = "focus.grace"
+    /// Extra wall-clock minutes past the grace window before the backstop
+    /// fires. Generous on purpose: the backstop must never race a mid-use
+    /// usage threshold, or the generic shield returns.
+    static let backstopExtraMinutes = 10
     /// Diagnostics-only schedule ARMED BY THE MAIN APP: applies the shield 30 s
     /// later to test whether who registered the monitoring decides custom vs.
     /// generic rendering on a mid-use apply (kingstinct#82 datapoint).

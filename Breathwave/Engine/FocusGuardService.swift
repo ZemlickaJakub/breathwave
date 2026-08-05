@@ -1,3 +1,4 @@
+import DeviceActivity
 import Foundation
 import Observation
 import FamilyControls
@@ -24,7 +25,12 @@ final class FocusGuardService {
     private(set) var isGuarding: Bool
     /// How long a guarded app stays open after the user chooses to breathe past it.
     var graceMinutes: Int {
-        didSet { defaults.set(graceMinutes, forKey: FocusShared.Keys.graceMinutes) }
+        didSet {
+            defaults.set(graceMinutes, forKey: FocusShared.Keys.graceMinutes)
+            // The usage thresholds are multiples of the grace minutes; a new
+            // value needs a fresh set of events.
+            if isGuarding { armUsageBudget() }
+        }
     }
 
     @ObservationIgnored private let store = ManagedSettingsStore()
@@ -79,6 +85,7 @@ final class FocusGuardService {
         applyShield()
         isGuarding = true
         defaults.set(true, forKey: Keys.guarding)
+        armUsageBudget()
         // The re-lock warning needs notification permission; ask the first time
         // the pause is switched on so it's granted before any shield appears.
         requestNotificationAuthorization()
@@ -88,6 +95,10 @@ final class FocusGuardService {
         clearShield()
         isGuarding = false
         defaults.set(false, forKey: Keys.guarding)
+        DeviceActivityCenter().stopMonitoring([
+            DeviceActivityName(FocusShared.dayActivityName),
+            DeviceActivityName(FocusShared.graceActivityName),
+        ])
     }
 
     private func applyShield() {
@@ -126,6 +137,62 @@ final class FocusGuardService {
             .removePendingNotificationRequests(withIdentifiers: [FocusShared.relockWarningNotificationID])
     }
 
+    /// Arms the daily schedule carrying the usage-threshold events that
+    /// re-lock a breathed-past app. This MUST run in the main app: monitoring
+    /// registered here renders our custom shield on a mid-use re-lock, while
+    /// the same registration from an extension yields the system's generic
+    /// "Restricted" screen (proven on device, 2026-08-05). The thresholds are
+    /// cumulative — lock after 1×grace, 2×grace, … minutes of guarded-app
+    /// use — so every unlock of the day is covered in advance, no scheduling
+    /// needed at "Open" time. Re-arming resets the day's accumulation.
+    private func armUsageBudget() {
+        let center = DeviceActivityCenter()
+        let day = DeviceActivityName(FocusShared.dayActivityName)
+        center.stopMonitoring([day])
+        let schedule = DeviceActivitySchedule(
+            intervalStart: DateComponents(hour: 0, minute: 0),
+            intervalEnd: DateComponents(hour: 23, minute: 59),
+            repeats: true
+        )
+        var events: [DeviceActivityEvent.Name: DeviceActivityEvent] = [:]
+        for step in 1...FocusShared.dailyBudgetSlices {
+            events[.init(FocusShared.openEventName(step))] = usageEvent(minutes: step * graceMinutes)
+            // A heads-up a couple of usage-minutes before each lock; pointless
+            // when the whole window is shorter than the lead time.
+            if graceMinutes > FocusShared.relockWarningLeadMinutes {
+                events[.init(FocusShared.warnEventName(step))] = usageEvent(
+                    minutes: step * graceMinutes - FocusShared.relockWarningLeadMinutes
+                )
+            }
+        }
+        do {
+            try center.startMonitoring(day, during: schedule, events: events)
+            FocusShared.debugLog("app", "armed usage budget — \(events.count) events, grace \(graceMinutes) min")
+        } catch {
+            FocusShared.debugLog("app", "usage budget arming failed: \(error)")
+        }
+    }
+
+    private func usageEvent(minutes: Int) -> DeviceActivityEvent {
+        if #available(iOS 17.4, *) {
+            // Only count use accrued after arming; otherwise a day of guarded
+            // -app use before switching the pause on fires events instantly.
+            return DeviceActivityEvent(
+                applications: selection.applicationTokens,
+                categories: selection.categoryTokens,
+                webDomains: selection.webDomainTokens,
+                threshold: DateComponents(minute: minutes),
+                includesPastActivity: false
+            )
+        }
+        return DeviceActivityEvent(
+            applications: selection.applicationTokens,
+            categories: selection.categoryTokens,
+            webDomains: selection.webDomainTokens,
+            threshold: DateComponents(minute: minutes)
+        )
+    }
+
     private func requestNotificationAuthorization() {
         Task {
             // Alerts only — the warning is a brief banner, no sound or badge.
@@ -150,8 +217,12 @@ final class FocusGuardService {
         if let data = try? JSONEncoder().encode(selection) {
             defaults.set(data, forKey: Keys.selection)
         }
-        // Keep a live shield in sync when the user edits the app list.
-        if isGuarding { applyShield() }
+        // Keep a live shield and the usage thresholds in sync when the user
+        // edits the app list.
+        if isGuarding {
+            applyShield()
+            armUsageBudget()
+        }
     }
 
     private enum Keys {
