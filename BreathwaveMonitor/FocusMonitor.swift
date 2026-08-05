@@ -22,22 +22,30 @@ final class FocusMonitor: DeviceActivityMonitor {
         activity: DeviceActivityName
     ) {
         super.eventDidReachThreshold(event, activity: activity)
-        guard activity == DeviceActivityName(FocusShared.dayActivityName) else { return }
+        let isDay = activity == DeviceActivityName(FocusShared.dayActivityName)
+        let isTest = activity == DeviceActivityName(FocusShared.testUsageActivityName)
+        guard isDay || isTest else { return }
         if event.rawValue.hasPrefix(FocusShared.warnEventPrefix) {
             FocusShared.debugLog("monitor", "usage warning threshold (\(event.rawValue))")
             postRelockWarning()
             return
         }
         guard event.rawValue.hasPrefix(FocusShared.openEventPrefix) else { return }
-        FocusShared.debugLog("monitor", "usage threshold (\(event.rawValue)) → relock")
+        FocusShared.debugLog("monitor", "usage threshold (\(event.rawValue), \(activity.rawValue)) → relock")
+        // The shield write goes FIRST, before any other side effect. Talking to
+        // other daemons (defaults, DeviceActivityCenter) ahead of the store
+        // write is suspected of making iOS render the generic shield for the
+        // mid-use re-lock — the same "do I/O, lose the custom shield" pattern
+        // already proven in the configuration extension (builds 17-19).
         // The threshold is the authoritative re-lock: it only fires after real
         // guarded-app use, so the wall-clock grace guard must not veto it (a
         // leftover budget slice can run out before the wall-clock window does).
-        FocusShared.defaults.set(0, forKey: FocusShared.Keys.relockAt)
-        // The backstop is now redundant for this unlock; letting it fire later
+        reapplyShield(requireGuarding: !isTest, respectGraceWindow: false)
+        // Cleanup after the write has settled: no live grace window any more,
+        // and the backstop for this unlock is redundant — letting it fire later
         // would pointlessly re-stamp lastRelockAt and swallow a shield tap.
+        FocusShared.defaults.set(0, forKey: FocusShared.Keys.relockAt)
         DeviceActivityCenter().stopMonitoring([DeviceActivityName(FocusShared.graceActivityName)])
-        reapplyShield(respectGraceWindow: false)
     }
 
     override func intervalDidStart(for activity: DeviceActivityName) {

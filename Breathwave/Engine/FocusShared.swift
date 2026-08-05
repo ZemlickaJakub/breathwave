@@ -92,6 +92,12 @@ enum FocusShared {
     /// later to test whether who registered the monitoring decides custom vs.
     /// generic rendering on a mid-use apply (kingstinct#82 datapoint).
     static let testActivityName = "focus.test"
+    /// Diagnostics-only schedule ARMED BY THE MAIN APP carrying a single
+    /// 1-minute usage-threshold event: discriminates whether
+    /// `eventDidReachThreshold` itself (vs. `intervalDidStart`) is what loses
+    /// the custom shield on a mid-use re-lock. Deliberately NOT handled by the
+    /// monitor's interval callbacks so only the threshold can re-lock.
+    static let testUsageActivityName = "focus.testUsage"
 
     // MARK: Diagnostics
 
