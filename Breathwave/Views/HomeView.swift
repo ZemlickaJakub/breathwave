@@ -100,8 +100,6 @@ struct HomeView: View {
             Text(LocalizedStringKey(greeting))
                 .font(.system(.subheadline, design: .serif).italic())
                 .foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity)
                 .padding(.top, 2)
             let streak = sessionStore.currentStreak()
             if streak > 0 {
