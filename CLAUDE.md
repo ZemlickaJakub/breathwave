@@ -57,6 +57,10 @@ jejich token Alfa-Infra nevidí (6. 10. 2026). Zadavatel dává `/clear` Stavite
 a Testerovi, jen když je tam jejich předávka novější než jejich poslední práce
 a agent nic nedělá (rozhodl Jakub 6. 10. 2026). Svůj `/clear` nechává Jakubovi.
 
+**Zkušební větve s podstrčenou vadou začínají `ci/overeni-`**, nic jiného tu
+předponu nemá. Selhané běhy chodí Jakubovi mailem a filtruje je podle ní
+(rozhodl Jakub 6. 10. 2026).
+
 **Repo `ZemlickaJakub/breathwave` je PUBLIC** (ověř `gh repo view --json visibility`):
 nic interního do `docs/`, commit messages, PR ani issues. Interní záležitosti
 projektu patří do Alfa-Infra.
