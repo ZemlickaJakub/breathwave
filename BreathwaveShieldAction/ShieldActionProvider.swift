@@ -48,19 +48,36 @@ final class ShieldActionProvider: ShieldActionDelegate {
 
         if pressedPrimary == openIsPrimary {
             openForGraceWindow()
+            // NOT .close: that bounces to the Home screen, forcing the user to
+            // tap the app icon again. openForGraceWindow just lifted the shield,
+            // so deferring lets iOS reveal the app already launching underneath —
+            // the user lands *in* it, the way ScreenZen and friends behave.
+            // completionHandler must be the last thing we call.
+            completionHandler(.defer)
         } else {
             FocusEventLog.append(FocusEvent(date: Date(), kind: .resisted))
+            // "Not now" — send them back Home, don't reveal the app.
+            completionHandler(.close)
         }
-        completionHandler(.close)
     }
 
     private func openForGraceWindow() {
         let minutes = FocusShared.defaults.object(forKey: FocusShared.Keys.graceMinutes) as? Int
             ?? FocusShared.defaultGraceMinutes
 
-        // Lift the shield so the apps open, and record the choice.
+        // Mark when the shield should return *before* touching the schedule:
+        // rescheduling can fire a stray monitor callback, and the monitor reads
+        // this to know we're mid-grace and must not re-lock yet.
+        FocusShared.defaults.set(
+            Date().timeIntervalSince1970 + Double(minutes * 60),
+            forKey: FocusShared.Keys.relockAt
+        )
+
+        // Lift the shield so the apps (and their sites) open, and record the choice.
         store.shield.applications = nil
         store.shield.applicationCategories = nil
+        store.shield.webDomains = nil
+        store.shield.webDomainCategories = nil
         FocusEventLog.append(FocusEvent(date: Date(), kind: .opened, grantedMinutes: minutes))
 
         scheduleGraceEnd(minutes: minutes)

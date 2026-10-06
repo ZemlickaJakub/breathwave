@@ -24,6 +24,8 @@ final class FocusMonitor: DeviceActivityMonitor {
 
     private func reapplyShield() {
         guard FocusShared.defaults.bool(forKey: FocusShared.Keys.guarding) else { return }
+        let relockAt = FocusShared.defaults.double(forKey: FocusShared.Keys.relockAt)
+        guard !FocusShared.isInGraceWindow(relockAt: relockAt) else { return }
         guard let data = FocusShared.defaults.data(forKey: FocusShared.Keys.selection),
               let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) else {
             return
@@ -32,5 +34,9 @@ final class FocusMonitor: DeviceActivityMonitor {
         store.shield.applications = apps.isEmpty ? nil : apps
         let categories = selection.categoryTokens
         store.shield.applicationCategories = categories.isEmpty ? nil : .specific(categories)
+        // Re-arm the website shield too, matching how the app applies it.
+        let webDomains = selection.webDomainTokens
+        store.shield.webDomains = webDomains.isEmpty ? nil : webDomains
+        store.shield.webDomainCategories = categories.isEmpty ? nil : .specific(categories)
     }
 }
