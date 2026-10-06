@@ -3,11 +3,14 @@ import SwiftUI
 
 struct StatsView: View {
     @Environment(SessionStore.self) private var sessionStore
+    @State private var focusEvents: [FocusEvent] = []
+
+    private var focusStats: FocusStats { FocusStats(events: focusEvents) }
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
-                if sessionStore.sessions.isEmpty {
+                if sessionStore.sessions.isEmpty && focusEvents.isEmpty {
                     ContentUnavailableView(
                         "No sessions yet",
                         systemImage: "water.waves",
@@ -15,10 +18,17 @@ struct StatsView: View {
                     )
                     .padding(.top, 80)
                 } else {
-                    summaryCard
-                    SectionHeader("Last 7 days")
-                    weeklyChart
-                        .cardChrome()
+                    if !sessionStore.sessions.isEmpty {
+                        summaryCard
+                        SectionHeader("Last 7 days")
+                        weeklyChart
+                            .cardChrome()
+                    }
+                    if !focusEvents.isEmpty {
+                        SectionHeader("Mindful Pause")
+                        focusSummary
+                        badges
+                    }
                 }
             }
             .padding(20)
@@ -26,6 +36,7 @@ struct StatsView: View {
         .calmBackground()
         .navigationTitle("Stats")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear { focusEvents = FocusEventLog.all() }
     }
 
     private var summaryCard: some View {
@@ -51,6 +62,54 @@ struct StatsView: View {
         Duration.seconds(sessionStore.totalDuration)
             .formatted(.units(allowed: [.hours, .minutes], width: .abbreviated))
     }
+
+    // MARK: - Mindful Pause
+
+    private var focusSummary: some View {
+        VStack(spacing: 12) {
+            focusRow("Resisted today", value: focusStats.todayResisted)
+            Divider()
+            focusRow("Opened today", value: focusStats.todayOpened)
+            Divider()
+            focusRow("Resist streak", value: focusStats.currentResistStreak)
+            Divider()
+            focusRow("Resisted in total", value: focusStats.totalResisted)
+        }
+        .font(.headline)
+        .fontDesign(.serif)
+        .cardChrome()
+    }
+
+    private func focusRow(_ label: LocalizedStringKey, value: Int) -> some View {
+        LabeledContent(label) {
+            Text("\(value)").foregroundStyle(.primary)
+        }
+    }
+
+    private var badges: some View {
+        let status = FocusBadges.status(from: focusEvents)
+        return LazyVGrid(
+            columns: [GridItem(.adaptive(minimum: 96), spacing: 16)],
+            spacing: 20
+        ) {
+            ForEach(status, id: \.badge.id) { item in
+                VStack(spacing: 8) {
+                    Image(systemName: item.badge.systemImage)
+                        .font(.system(size: 30))
+                        .foregroundStyle(item.isEarned ? AnyShapeStyle(.tint) : AnyShapeStyle(.tertiary))
+                    Text(LocalizedStringKey(item.badge.title))
+                        .font(.caption.weight(.medium))
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(item.isEarned ? .primary : .secondary)
+                }
+                .frame(maxWidth: .infinity)
+                .opacity(item.isEarned ? 1 : 0.45)
+            }
+        }
+        .padding(.top, 4)
+    }
+
+    // MARK: - Weekly chart
 
     private var weeklyChart: some View {
         let daily = sessionStore.dailyMinutes(lastDays: 7)

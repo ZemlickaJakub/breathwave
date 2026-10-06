@@ -49,6 +49,16 @@ final class HapticsEngine {
     }
 
     private func rampPattern(from: Float, to: Float, duration: TimeInterval) throws -> CHHapticPattern {
+        // A soft transient marks the turn-around, so the rhythm stays
+        // readable with eyes closed (in-the-dark sessions rely on it).
+        let turnCue = CHHapticEvent(
+            eventType: .hapticTransient,
+            parameters: [
+                CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.35),
+                CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.25),
+            ],
+            relativeTime: 0
+        )
         let event = CHHapticEvent(
             eventType: .hapticContinuous,
             parameters: [
@@ -66,7 +76,7 @@ final class HapticsEngine {
             ],
             relativeTime: 0
         )
-        return try CHHapticPattern(events: [event], parameterCurves: [curve])
+        return try CHHapticPattern(events: [turnCue, event], parameterCurves: [curve])
     }
 
     private func tapPattern() throws -> CHHapticPattern {

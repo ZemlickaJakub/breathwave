@@ -14,7 +14,12 @@ struct Session: Identifiable, Hashable, Codable, Sendable {
     let duration: TimeInterval
     let kind: Kind
 
-    init(id: UUID = UUID(), completedAt: Date, duration: TimeInterval, kind: Kind) {
+    init(
+        id: UUID = UUID(),
+        completedAt: Date,
+        duration: TimeInterval,
+        kind: Kind
+    ) {
         self.id = id
         self.completedAt = completedAt
         self.duration = duration

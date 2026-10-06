@@ -40,6 +40,15 @@ struct HomeView: View {
                         }
                         .buttonStyle(.plain)
                     }
+                    SectionHeader("Focus")
+                    VStack(spacing: 12) {
+                        NavigationLink {
+                            FocusView()
+                        } label: {
+                            MenuCard(titleKey: "Mindful Pause", icon: "hand.raised")
+                        }
+                        .buttonStyle(.plain)
+                    }
                     NavigationLink {
                         AboutView()
                     } label: {
@@ -58,6 +67,13 @@ struct HomeView: View {
                         SettingsView()
                     } label: {
                         Label("Settings", systemImage: "gearshape")
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink {
+                        GardenView()
+                    } label: {
+                        Label("Garden", systemImage: "camera.macro")
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {

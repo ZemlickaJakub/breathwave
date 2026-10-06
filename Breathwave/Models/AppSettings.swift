@@ -8,6 +8,10 @@ final class AppSettings {
     var hapticsEnabled: Bool {
         didSet { defaults.set(hapticsEnabled, forKey: Keys.haptics) }
     }
+    /// Breathing sessions run with a near-black screen, guided by haptics and sound.
+    var inTheDarkEnabled: Bool {
+        didSet { defaults.set(inTheDarkEnabled, forKey: Keys.inTheDark) }
+    }
     var healthSyncEnabled: Bool {
         didSet { defaults.set(healthSyncEnabled, forKey: Keys.healthSync) }
     }
@@ -26,6 +30,7 @@ final class AppSettings {
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
         hapticsEnabled = defaults.object(forKey: Keys.haptics) as? Bool ?? true
+        inTheDarkEnabled = defaults.bool(forKey: Keys.inTheDark)
         healthSyncEnabled = defaults.bool(forKey: Keys.healthSync)
         hasCompletedOnboarding = defaults.bool(forKey: Keys.onboarding)
         breathSound = BreathSound(rawValue: defaults.string(forKey: Keys.breathSound) ?? "") ?? .ocean
@@ -35,6 +40,7 @@ final class AppSettings {
 
     private enum Keys {
         static let haptics = "settings.haptics"
+        static let inTheDark = "settings.inTheDark"
         static let healthSync = "settings.healthSync"
         static let onboarding = "onboarding.completed"
         static let breathSound = "settings.breathSound"
