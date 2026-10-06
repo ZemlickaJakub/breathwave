@@ -43,7 +43,19 @@ jobs:
             -destination "id=${{ steps.sim.outputs.udid }}" \
             -resultBundlePath TestResults.xcresult \
             CODE_SIGNING_ALLOWED=NO \
-            | tee xcodebuild.log
+            2>&1 | tee xcodebuild.log
+
+      # Log z xcodebuild nenese text aserce, ten je jen v xcresult. Tady se
+      # vypíše do logu běhu, aby se dal přečíst i bez Macu.
+      - name: Proč selhalo
+        if: failure()
+        run: |
+          xcrun xcresulttool get test-results summary --path TestResults.xcresult \
+            | python3 -c 'import json,sys
+          d=json.load(sys.stdin)
+          print("result:", d.get("result"), "| passed:", d.get("passedTests"), "| failed:", d.get("failedTests"))
+          for f in d.get("testFailures", []):
+              print("FAIL", f.get("testIdentifierString") or f.get("testName"), "-", f.get("failureText"))'
 
       - name: Výsledky
         if: always()
