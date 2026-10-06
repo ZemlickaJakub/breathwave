@@ -24,6 +24,8 @@ final class FocusMonitor: DeviceActivityMonitor {
 
     private func reapplyShield() {
         guard FocusShared.defaults.bool(forKey: FocusShared.Keys.guarding) else { return }
+        let relockAt = FocusShared.defaults.double(forKey: FocusShared.Keys.relockAt)
+        guard !FocusShared.isInGraceWindow(relockAt: relockAt) else { return }
         guard let data = FocusShared.defaults.data(forKey: FocusShared.Keys.selection),
               let selection = try? JSONDecoder().decode(FamilyActivitySelection.self, from: data) else {
             return

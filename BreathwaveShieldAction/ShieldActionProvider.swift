@@ -65,6 +65,14 @@ final class ShieldActionProvider: ShieldActionDelegate {
         let minutes = FocusShared.defaults.object(forKey: FocusShared.Keys.graceMinutes) as? Int
             ?? FocusShared.defaultGraceMinutes
 
+        // Mark when the shield should return *before* touching the schedule:
+        // rescheduling can fire a stray monitor callback, and the monitor reads
+        // this to know we're mid-grace and must not re-lock yet.
+        FocusShared.defaults.set(
+            Date().timeIntervalSince1970 + Double(minutes * 60),
+            forKey: FocusShared.Keys.relockAt
+        )
+
         // Lift the shield so the apps (and their sites) open, and record the choice.
         store.shield.applications = nil
         store.shield.applicationCategories = nil

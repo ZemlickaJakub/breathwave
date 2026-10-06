@@ -98,6 +98,8 @@ final class FocusGuardService {
         store.shield.applicationCategories = nil
         store.shield.webDomains = nil
         store.shield.webDomainCategories = nil
+        // No live grace window any more; drop the marker.
+        defaults.set(0, forKey: FocusShared.Keys.relockAt)
     }
 
     private func persistSelection() {

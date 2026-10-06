@@ -16,6 +16,10 @@ enum FocusShared {
         static let selection = "focus.selection"
         static let guarding = "focus.guarding"
         static let graceMinutes = "focus.graceMinutes"
+        /// Wall-clock instant (timeIntervalSince1970) when the shield should snap
+        /// back on. While `now` is still before it, the monitor must not re-lock —
+        /// that guards against a stray callback cancelling a fresh unlock.
+        static let relockAt = "focus.relockAt"
     }
 
     /// Minutes a guarded app stays open after the user breathes past the shield.
@@ -24,6 +28,18 @@ enum FocusShared {
 
     /// DeviceActivity schedule whose start marks the re-lock moment.
     static let graceActivityName = "focus.grace"
+
+    /// Seconds before `relockAt` from which a re-lock is allowed anyway, to
+    /// absorb scheduling jitter of the re-lock callback.
+    static let relockTolerance: TimeInterval = 30
+
+    /// True while the user is still inside a grace window they opened past the
+    /// shield. A stray monitor callback (e.g. the previous interval ending as we
+    /// reschedule) must not re-shield then; that cancels the fresh unlock and
+    /// forces a pointless second pass. `relockAt` of 0 means no window.
+    static func isInGraceWindow(relockAt: TimeInterval, now: Date = Date()) -> Bool {
+        relockAt > 0 && now.timeIntervalSince1970 < relockAt - relockTolerance
+    }
 }
 
 /// Decides which physical shield button ("primary" / "secondary") opens the app.
