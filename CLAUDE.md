@@ -49,11 +49,13 @@ Stavitel píše kód a PR s testem, který na `main` padá a na PR projde; Teste
 ověřuje výsledek a dává verdikt k hashi (model převzatý od Boss-MA, 6. 10. 2026).
 Na Jakubovi zůstává ruční test na zařízení, App Store, peníze a pravidla agentů.
 
-**Předávky a Jakubova rozhodnutí patří do `ZemlickaJakub/Alfa-Infra#79`** (soukromé),
-rozhodnutí doslova a dřív, než se pošlou dál - zpráva do session s `/clear` zmizí.
-Zadavatel dává `/clear` Staviteli a Testerovi, jen když je jejich předávka
-v Alfa-Infra#79 novější než jejich poslední práce a agent nic nedělá (rozhodl Jakub
-6. 10. 2026). Svůj `/clear` zadavatel nechává Jakubovi.
+**Jakubova rozhodnutí a předávky zadavatele patří do `ZemlickaJakub/Alfa-Infra#79`**
+(soukromé), rozhodnutí doslova a dřív, než se pošlou dál - zpráva do session
+s `/clear` zmizí. **Stavitel a Tester píšou předávku do issue ve svém repu role**
+(`ZemlickaJakub/Breathwave-Stavitel`, `ZemlickaJakub/Breathwave-Tester`), protože
+jejich token Alfa-Infra nevidí (6. 10. 2026). Zadavatel dává `/clear` Staviteli
+a Testerovi, jen když je tam jejich předávka novější než jejich poslední práce
+a agent nic nedělá (rozhodl Jakub 6. 10. 2026). Svůj `/clear` nechává Jakubovi.
 
 **Repo `ZemlickaJakub/breathwave` je PUBLIC** (ověř `gh repo view --json visibility`):
 nic interního do `docs/`, commit messages, PR ani issues. Interní záležitosti
